@@ -15,6 +15,7 @@ function RenderVideo({ src, title, id }) {
           autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         data-testid={ `${id}` }
+        style={ { borderRadius: '10px' } }
       />
     </div>
   );

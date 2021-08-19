@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
+import '../App.css';
 
 const copy = require('clipboard-copy');
 
@@ -32,7 +33,7 @@ export default function ButtonShare(props) {
   };
 
   return (
-    <div style={ { display: 'flex' } }>
+    <div style={ { display: 'block' } }>
       <button
         style={ { background: 'none', opacity: 'none', border: 'none' } }
         type="button"
@@ -40,7 +41,7 @@ export default function ButtonShare(props) {
       >
         <img src={ shareIcon } alt="share icon" data-testid={ testid } />
       </button>
-      { isCopied && <p>Link copiado!</p>}
+      { isCopied && <div className="btn btn-success share">Link copiado!</div>}
     </div>
 
   );

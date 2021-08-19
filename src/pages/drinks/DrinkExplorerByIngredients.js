@@ -10,6 +10,17 @@ export default function DrinkExplorerByIngredients() {
       <SearchBarProvider>
         <Header title="Explorar Ingredientes" />
       </SearchBarProvider>
+      <div
+        className="container-header-filters"
+        style={ { zIndex: '1' } }
+      >
+        <h3
+          className="container-header"
+          style={ { marginTop: '60px', textAlign: 'center' } }
+        >
+          Ingredients
+        </h3>
+      </div>
       <CardsListByIngredient />
       <Footer />
     </>

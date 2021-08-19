@@ -4,6 +4,7 @@ import ButtonShare from './ButtonShare';
 import ButtonToProgress from './ButtonToProgress';
 import Recommended from './Recommended';
 import RenderVideo from './RenderVideo';
+import '../App.css';
 
 function DrinkDetailCard() {
   const [drinkDetail, setDrinkDetail] = useState([]);
@@ -61,20 +62,42 @@ function DrinkDetailCard() {
 
   return (
     <div>
-      <h3 data-testid="recipe-title">{strDrink}</h3>
-      <img data-testid="recipe-photo" width="150px" src={ strDrinkThumb } alt="tumb" />
-      <h4>{strCategory}</h4>
-      <p data-testid="recipe-category">{strAlcoholic}</p>
-      <div style={ { display: 'flex', justifyContent: 'space-around' } }>
+      <div className="card">
+        <div>
+          <img
+            className="card-img-top"
+            style={ { boxShadow: '0px 0px 5px' } }
+            data-testid="recipe-photo"
+            width="150px"
+            src={ strDrinkThumb }
+            alt="tumb"
+          />
+        </div>
+        <div
+          className="card-body"
+          style={ { borderRadius: '0 0 5px 5px', textAlign: 'center' } }
+        >
+          <h5 className="card-details-text" data-testid="recipe-title">{strDrink}</h5>
+          <h6 className="card-details-text">{strCategory}</h6>
+          <p
+            className="card-details-text"
+            data-testid="recipe-category"
+          >
+            {strAlcoholic}
+          </p>
+        </div>
+      </div>
+      <div className="card-details-share">
         <ButtonFavorite objData={ drinkDetail } />
         <ButtonShare path={ window.location.href } testid="share-btn" />
       </div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
+      <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
+      <div style={ { paddingLeft: '40px', fontStyle: 'italic' } }>
+        <table>
+          <tbody>
+            <tr>
+              {/* <td> */}
               { objIngred.map((e, i) => {
-                console.log(e);
                 if (e !== null) {
                   return (
                     <div
@@ -88,21 +111,32 @@ function DrinkDetailCard() {
                 }
                 return undefined;
               }) }
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h6 data-testid="instructions">{strInstructions}</h6>
+              {/* </td> */}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
+        <h6
+          style={ { padding: '0 20px 0 20px', textAlign: 'justify' } }
+          data-testid="instructions"
+        >
+          {strInstructions}
+        </h6>
+      </div>
       { strYoutube
         && <RenderVideo
           src={ strYoutube }
           title={ `Recipe ${strDrink}` }
           id="video"
         /> }
-      <div style={ { margin: '40px' } }>
+      <div className="card-recommend">
         <Recommended value={ rec } type="drink" min={ min } />
       </div>
-      <ButtonToProgress data={ drinkDetail } />
+      <div style={ { marginLeft: '22%', marginRight: 'auto' } }>
+        <ButtonToProgress data={ drinkDetail } />
+      </div>
     </div>
   );
 }

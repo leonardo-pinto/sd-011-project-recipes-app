@@ -27,7 +27,7 @@ export default function Header(props) {
   );
 
   return (
-    <section className="container-header-filters">
+    <section className="container-header-filters" style={ { zIndex: '2' } }>
       <header className="container-header">
         <div
           style={ { width: '30px' } }

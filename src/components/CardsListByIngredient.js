@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import fetchByFilter from '../services/data';
 import { SearchBarContext } from '../context/SearchBar';
+import '../App.css';
 
 /* Criei CardsList para renderizar apenas uma vez. Deixei apenas o SearchBarProvider encapsulando o Header e CardsList, já que buscam as mesmas informações */
 
@@ -67,39 +68,39 @@ export default function CardsListByIngredient() {
     setRedirectTo(true);
   };
 
-  return (
-    <div style={ { position: 'relative' } }>
-      { imge.map((e, i) => (
-        <button
-          style={ {
-            borderRadius: '5px',
-            margin: '10px 10px 0 10px',
-            width: '100%',
-            background: 'orange',
-            opacity: 'none',
-            border: '1px solid black',
-          } }
-          type="button"
-          key={ i }
+  const cards = () => (
+    imge.map((e, i) => (
+      <div
+        className="btn btn-warning card-by-ingredient"
+        type="button"
+        key={ i }
+      >
+        <div
+          role="button"
+          data-testid={ `${i}-ingredient-card` }
+          onClick={ () => handleClick(e.name) }
+          onKeyPress={ () => handleClick(e.name) }
+          tabIndex="0"
         >
-          <div
-            role="button"
-            data-testid={ `${i}-ingredient-card` }
-            onClick={ () => handleClick(e.name) }
-            onKeyPress={ () => handleClick(e.name) }
-            tabIndex="0"
-          >
-            <img
-              src={ e.fig }
-              alt={ `figure ${e.name}` }
-              data-testid={ `${i}-card-img` }
-            />
-            <p data-testid={ `${i}-card-name` }>{e.name}</p>
-          </div>
-        </button>
-      )) }
-      { redirectTo && <Redirect to={ `/${path}` } /> }
-    </div>
+          <img
+            src={ e.fig }
+            alt={ `figure ${e.name}` }
+            data-testid={ `${i}-card-img` }
+          />
+          <p data-testid={ `${i}-card-name` }>{e.name}</p>
+        </div>
+      </div>
+    ))
+  );
+
+  return (
+    (imge.length === 0) ? <p className="card-by-ingredient-loading">Carregando...</p>
+      : (
+        <div className="card-by-ingredient-body">
+          { cards() }
+          { redirectTo && <Redirect to={ `/${path}` } /> }
+        </div>
+      )
   );
 }
 
