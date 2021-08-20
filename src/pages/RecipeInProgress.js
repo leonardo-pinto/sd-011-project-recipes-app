@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import '../App.css';
+import { Card } from 'react-bootstrap';
 import ButtonShare from '../components/ButtonShare';
-import CardDetail from '../components/RecipeInProgress/CardDetail';
 import IngredientsList from '../components/RecipeInProgress/IngredientsList';
-import Instructions from '../components/RecipeInProgress/Instructions';
 import ButtonFinish from '../components/RecipeInProgress/ButtonFinish';
 import { InProgressProvider } from '../context/RecipeInProgress';
 import ButtonFavorite from '../components/ButtonFavorite';
@@ -34,59 +34,42 @@ export default function RecipeInProgress({ location }) {
     }
   }, [isMeal, recipeId, state]);
 
-  const renderDrink = () => {
+  if (recipe) {
     const CHARACTERS = -12;
     return (
       <InProgressProvider>
-        <section>
-          <CardDetail
-            thumb={ recipe.strDrinkThumb }
-            name={ recipe.strDrink }
-            id={ recipe.idDrink }
-            category={ recipe.strCategory }
+        <Card style={ { width: '90%', margin: '15px auto' } }>
+          <Card.Img
+            src={ recipe.strDrinkThumb || recipe.strMealThumb }
+            alt={ recipe.idDrink || recipe.idMeal }
+            data-testid="recipe-photo"
           />
-          <p>{recipe.strAlcoholic}</p>
-          <ButtonShare
-            path={ window.location.href.slice(0, CHARACTERS) }
-            testid="share-btn"
-          />
-          <ButtonFavorite objData={ recipe } />
-          <IngredientsList recipe={ recipe } />
-          <Instructions Instructions={ recipe.strInstructions } />
-          <ButtonFinish recipe={ recipe } />
-        </section>
+          <Card.Body>
+            <Card.Title>{ recipe.strDrink || recipe.strMeal }</Card.Title>
+            <Card.Text>
+              { recipe.strAlcoholic }
+            </Card.Text>
+            <Card.Text style={ { display: 'flex', justifyContent: 'space-around' } }>
+              <ButtonFavorite objData={ recipe } />
+              <ButtonShare
+                path={ window.location.href.slice(0, CHARACTERS) }
+                testid="share-btn"
+              />
+            </Card.Text>
+            <Card.Text>
+              <IngredientsList
+                recipe={ recipe }
+                id={ recipe.idDrink || recipe.idMeal }
+                category={ recipe.strCategory }
+              />
+            </Card.Text>
+            <Card.Subtitle>Receita</Card.Subtitle>
+            <Card.Text data-testid="instructions">{ recipe.strInstructions }</Card.Text>
+            <ButtonFinish recipe={ recipe } />
+          </Card.Body>
+        </Card>
       </InProgressProvider>
     );
-  };
-
-  const renderMeal = () => {
-    const CHARACTERS = -12;
-    return (
-      <InProgressProvider>
-        <section>
-          <CardDetail
-            thumb={ recipe.strMealThumb }
-            name={ recipe.strMeal }
-            id={ recipe.idMeal }
-            category={ recipe.strCategory }
-          />
-          <ButtonShare
-            path={ window.location.href.slice(0, CHARACTERS) }
-            testid="share-btn"
-          />
-          <ButtonFavorite objData={ recipe } />
-          <IngredientsList recipe={ recipe } />
-          <Instructions Instructions={ recipe.strInstructions } />
-          <ButtonFinish recipe={ recipe } />
-        </section>
-      </InProgressProvider>
-    );
-  };
-
-  if (recipe && isMeal) {
-    return renderMeal();
-  } if (recipe && !isMeal) {
-    return renderDrink();
   }
   return <div>Carregando...</div>;
 }

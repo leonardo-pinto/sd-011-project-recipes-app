@@ -28,15 +28,17 @@ export default function DrinkExplorer() {
         <Button
           className="button-style"
           variant="dark"
+          size="lg"
+          data-testid="explore-by-ingredient"
           type="button"
           onClick={ () => history.push('/explorar/bebidas/ingredientes') }
-          data-testid="explore-by-ingredient"
         >
           Por Ingredientes
         </Button>
         <Button
-          variant="dark"
           className="button-style"
+          variant="dark"
+          size="lg"
           data-testid="explore-surprise"
           type="button"
           onClick={ () => history.push(`/bebidas/${idRandomDrink}`) }

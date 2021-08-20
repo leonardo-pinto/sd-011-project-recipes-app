@@ -11,7 +11,7 @@ export default function FoodExplorerByCountry() {
       <SearchBarProvider>
         <Header title="Explorar Origem" search fetchType="themealdb" />
         <ExplorerByCountry />
-        <CardsList fetchType="themealdb" />
+        <CardsList fetchType="themealdb" styleHeight="byarea" />
       </SearchBarProvider>
       <Footer />
     </>

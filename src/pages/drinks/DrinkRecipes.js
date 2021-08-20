@@ -9,7 +9,7 @@ export default function DrinkRecipes() {
           Detalhes da bebida
         </h3>
       </div>
-      <div style={ { marginTop: '60px' } }>
+      <div style={ { marginTop: '10px' } }>
         <DrinkDetailCard />
       </div>
     </div>

@@ -61,11 +61,11 @@ export default function FiltersBar(props) {
 
   return (
     <section className="container-buttons-filter">
-      { categories.length > 0 ? (
+      { categories.length > 0 && (
         <>
           <Button
             variant="dark"
-            className="button-filter"
+            className="button-filter button"
             type="button"
             data-testid="All-category-filter"
             onClick={ () => onClickFilter('') }
@@ -75,7 +75,7 @@ export default function FiltersBar(props) {
           {categories.map((cat) => (
             <Button
               variant="dark"
-              className="button-filter"
+              className="button-filter button"
               type="button"
               key={ cat.strCategory }
               data-testid={ `${cat.strCategory}-category-filter` }
@@ -83,7 +83,7 @@ export default function FiltersBar(props) {
             >
               {cat.strCategory}
             </Button>))}
-        </>) : <p>Carregando...</p>}
+        </>)}
     </section>
   );
 }

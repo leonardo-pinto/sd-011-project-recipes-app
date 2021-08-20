@@ -62,78 +62,81 @@ function MealDetailCard() {
   }).filter((i) => i !== undefined);
 
   return (
-    <div>
-      <div className="card">
+    <div className="card" style={ { width: '95%', margin: '15px auto' } }>
+      <div>
+        <img
+          className="card-img"
+          style={ { boxShadow: '0px 0px 5px' } }
+          data-testid="recipe-photo"
+          width="150px"
+          src={ strMealThumb }
+          alt="tumb"
+        />
+      </div>
+      <div
+        className="card-body"
+        style={ { borderRadius: '0 0 5px 5px', textAlign: 'center' } }
+      >
+        <h5 className="card-details-text" data-testid="recipe-title">{strMeal}</h5>
+        <h6 className="card-details-text">{strArea}</h6>
+        <p
+          className="card-details-text"
+          data-testid="recipe-category"
+        >
+          {strCategory}
+        </p>
+        <div className="card-details-share">
+          <ButtonFavorite objData={ mealDetail } />
+          <ButtonShare path={ window.location.href } testid="share-btn" />
+        </div>
+        <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
+        <div style={ { fontStyle: 'italic' } }>
+          { objIngred.map((e, i) => {
+            if (e !== null) {
+              return (
+                <div
+                  data-testid={ `${i}-ingredient-name-and-measure` }
+                  key={ i }
+                >
+                  {objMeasure[i] !== (undefined || '')
+                    ? `${e} - ${objMeasure[i]}` : `${e}`}
+                </div>
+              );
+            }
+            return undefined;
+          }) }
+          {/* <table>
+            <tbody>
+              <tr>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table> */}
+        </div>
         <div>
-          <img
-            className="card-img-top"
-            style={ { boxShadow: '0px 0px 5px' } }
-            data-testid="recipe-photo"
-            width="150px"
-            src={ strMealThumb }
-            alt="tumb"
-          />
+          <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
+          <h6
+            style={ { padding: '0 20px 0 20px', textAlign: 'justify' } }
+            data-testid="instructions"
+          >
+            {strInstructions}
+          </h6>
         </div>
-        <div
-          className="card-body"
-          style={ { borderRadius: '0 0 5px 5px', textAlign: 'center' } }
-        >
-          <h5 className="card-details-text" data-testid="recipe-title">{strMeal}</h5>
-          <h6 className="card-details-text">{strArea}</h6>
-          <p className="card-details-text" data-testid="recipe-category">{strCategory}</p>
+        <div>
+          { strYoutube
+            && <RenderVideo
+              src={ strYoutube }
+              title={ `Recipe ${strMeal}` }
+              id="video"
+            /> }
         </div>
-      </div>
-      <div className="card-details-share">
-        <ButtonFavorite objData={ mealDetail } />
-        <ButtonShare path={ window.location.href } testid="share-btn" />
-      </div>
-      <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
-      <div style={ { paddingLeft: '40px', fontStyle: 'italic' } }>
-        <table>
-          <tbody>
-            <tr>
-              {/* <td> */}
-              { objIngred.map((e, i) => {
-                if (e !== null) {
-                  return (
-                    <div
-                      data-testid={ `${i}-ingredient-name-and-measure` }
-                      key={ i }
-                    >
-                      {objMeasure[i] !== (undefined || '')
-                        ? `${e} - ${objMeasure[i]}` : `${e}`}
-                    </div>
-                  );
-                }
-                return undefined;
-              }) }
-              {/* </td> */}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
-        <h6
-          style={ { padding: '0 20px 0 20px', textAlign: 'justify' } }
-          data-testid="instructions"
-        >
-          {strInstructions}
-        </h6>
-      </div>
-      <div>
-        { strYoutube
-          && <RenderVideo
-            src={ strYoutube }
-            title={ `Recipe ${strMeal}` }
-            id="video"
-          /> }
-      </div>
-      <div className="card-recommend">
-        <Recommended value={ rec } type="meal" min={ min } />
-      </div>
-      <div style={ { marginLeft: '22%', marginRight: 'auto' } }>
-        <ButtonToProgress data={ mealDetail } />
+        <div className="card-recommend">
+          <Recommended value={ rec } type="meal" min={ min } />
+        </div>
+        <div>
+          <ButtonToProgress data={ mealDetail } />
+        </div>
       </div>
     </div>
   );

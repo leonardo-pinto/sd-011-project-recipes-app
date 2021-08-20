@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 import { InProgressContext } from '../../context/RecipeInProgress';
 
 export default function IngredientsList(props) {
-  const { recipe } = props;
+  const { recipe, name, category } = props;
   const {
     setLocalStorage,
     ingredientsArray,
@@ -35,12 +36,13 @@ export default function IngredientsList(props) {
   }, [recipe, setIngredientsArray, setMeasurementsArray]);
 
   return (
-    <section>
-      <h3>Receita</h3>
-      { ingredientsArray && ingredientsArray.map((ingredient, index) => (
-        <div key={ index } data-testid={ `${index}-ingredient-step` }>
-          <label key={ index } htmlFor={ `id${index}` }>
-            <input
+    <>
+      <h1 data-testid="recipe-title">{ name }</h1>
+      <p data-testid="recipe-category">{ category }</p>
+      <Form>
+        { ingredientsArray && ingredientsArray.map((ingredient, index) => (
+          <div key={ index } data-testid={ `${index}-ingredient-step` }>
+            <Form.Check
               checked={ checkSavedItens(ingredient) }
               id={ `id${index}` }
               name="ingredient"
@@ -48,16 +50,16 @@ export default function IngredientsList(props) {
               key={ index }
               type="checkbox"
               value={ ingredient }
+              label={ `${ingredient} ${
+                measurementsArray[index]
+                  ? ` - ${measurementsArray[index]}`
+                  : ''
+              }` }
             />
-            {`${ingredient} ${
-              measurementsArray[index]
-                ? ` - ${measurementsArray[index]}`
-                : ''
-            }`}
-          </label>
-        </div>
-      ))}
-    </section>
+          </div>
+        ))}
+      </Form>
+    </>
   );
 }
 

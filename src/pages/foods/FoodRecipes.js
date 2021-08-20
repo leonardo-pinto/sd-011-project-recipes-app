@@ -10,7 +10,7 @@ export default function FoodRecipes() {
           Detalhes da comida
         </h3>
       </div>
-      <div style={ { marginTop: '60px' } }>
+      <div style={ { marginTop: '10px' } }>
         <MealDetailCard />
       </div>
     </div>

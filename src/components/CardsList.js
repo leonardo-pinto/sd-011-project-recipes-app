@@ -6,9 +6,10 @@ import fetchByFilter from '../services/data';
 
 export default function CardsList(props) {
   const { dataValues } = useContext(SearchBarContext);
-  const { fetchType, ingredient } = props;
+  const { fetchType, ingredient, styleHeight } = props;
   const [renderArray, setRenderArray] = useState([]);
   const MAX_CARDS = 12;
+
   useEffect(() => {
   }, [dataValues]);
 
@@ -40,7 +41,7 @@ export default function CardsList(props) {
   if (dataValues && dataValues.length > 0) {
     return (
       <div
-        style={ { marginTop: '175px' } }
+        style={ { marginTop: styleHeight ? '127px' : '175px' } }
       >
         { dataValues.slice(0, MAX_CARDS).map((eachRecipe1, index1) => (<Cards
           recipe={ eachRecipe1 }
@@ -53,7 +54,15 @@ export default function CardsList(props) {
     );
   }
 
-  return <div>Carregando itens...</div>;
+  return (
+    <div
+      style={ {
+        marginTop: styleHeight ? '127px' : '175px',
+        textAlign: 'center',
+      } }
+    >
+      Não há itens.
+    </div>);
 }
 
 CardsList.propTypes = {

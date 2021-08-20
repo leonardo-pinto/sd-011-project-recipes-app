@@ -19,9 +19,10 @@ describe('Testa a tela <Foods.js />', () => {
     screen.getByTestId('explore-bottom-btn');
   });
 
-  it('Possui os cards', () => {
+  it('Possui os cards', async () => {
     const { getByTestId } = renderWithRouterAndContext(<Foods />); // já vem com Context envolvendo o componente Foods
-    expect(getByTestId('0-recipe-card')).toBeInTheDocument();
+    const teste = await getByTestId('0-recipe-card');
+    expect(teste).toBeInTheDocument();
     // expect(getByText('Beef')).toBeInTheDocument();
   });
 });

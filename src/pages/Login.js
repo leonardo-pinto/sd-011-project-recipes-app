@@ -63,6 +63,7 @@ function Login() {
         </Form.Label>
         <Button
           variant="secondary"
+          className="button transition"
           type="button"
           data-testid="login-submit-btn"
           disabled={ disabled }

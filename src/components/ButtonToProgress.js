@@ -46,8 +46,8 @@ function ButtonToProgress(props) {
     const btn = (
       <div>
         <Button
-          className="button-style btn btn-dark"
-          style={ { position: 'fixed', bottom: 0 } }
+          className="btn btn-primary"
+          style={ { bottom: 0, backgroundColor: 'rgb(75, 44, 13)' } }
           data-testid="start-recipe-btn"
           type="button"
           onClick={ handleClick }

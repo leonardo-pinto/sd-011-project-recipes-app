@@ -71,7 +71,7 @@ export default function CardsListByIngredient() {
   const cards = () => (
     imge.map((e, i) => (
       <div
-        className="btn btn-warning card-by-ingredient"
+        className="btn btn-light card-by-ingredient"
         type="button"
         key={ i }
       >

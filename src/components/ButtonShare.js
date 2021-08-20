@@ -41,7 +41,7 @@ export default function ButtonShare(props) {
       >
         <img src={ shareIcon } alt="share icon" data-testid={ testid } />
       </button>
-      { isCopied && <div className="btn btn-success share">Link copiado!</div>}
+      { isCopied && <div className="alert alert-success share">Link copiado!</div>}
     </div>
 
   );

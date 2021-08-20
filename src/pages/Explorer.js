@@ -15,6 +15,7 @@ export default function Explorer() {
       <section className="container-buttons">
         <Button
           variant="dark"
+          size="lg"
           className="button-style"
           type="button"
           data-testid="explore-food"
@@ -24,6 +25,7 @@ export default function Explorer() {
         </Button>
         <Button
           variant="dark"
+          size="lg"
           className="button-style"
           type="button"
           data-testid="explore-drinks"

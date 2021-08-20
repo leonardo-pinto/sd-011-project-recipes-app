@@ -26,8 +26,10 @@ export default function FoodExplorer() {
       </SearchBarProvider>
       <section className="container-buttons">
         <Button
+          style={ { fontSize: '18px' } }
           className="button-style"
           variant="dark"
+          size="lg"
           type="button"
           onClick={ () => history.push('/explorar/comidas/ingredientes') }
           data-testid="explore-by-ingredient"
@@ -35,8 +37,10 @@ export default function FoodExplorer() {
           Por Ingredientes
         </Button>
         <Button
+          style={ { fontSize: '18px' } }
           className="button-style"
           variant="dark"
+          size="lg"
           data-testid="explore-by-area"
           type="button"
           onClick={ () => history.push('/explorar/comidas/area') }
@@ -44,8 +48,10 @@ export default function FoodExplorer() {
           Por Local de Origem
         </Button>
         <Button
+          style={ { fontSize: '18px' } }
           className="button-style"
           variant="dark"
+          size="lg"
           data-testid="explore-surprise"
           type="button"
           onClick={ () => history.push(`/comidas/${idRandomFood}`) }

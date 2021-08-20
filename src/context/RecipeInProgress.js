@@ -73,7 +73,7 @@ export function InProgressProvider({ children }) {
           cocktails,
         };
       } else {
-        const ingArray = cocktails[recipeId].filter((item) => item !== target.value);
+        const ingArray = meals[recipeId].filter((item) => item !== target.value);
         itemToSave = {
           meals: {
             ...meals,
