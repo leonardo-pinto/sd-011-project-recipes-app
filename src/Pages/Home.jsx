@@ -1,20 +1,16 @@
 import React from 'react';
 import '../App.css';
-import rockGlass from '../images/rockGlass.svg';
+import logo from '../images/cozinheiro.gif';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from '../Components/Login';
+import '../css/Home.css';
 
 function Home() {
   return (
     <div className="meals">
-      <span className="logo">TRYBE</span>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
+      <h1 className="title-home">Recipes App Store</h1>
+      <h3>Bem vindo de volta!</h3>
+      <img src={ logo } alt="Logo app" width="150px" />
       <Login />
     </div>
   );

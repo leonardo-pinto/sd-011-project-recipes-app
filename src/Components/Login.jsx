@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -19,31 +20,40 @@ export default function Login() {
 
   return (
     <div>
-      <input
-        type="email"
-        data-testid="email-input"
-        id="email-input"
-        placeholder="Email"
-        onChange={ ({ target }) => setEmail(target.value) }
-      />
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            data-testid="email-input"
+            id="email-input"
+            placeholder="Email"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </Form.Group>
 
-      <input
-        type="password"
-        data-testid="password-input"
-        placeholder="Senha"
-        onChange={ ({ target }) => setPassword(target.value) }
-      />
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            data-testid="password-input"
+            placeholder="Senha"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </Form.Group>
 
-      <Link to="/comidas">
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ email && password ? !(checkEmailAndPass(email, password)) : true }
-          onClick={ () => setLocalStorage(email) }
-        >
-          Entrar
-        </button>
-      </Link>
+        <Link to="/comidas">
+          <Button
+            variant="primary"
+            type="submit"
+            data-testid="login-submit-btn"
+            disabled={ email && password ? !(checkEmailAndPass(email, password)) : true }
+            onClick={ () => setLocalStorage(email) }
+          >
+            Go!
+          </Button>
+        </Link>
+      </Form>
     </div>
   );
 }
