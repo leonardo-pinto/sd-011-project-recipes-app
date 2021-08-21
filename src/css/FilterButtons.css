@@ -1,0 +1,17 @@
+.button-filter-foods {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 8px 2 8px;
+  margin: 5%;
+  row-gap: 1px;
+}
+
+.filter-buttons-drinks {
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: 100px 130px 80px;
+  grid-template-rows: 8px 2 8px;
+  margin: 5%;
+  row-gap: 1px;
+}

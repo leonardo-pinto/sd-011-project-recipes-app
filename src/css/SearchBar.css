@@ -1,0 +1,8 @@
+.search-bar {
+  margin-top: 4%;
+}
+
+.radios {
+  display: flex;
+  justify-content: space-between;
+}

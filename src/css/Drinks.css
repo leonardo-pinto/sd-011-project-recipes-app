@@ -1,13 +1,23 @@
-@media screen and ( max-width : 640px ) {
+.card-drinks {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  margin: 5% auto;
+}
 
-  .card-drinks {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px;
-  }
+.card-drinks h3 {
+  display: flex;
+  font-family: fantasy;
+  font-size: 100%;
+  justify-content: center;
+}
 
-  .drink-page {
-    height: 80%;
-    overflow: auto;
-  }
+.card-drinks a {
+  color: #a61103;
+  text-decoration: none;
+}
+
+.drink-page {
+  height: 90%;
+  overflow: auto;
 }

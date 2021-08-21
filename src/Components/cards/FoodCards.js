@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 import MainContext from '../../Context/MainContext';
 import { getFoodsInitial } from '../../Services/ApiFood';
 
@@ -19,22 +20,13 @@ function FoodCards() {
   if (inputSearch) {
     return (
       <div className="card-foods">
-        { dataFoods.map((item, index) => index < limit && (
+        {dataFoods.map((item, index) => index < limit && (
           <Link to={ `/comidas/${item.idMeal}` }>
-            <div
-              key={ index }
-              data-testid={ `${index}-recipe-card` }
-            >
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ item.strMealThumb }
-                alt={ `Food ${item.strMeal}` }
-                width="80"
-              />
-              <p data-testid={ `${index}-card-name` }>
-                { item.strMeal }
-              </p>
-            </div>
+            <Card style={ { width: '10rem' } } key={ index }>
+              <Card.Img variant="top" src={ item.strMealThumb } />
+              <Card.Title><h3>{ item.strMeal }</h3></Card.Title>
+            </Card>
+            <br />
           </Link>
         )) }
       </div>
@@ -44,22 +36,13 @@ function FoodCards() {
   if (foodsByCategory.length > 0) {
     return (
       <div className="card-foods">
-        { foodsByCategory.map((food, index) => index < limit && (
-          <Link to={ `/comidas/${food.idMeal}` }>
-            <div
-              key={ index }
-              data-testid={ `${index}-recipe-card` }
-            >
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ food.strMealThumb }
-                alt={ `Food ${food.strMeal}` }
-                width="80"
-              />
-              <p data-testid={ `${index}-card-name` }>
-                { food.strMeal }
-              </p>
-            </div>
+        {foodsByCategory.map((item, index) => index < limit && (
+          <Link to={ `/comidas/${item.idMeal}` }>
+            <Card style={ { width: '10rem' } }>
+              <Card.Img variant="top" src={ item.strMealThumb } />
+              <Card.Title><h3>{ item.strMeal }</h3></Card.Title>
+            </Card>
+            <br />
           </Link>
         )) }
       </div>
@@ -70,20 +53,11 @@ function FoodCards() {
     <div className="card-foods">
       {initialFoods.map((item, index) => index < limit && (
         <Link to={ `/comidas/${item.idMeal}` }>
-          <div
-            key={ index }
-            data-testid={ `${index}-recipe-card` }
-          >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ item.strMealThumb }
-              alt={ `Food ${item.strMeal}` }
-              width="80"
-            />
-            <p data-testid={ `${index}-card-name` }>
-              { item.strMeal }
-            </p>
-          </div>
+          <Card style={ { width: '10rem' } }>
+            <Card.Img variant="top" src={ item.strMealThumb } />
+            <Card.Title><h3>{ item.strMeal }</h3></Card.Title>
+          </Card>
+          <br />
         </Link>
       )) }
     </div>

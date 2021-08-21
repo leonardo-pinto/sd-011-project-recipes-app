@@ -21,7 +21,7 @@ function HeaderDrinks() {
             src={ profileIcon }
             alt="user profile"
             width="30px"
-            height="30px"
+            height="40px"
           />
         </button>
       </Link>

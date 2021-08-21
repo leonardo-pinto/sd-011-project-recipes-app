@@ -44,7 +44,7 @@ export default function Login() {
 
         <Link to="/comidas">
           <Button
-            variant="primary"
+            variant="light"
             type="submit"
             data-testid="login-submit-btn"
             disabled={ email && password ? !(checkEmailAndPass(email, password)) : true }

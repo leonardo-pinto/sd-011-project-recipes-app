@@ -1,13 +1,23 @@
-@media screen and ( max-width : 640px ) {
+.card-foods {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  margin: 5% auto;
+}
 
-  .card-foods {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px;
-  }
+.card-foods h3 {
+  display: flex;
+  font-family: fantasy;
+  font-size: 100%;
+  justify-content: center;
+}
 
-  .food-page {
-    height: 80%;
-    overflow: auto;
-  }
+.card-foods a {
+  color: #a61103;
+  text-decoration: none;
+}
+
+.food-page {
+  height: 90%;
+  overflow: auto;
 }

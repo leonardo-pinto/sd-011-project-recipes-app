@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Button } from 'react-bootstrap';
 import {
   getDrinksCategory,
   getDrinksByCategory,
   getDrinksInitial } from '../../Services/ApiDrink';
 import MainContext from '../../Context/MainContext';
+import '../../css/FilterButtons.css';
 
 function FilterButtonsDrink() {
   const limit = 5;
@@ -33,17 +35,19 @@ function FilterButtonsDrink() {
   }
 
   return (
-    <div>
-      <button
+    <div className="filter-buttons-drinks">
+      <Button
+        variant="secondary"
         type="button"
         data-testid="All-category-filter"
         value="all"
         onClick={ ({ target }) => fetchDrinksByCategory(target.value) }
       >
         All
-      </button>
+      </Button>
       { categories.map((category, index) => index < limit && (
-        <button
+        <Button
+          variant="secondary"
           key={ index }
           type="button"
           value={ category.strCategory }
@@ -51,7 +55,7 @@ function FilterButtonsDrink() {
           onClick={ ({ target }) => fetchDrinksByCategory(target.value) }
         >
           { category.strCategory }
-        </button>
+        </Button>
       )) }
     </div>
   );
