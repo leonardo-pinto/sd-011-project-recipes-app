@@ -47,6 +47,23 @@ body {
   width: 304px;
 }
 
+.container-header-filters {
+  background: #ff900d;
+  padding: 0 0 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.container-header {
+  align-items: center;
+  background: #f76c05;
+  display: flex;
+  padding: 10px;
+  width: 100%;
+}
+
 .container-login {
   display: flex;
   flex-direction: column;
@@ -116,6 +133,7 @@ body {
   color: black;
   margin: 0;
   text-shadow: 0 0 5px;
+  text-align: center;
 }
 
 .card-details-share {
@@ -133,6 +151,8 @@ body {
 .card-recom-text {
   background-color: white;
   border-radius: 0 0 5px 5px;
+  font-size: 20px;
+  font-weight: bold;
   width: 100px;
 }
 
@@ -166,6 +186,15 @@ body {
   width: auto;
 }
 
+.slick-prev:before {
+  color: #111 !important;
+  background-color: #eee;
+}
+.slick-next:before {
+  color: #111 !important;
+  background-color: #eee;
+}
+
 @keyframes shake {
 
   0% {
@@ -195,9 +224,3 @@ body {
     transform: rotate(-10deg);
   }
 }
-
-/* header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-} */

@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-// import atSign from '../images/atSign.png';
 
 export default function Profile() {
   const user = localStorage.getItem('user');
@@ -15,7 +14,6 @@ export default function Profile() {
       <Header title="Perfil" />
       <section className="container-profile">
         <div style={ { display: 'flex', justifyContent: 'center' } }>
-          {/* <img src={ atSign } alt="" width="20px" /> */}
           <h5 data-testid="profile-email">{ email }</h5>
         </div>
         <Button

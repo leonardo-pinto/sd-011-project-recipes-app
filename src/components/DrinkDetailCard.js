@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import ButtonFavorite from './ButtonFavorite';
 import ButtonShare from './ButtonShare';
 import ButtonToProgress from './ButtonToProgress';
@@ -37,7 +38,6 @@ function DrinkDetailCard() {
   }, [path]);
 
   const {
-    // idDrink,
     strAlcoholic,
     strCategory,
     strInstructions,
@@ -61,81 +61,50 @@ function DrinkDetailCard() {
   }).filter((i) => i !== undefined);
 
   return (
-    <div className="card" style={ { width: '95%', margin: '15px auto' } }>
-      <div>
-        <img
-          className="card-img"
-          style={ { boxShadow: '0px 0px 5px' } }
-          data-testid="recipe-photo"
-          width="150px"
-          src={ strDrinkThumb }
-          alt="tumb"
-        />
-      </div>
-      <div
-        className="card-body"
-        style={ { borderRadius: '0 0 5px 5px', textAlign: 'center' } }
-      >
-        <h5 className="card-details-text" data-testid="recipe-title">{strDrink}</h5>
-        <h6 className="card-details-text">{strCategory}</h6>
-        <p
-          className="card-details-text"
-          data-testid="recipe-category"
-        >
-          {strAlcoholic}
-        </p>
-        <div className="card-details-share">
-          <ButtonFavorite objData={ drinkDetail } />
-          <ButtonShare path={ window.location.href } testid="share-btn" />
-        </div>
-        <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
-        <div style={ { fontStyle: 'italic' } }>
-          { objIngred.map((e, i) => {
-            if (e !== null) {
-              return (
-                <div
-                  data-testid={ `${i}-ingredient-name-and-measure` }
-                  key={ i }
-                >
-                  { objMeasure[i] !== (undefined || '')
-                    ? `${e} - ${objMeasure[i]}` : `${e}` }
-                </div>
-              );
-            }
-            return undefined;
-          }) }
-          {/* <table>
-            <tbody>
-              <tr>
-                <td>
-                </td>
-              </tr>
-            </tbody>
-          </table> */}
-        </div>
-        <div>
+    <>
+      <Card style={ { width: '90%', margin: '15px auto' } }>
+        <Card.Body>
+          <Card.Img
+            data-testid="recipe-photo"
+            width="150px"
+            src={ strDrinkThumb }
+            alt="tumb"
+          />
+          <Card.Text className="card-details-text" data-testid="recipe-title">{strDrink}</Card.Text>
+          <Card.Text className="card-details-text">{strCategory}</Card.Text>
+          <Card.Text className="card-details-text" data-testid="recipe-category">{strAlcoholic}</Card.Text>
+          <Card.Text className="card-details-share" style={ { display: 'flex', justifyContent: 'space-around' } }>
+            <ButtonFavorite objData={ drinkDetail } />
+            <ButtonShare path={ window.location.href } testid="share-btn" />
+          </Card.Text>
+          <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
+          <Card.Text style={ { textAlign: 'center', fontStyle: 'italic' } }>
+            { objIngred.map((e, i) => (
+              <Card.Text
+                style={ { marginBottom: '0' } }
+                data-testid={ `${i}-ingredient-name-and-measure` }
+                key={ i }
+              >
+                { objMeasure[i] ? `${e} - ${objMeasure[i]}` : `${e}`}
+              </Card.Text>
+            ))}
+          </Card.Text>
           <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
-          <h6
-            style={ { padding: '0 20px 0 20px', textAlign: 'justify' } }
-            data-testid="instructions"
-          >
-            {strInstructions}
-          </h6>
-        </div>
-        { strYoutube
+          <Card.Text data-testid="instructions">{strInstructions}</Card.Text>
+          { strYoutube
           && <RenderVideo
             src={ strYoutube }
             title={ `Recipe ${strDrink}` }
             id="video"
+            style={ { width: '50%' } }
           /> }
-        <div className="card-recommend">
-          <Recommended value={ rec } type="drink" min={ min } />
-        </div>
-        <div>
-          <ButtonToProgress data={ drinkDetail } />
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+        {/* <Card.Text className="card-recommend" style={ { margin: '40px', paddingBottom: '60px' } }>
+        </Card.Text> */}
+        <Recommended value={ rec } type="drink" min={ min } />
+      </Card>
+      <ButtonToProgress data={ drinkDetail } />
+    </>
   );
 }
 

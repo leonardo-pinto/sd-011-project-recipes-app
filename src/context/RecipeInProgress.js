@@ -29,9 +29,9 @@ export function InProgressProvider({ children }) {
       }
     }
   };
-
   const setDrinkType = () => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    console.log(inProgressRecipes);
     if (!inProgressRecipes) {
       return { cocktails: { [recipeId]: [] }, meals: { } };
     } if (inProgressRecipes && !inProgressRecipes.cocktails[recipeId]) {

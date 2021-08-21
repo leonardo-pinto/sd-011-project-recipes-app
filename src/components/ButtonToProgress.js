@@ -15,6 +15,18 @@ function ButtonToProgress(props) {
   const inProgress = localStorage.getItem('inProgressRecipes');
   const doneRecipes = localStorage.getItem('doneRecipes');
 
+  const styleBtn = {
+    // position: 'fixed',
+    bottom: 0,
+    height: '60px',
+    background: '#f76c05',
+    zIndex: '1',
+    alignItems: 'center',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
+  };
+
   useEffect(() => {
     if (inProgress === null) {
       return localStorage.setItem('inProgressRecipes', JSON.stringify({
@@ -47,7 +59,7 @@ function ButtonToProgress(props) {
       <div>
         <Button
           className="btn btn-primary"
-          style={ { bottom: 0, backgroundColor: 'rgb(75, 44, 13)' } }
+          style={ styleBtn }
           data-testid="start-recipe-btn"
           type="button"
           onClick={ handleClick }

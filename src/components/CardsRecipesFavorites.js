@@ -9,20 +9,6 @@ function CardsRecipesFavorites(props) {
   const { index, recipe, handleDisfavor } = props;
   const { id, name, image } = recipe;
   const history = useHistory();
-
-  // const card = {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'space-around',
-  //   padding: '2px',
-  //   border: '1px solid #e6e6e6',
-  //   margin: '20px auto',
-  //   float: 'none',
-  //   marginBottom: '10px',
-  //   width: '304px',
-  //   boxShadow: '0 0 5px',
-  // };
-
   const cardTitle = {
     display: 'flex',
     justifyContent: 'space-between',

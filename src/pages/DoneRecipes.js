@@ -22,7 +22,7 @@ export default function DoneRecipes() {
   return (
     <div>
       <Header title="Receitas Feitas" search={ false } />
-      <section className="container-buttons">
+      <section className="container-buttons" style={ { marginTop: '80px' } }>
         <ToggleButtonGroup
           type="radio"
           name="type"

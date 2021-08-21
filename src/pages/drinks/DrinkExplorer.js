@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Header from '../../components/Header';
-import { SearchBarProvider } from '../../context/SearchBar';
 import Footer from '../../components/Footer';
 import fetchByFilter from '../../services/data';
 
@@ -21,9 +20,7 @@ export default function DrinkExplorer() {
 
   return (
     <>
-      <SearchBarProvider>
-        <Header title="Explorar Bebidas" />
-      </SearchBarProvider>
+      <Header title="Explorar Bebidas" />
       <section className="container-buttons">
         <Button
           className="button-style"

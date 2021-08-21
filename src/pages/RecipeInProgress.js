@@ -13,9 +13,7 @@ export default function RecipeInProgress({ location }) {
   const [recipe, setRecipe] = useState();
   const recipeId = window.location.pathname.split('/')[2];
   const isMeal = (window.location.pathname).includes('comidas');
-
   const { state } = location;
-  console.log(isMeal);
 
   useEffect(() => state && !recipe && setRecipe(state), [recipe, state]);
 

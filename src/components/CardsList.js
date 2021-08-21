@@ -26,7 +26,7 @@ export default function CardsList(props) {
   if (ingredient && ingredient.length > 0) {
     return (
       <div
-        style={ { marginTop: '175px' } }
+        style={ { marginTop: '175px', paddingBottom: '60px' } }
       >
         { renderArray.slice(0, MAX_CARDS).map((eachRecipe, index) => (<Cards
           recipe={ eachRecipe }
@@ -41,7 +41,7 @@ export default function CardsList(props) {
   if (dataValues && dataValues.length > 0) {
     return (
       <div
-        style={ { marginTop: styleHeight ? '127px' : '175px' } }
+        style={ { marginTop: styleHeight ? '127px' : '175px', paddingBottom: '60px' } }
       >
         { dataValues.slice(0, MAX_CARDS).map((eachRecipe1, index1) => (<Cards
           recipe={ eachRecipe1 }

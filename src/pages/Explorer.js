@@ -3,15 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { SearchBarProvider } from '../context/SearchBar';
 
 export default function Explorer() {
   const history = useHistory();
   return (
     <>
-      <SearchBarProvider>
-        <Header title="Explorar" />
-      </SearchBarProvider>
+      <Header title="Explorar" />
       <section className="container-buttons">
         <Button
           variant="dark"

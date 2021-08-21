@@ -6,11 +6,9 @@ import '../App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function Recommended({ value, type, min }) {
-  console.log(min);
+function Recommended({ value, type }) {
   const magicN = 6;
   const sixCards = value.map((e) => e).slice(0, magicN);
-  // console.log(sixCards);
   const kind = () => {
     if (type === 'meal') {
       return (
@@ -70,7 +68,7 @@ function Recommended({ value, type, min }) {
   };
 
   return (
-    <div style={ { textAlign: '-webkit-center' } }>
+    <div style={ { margin: '30px', textAlign: '-webkit-center' } }>
       <Slider { ...settings }>
         {
           kind()

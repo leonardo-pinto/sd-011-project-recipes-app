@@ -31,6 +31,7 @@ export default function FavoriteRecipes() {
     <>
       <Header title="Receitas Favoritas" />
       <ToggleButtonGroup
+        style={ { marginTop: '80px' } }
         className="buttons-filter-favor"
         type="radio"
         name="type"
