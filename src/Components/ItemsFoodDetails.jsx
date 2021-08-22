@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Button, Card } from 'react-bootstrap';
 import copy from 'clipboard-copy';
 import { copyLink } from '../Services/ApiDrink';
 import MainContext from '../Context/MainContext';
@@ -17,36 +18,34 @@ function ItemsFoodDetails() {
 
   return (
     <div>
-      <img
-        width="320"
-        src={ idFoodsAPI.strMealThumb }
-        alt={ `Comida selecionada: ${idFoodsAPI.strMeal}` }
-        data-testid="recipe-photo"
-      />
-      <h1 data-testid="recipe-title">
-        {idFoodsAPI.strMeal}
-      </h1>
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ () => copyLink(copy, setShow, 'comidas', idFoodsAPI.idMeal) }
-      >
-        Compartilhar
-      </button>
-      <p data-testid="recipe-category">
-        {idFoodsAPI.strCategory}
-      </p>
-      <p>{ show && 'Link copiado!'}</p>
-      <ul className="scrollmenu">
-        <li
-          data-testid="0-recomendation-card"
-        >
-          <p data-testid="0-recomendation-title">
-            food.strMeal
-          </p>
-        </li>
-      </ul>
+      <Card style={ { width: '15rem' } } className="recipe-foods-cards">
+        <Card.Img
+          variant="top"
+          src={ idFoodsAPI.strMealThumb }
+          alt={ `Comida selecionada: ${idFoodsAPI.strMeal}` }
+          data-testid="recipe-photo"
+        />
+        <Card.Body>
+          <Card.Title data-testid="recipe-title"><p>{idFoodsAPI.strMeal}</p></Card.Title>
+          <Card.Text data-testid="recipe-category">
+            {' '}
+            {idFoodsAPI.strCategory}
+            {' '}
+            <p>{ show && 'Copy link!'}</p>
+            {' '}
+          </Card.Text>
+          <Button
+            variant="light"
+            data-testid="share-btn"
+            onClick={ () => copyLink(copy, setShow, 'comidas', idFoodsAPI.idMeal) }
+          >
+            Share
+          </Button>
+        </Card.Body>
+      </Card>
+      <br />
       <iframe
+        className="video"
         data-testid="video"
         width="280"
         src={ getYoutubeUrl(idFoodsAPI) }

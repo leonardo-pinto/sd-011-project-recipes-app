@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Card, Button } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import MainContext from '../../Context/MainContext';
@@ -8,6 +9,7 @@ import { getFoodsInitial, copyLink } from '../../Services/ApiFood';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import './scroll.css';
+import '../../css/DetailsRecipesDrinks.css';
 
 function DetailsRecipesFoods({ match: { params: { id } } }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -84,46 +86,61 @@ function DetailsRecipesFoods({ match: { params: { id } } }) {
   // ? pergunta que não quer calar, como "despreencher" o coração ? ;-;
 
   return (
-    <div>
-      <img
-        width="320"
-        src={ idDrinksAPI.strDrinkThumb }
-        alt={ `Comida selecionada: ${idDrinksAPI.strDrink}` }
-        data-testid="recipe-photo"
-      />
-      <h1 data-testid="recipe-title">
-        {idDrinksAPI.strDrink}
-      </h1>
-      <h2 data-testid="recipe-category">
-        {idDrinksAPI.strAlcoholic}
-      </h2>
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ () => copyLink(copy, setShow, 'bebidas', id) }
-      >
-        Compartilhar
-      </button>
-      <p>{ show && 'Link copiado!'}</p>
-      <button
-        type="button"
-        onClick={ () => handleColoredHeart() }
-      >
-        <img
-          src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-          alt="favorite icon"
-          data-testid="favorite-btn"
+    <div className="details-recipes-drinks">
+      <Link to="/bebidas">
+        <Button
+          variant="light"
+        >
+          Back
+        </Button>
+      </Link>
+      <br />
+      <br />
+      <Card style={ { width: '15rem' } } className="recipe-drinks-cards">
+        <Card.Img
+          variant="top"
+          src={ idDrinksAPI.strDrinkThumb }
+          alt={ `Bebida selecionada: ${idDrinksAPI.strDrink}` }
+          data-testid="recipe-photo"
         />
-      </button>
-      <button
-        type="button"
-        onClick={ () => handleColoredHeart() }
-      >
-        Favoritar
-      </button>
-      <p>
-        {idDrinksAPI.strCategory}
-      </p>
+        <Card.Body>
+          <Card.Title>{idDrinksAPI.strDrink}</Card.Title>
+          <Card.Text>
+            {idDrinksAPI.strAlcoholic}
+            <p>
+              {idDrinksAPI.strCategory}
+            </p>
+          </Card.Text>
+          <Button
+            type="button"
+            variant="light"
+            data-testid="share-btn"
+            onClick={ () => copyLink(copy, setShow, 'bebidas', id) }
+          >
+            Share
+          </Button>
+          <p>{ show && 'Link copiado!'}</p>
+          <Button
+            variant="light"
+            type="button"
+            onClick={ () => handleColoredHeart() }
+          >
+            <img
+              src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+              alt="favorite icon"
+              data-testid="favorite-btn"
+            />
+          </Button>
+          <Button
+            variant="light"
+            type="button"
+            onClick={ () => handleColoredHeart() }
+          >
+            Favorite
+          </Button>
+        </Card.Body>
+      </Card>
+      <br />
       <IngredientsDrinks />
       {/* //!===========================Implementar=============================== */}
       {/* <ul className="scrollmenu">
@@ -138,27 +155,18 @@ function DetailsRecipesFoods({ match: { params: { id } } }) {
           </li>
         )) }
       </ul> */}
-      <ul className="scrollmenu">
-        <li
-          data-testid={ `${0}-recomendation-card` }
-          key={ 0 }
-        >
-          <p data-testid={ `${0}-recomendation-title` }>
-            food.strMeal
-          </p>
-        </li>
-      </ul>
       {/* //!=======================Recomendation Cards============================ */}
       <NavLink to={ `/bebidas/${id}/in-progress` }>
-        <button
+        <Button
           type="button"
+          variant="light"
           data-testid="start-recipe-btn"
           className="fixed-btn"
           onClick={ () => setStartButton(true) }
           hidden={ count }
         >
-          Iniciar receita
-        </button>
+          Start recipe!
+        </Button>
       </NavLink>
     </div>
   );

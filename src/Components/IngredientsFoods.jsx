@@ -39,7 +39,7 @@ function Ingredients() {
 
   return (
     <div>
-      <h4>Receitas</h4>
+      <h4>Recipe</h4>
       <ul>
         { !startButton && DetailsIngredientsFiltered.map((ing, i) => (
           <li

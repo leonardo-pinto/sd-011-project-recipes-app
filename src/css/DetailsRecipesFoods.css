@@ -1,0 +1,36 @@
+.details-recipes-foods {
+  align-content: center;
+  height: 90%;
+  margin: 5%;
+  overflow: auto;
+}
+
+.details-recipes-foods button {
+  background-color: #83a603;
+}
+
+.recipe-foods-cards button {
+  background-color: #83a603;
+}
+
+.details-recipes-foods button:active {
+  background-color: #f29f05;
+}
+
+.details-recipes-foods p {
+  align-items: flex-start;
+  margin: 1%;
+}
+
+.recipe-foods-cards button:active {
+  background-color: #f29f05;
+}
+
+.recipe-foods-cards {
+  background-color: whitesmoke;
+  margin: auto;
+}
+
+.video {
+  margin: 5%;
+}

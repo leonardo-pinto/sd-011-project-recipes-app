@@ -40,7 +40,7 @@ function Ingredients() {
 
   return (
     <div>
-      <h4>Receitas</h4>
+      <h4>Ingredients</h4>
       <ul>
         { !startButton && DetailsIngredFilterForDrinks.map((ing, i) => (
           <li
@@ -59,7 +59,7 @@ function Ingredients() {
         {selected > 0 ? selected : null}
       </summary>
       <OnChangeCheckListDrinks />
-      <h4>Instruções</h4>
+      <h4>Instructions</h4>
       <ul>
         { DetailsInstrucFilterForDrinks.map((instructions, i) => (
           <li

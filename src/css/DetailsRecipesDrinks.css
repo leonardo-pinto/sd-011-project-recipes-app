@@ -1,0 +1,32 @@
+.details-recipes-drinks {
+  align-content: center;
+  height: 90%;
+  margin: 5%;
+  overflow: auto;
+}
+
+.details-recipes-drinks button {
+  background-color: #83a603;
+}
+
+.recipe-drinks-cards button {
+  background-color: #83a603;
+}
+
+.details-recipes-drinks button:active {
+  background-color: #f29f05;
+}
+
+.details-recipes-drinks p {
+  align-items: flex-start;
+  margin: 1%;
+}
+
+.recipe-drinks-cards button:active {
+  background-color: #f29f05;
+}
+
+.recipe-drinks-cards {
+  background-color: whitesmoke;
+  margin: auto;
+}

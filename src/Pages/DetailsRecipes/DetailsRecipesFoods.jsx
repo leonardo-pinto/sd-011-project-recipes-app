@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MainContext from '../../Context/MainContext';
 import IngredientsFoods from '../../Components/IngredientsFoods';
@@ -8,6 +9,7 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import './scroll.css';
 import ItemsFoodDetails from '../../Components/ItemsFoodDetails';
+import '../../css/DetailsRecipesFoods.css';
 
 function DetailsRecipesFoods({ match: { params: { id } } }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -83,10 +85,20 @@ function DetailsRecipesFoods({ match: { params: { id } } }) {
   };
 
   return (
-    <div>
+    <div className="details-recipes-foods">
+      <Link to="/comidas">
+        <Button
+          variant="light"
+        >
+          Back
+        </Button>
+      </Link>
+      <br />
+      <br />
       <ItemsFoodDetails />
-      <button
+      <Button
         type="button"
+        variant="light"
         onClick={ () => handleColoredHeart() }
       >
         <img
@@ -94,14 +106,17 @@ function DetailsRecipesFoods({ match: { params: { id } } }) {
           data-testid="favorite-btn"
           alt="favorite icon"
         />
-      </button>
-      <button
+      </Button>
+      <Button
+        variant="light"
         type="button"
         // data-testid="favorite-btn"
         onClick={ () => handleColoredHeart() }
       >
-        Favoritar
-      </button>
+        Favorite
+      </Button>
+      <br />
+      <br />
       <IngredientsFoods />
       <p data-testid="instructions">
         {idFoodsAPI.strInstructions}
@@ -125,15 +140,16 @@ function DetailsRecipesFoods({ match: { params: { id } } }) {
       </ul> */}
       {/* //!=======================Recomendation Cards============================ */}
       <NavLink to={ `/comidas/${id}/in-progress` }>
-        <button
+        <Button
           type="button"
+          variant="light"
           data-testid="start-recipe-btn"
           className="fixed-btn"
           onClick={ () => setStartButton(true) }
           hidden={ count }
         >
-          Iniciar receita
-        </button>
+          Recipe Start!
+        </Button>
       </NavLink>
     </div>
   );
