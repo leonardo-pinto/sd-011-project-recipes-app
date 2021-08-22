@@ -36,7 +36,7 @@ export default function FavoriteButton({ currentItem, typeOf }) {
   }
 
   return (
-    <button type="button" onClick={ () => toggleFavorite() }>
+    <button style={{border: 'none', backgroundColor: '#F8D4E4'}} type="button" onClick={ () => toggleFavorite() }>
       <img
         data-testid="favorite-btn"
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }

@@ -52,3 +52,9 @@ h3 {
 .div-food-area img{
   border-radius: 5px;
 }
+
+.search-button {
+  border-radius: 0px;
+  height: 30px;
+  border: 1px solid red;  
+}

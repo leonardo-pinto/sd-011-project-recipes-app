@@ -13,7 +13,7 @@ function ShareButton() {
   }
   return (
     <>
-      <button type="button" data-testid="share-btn" onClick={ () => copyToClipBoard() }>
+      <button style={{border: 'none', backgroundColor: '#F8D4E4'}} type="button" data-testid="share-btn" onClick={ () => copyToClipBoard() }>
         <img
           src={ shareIcon }
           alt="Botão compartilhar"

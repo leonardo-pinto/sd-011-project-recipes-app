@@ -26,55 +26,62 @@ function FavoriteRecipes() {
 
   return (
     <div>
-      <h1 data-testid="page-title">Receitas Favoritas</h1>
-      <img
-        data-testid="profile-top-btn"
-        src={ profileIcon }
-        alt="Botão que direciona para a tela de perfil"
-      />
-      <FoodOrDrinkFilter setFilter={ setFilter } />
-      <section className="favorites-recipes">
-        {filtereds && filtereds.map(({ id,
-          image,
-          name,
-          area,
-          alcoholicOrNot,
-          category,
-          type,
-        }, index) => (
-          <div key={ `${name}-${id}` }>
-            <Link to={ `/${type}s/${id}` }>
-              <img
-                src={ image }
-                width="150"
-                data-testid={ `${index}-horizontal-image` }
-                alt="Imagem de comida"
-              />
-            </Link>
-            <div>
-              <p data-testid={ `${index}-horizontal-top-text` }>
-                {area !== '' ? `${area} - ${category}` : alcoholicOrNot }
-              </p>
+      <section className="container pt-3 px-3">
+        <div className="header">
+          <h1 data-testid="page-title">Receitas Favoritas</h1>
+          <img
+            data-testid="profile-top-btn"
+            className="profile-icon"
+            src={ profileIcon }
+            alt="Botão que direciona para a tela de perfil"
+          />
+        </div>
+        <FoodOrDrinkFilter setFilter={ setFilter } />
+        <section className="d-flex flex-column mt-3">
+          {filtereds && filtereds.map(({ id,
+            image,
+            name,
+            area,
+            alcoholicOrNot,
+            category,
+            type,
+          }, index) => (
+            <div className="d-flex div-food-area mt-3" key={ `${name}-${id}` }>
               <Link to={ `/${type}s/${id}` }>
-                <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+                <img
+                  src={ image }
+                  width="150"
+                  style={{}}
+                  data-testid={ `${index}-horizontal-image` }
+                  alt="Imagem de comida"
+                />
               </Link>
-              <SecondFavoriteButton
-                itemId={ id }
-                type={ type }
-                testId={ `${index}-horizontal-favorite-btn` }
-                currentItem={ favoriteRecipes[index] }
-                setUpdate={ setUpdate }
-                update={ update }
-              />
-              <SecondShareButton
-                itemId={ id }
-                type={ type }
-                testID={ `${index}-horizontal-share-btn` }
-              />
+              <div className="d-flex flex-column justify-content-between ml-2">
+                <p style={{fontWeight: 'bold'}} data-testid={ `${index}-horizontal-top-text` }>
+                  {area !== '' ? `${area} - ${category}` : alcoholicOrNot }
+                </p>
+                <Link to={ `/${type}s/${id}` }>
+                  <p className="a-p" data-testid={ `${index}-horizontal-name` }>{name}</p>
+                </Link>
+                <div className="d-flex">
+                  <SecondFavoriteButton
+                    itemId={ id }
+                    type={ type }
+                    testId={ `${index}-horizontal-favorite-btn` }
+                    currentItem={ favoriteRecipes[index] }
+                    setUpdate={ setUpdate }
+                    update={ update }
+                  />
+                  <SecondShareButton
+                    itemId={ id }
+                    type={ type }
+                    testID={ `${index}-horizontal-share-btn` }
+                  />
+                </div>
+              </div>
             </div>
-
-          </div>
-        ))}
+          ))}
+        </section>
       </section>
     </div>
   );

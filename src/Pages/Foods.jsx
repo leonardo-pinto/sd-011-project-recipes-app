@@ -41,11 +41,11 @@ function Foods() {
   }
 
   return (
-    <section className="pb-3">
+    <section className="pb-5">
       <div className="container pt-3 px-3">
         <div className="comida-header">
           <div>
-            <h1 data-testid="page-title">comida</h1>
+            <h1 data-testid="page-title">Comida</h1>
           </div>
           <section>
             <Link to="/perfil">

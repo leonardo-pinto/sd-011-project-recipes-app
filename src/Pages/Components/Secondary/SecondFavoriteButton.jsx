@@ -36,7 +36,7 @@ function SecondFavoriteButton({ itemId, type, currentItem, setUpdate, update, te
   }
 
   return (
-    <button type="button" onClick={ () => toggleFavorite() }>
+    <button style={{border: 'none', backgroundColor: 'none'}} type="button" onClick={ () => toggleFavorite() }>
       <img
         data-testid={ testId }
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }

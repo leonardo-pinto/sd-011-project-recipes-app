@@ -38,7 +38,7 @@ function Drinks() {
   }
 
   return (
-    <div className="pb-3">
+    <div className="pb-5">
       <div className="container pt-3 px-3">
         <div className="bebidas-header">
           <div>
@@ -60,6 +60,7 @@ function Drinks() {
             >
               <img
                 data-testid="search-top-btn"
+                className="search-icon"
                 src={ searchIcon }
                 alt="Botão com imagem de uma lupa: abre uma barra de pesquisa"
               />

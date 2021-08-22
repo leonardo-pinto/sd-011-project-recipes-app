@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import '../../styles/InProgressFood.css';
 import { manageDetailAPI } from '../../Helpers/convertUrlToID';
 import verifyIngredients from '../../Helpers/verifyIngredients';
 import ShareButton from './ShareButton';
@@ -103,7 +102,7 @@ function InProgressFood() {
       <p style={ { fontWeight: 'bold' } } data-testid="recipe-category">{anyFood[0].strCategory}</p>
       <section>
         <h2>Ingredientes</h2>
-        <div className="steps-inputs">
+        <div className="d-flex flex-column">
           { arrayOfIngredients.map((ingredient, i) => (
             <label
               htmlFor={ ingredient }

@@ -12,16 +12,16 @@ function SecondShareButton({ itemId, type, testID }) {
     setShowCopy(true);
   }
   return (
-    <div role="button" onClick={ () => copyToClipBoard() } >
-       { /* <button type="button" onClick={ () => copyToClipBoard() }>*/}
-       {!showCopy ? (
-       <img
+    <div className="d-flex alignt-items-center" role="button" onClick={ () => copyToClipBoard() } >
+      { /* <button type="button" onClick={ () => copyToClipBoard() }>*/}
+      {!showCopy ? (
+        <img
           data-testid={ testID }
           src={ shareIcon}
           alt="Botão compartilhar"
         />) : (<p>Link copiado!</p>)
       }
-      
+    
       {/*</button>*/}
 
     </div>

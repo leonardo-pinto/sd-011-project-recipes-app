@@ -41,6 +41,7 @@ function SearchBar({ value }) {
           <button
             type="button"
             data-testid="exec-search-btn"
+            className="search-button"
             onClick={ () => clickFunctions() }
           >
             Pesquisar

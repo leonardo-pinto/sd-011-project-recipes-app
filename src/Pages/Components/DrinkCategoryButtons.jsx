@@ -46,6 +46,7 @@ export default function DrinkCategoryButtons() {
               key={ index }
               data-testid={ `${category}-category-filter` }
             >
+              {/* {switch()} */}
               {category.includes('Unknown') ? 'Other / Unknown' : category}
               {/* {category} */}
             </button>

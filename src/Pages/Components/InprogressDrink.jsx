@@ -103,7 +103,7 @@ function InProgressDrink() {
       <p style={ { fontWeight: 'bold' } } data-testid="recipe-category">{drinks[0].strCategory}</p>
       <section>
         <h2>Ingredientes</h2>
-        <div className="steps-inputs">
+        <div className="d-flex flex-column">
           { arrayOfIngredients.map((ingredient, i) => (
             <label
               htmlFor={ ingredient }
