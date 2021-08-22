@@ -20,11 +20,11 @@ function HeaderExploreFoodsOrigin() {
             src={ profileIcon }
             alt="user profile"
             width="30px"
-            height="30px"
+            height="40px"
           />
         </button>
       </Link>
-      <h1 data-testid="page-title">Explorar Origem</h1>
+      <h1 data-testid="page-title">Explore Origin</h1>
       <button
         onClick={ () => (searchBar ? getSearchBar(false) : getSearchBar(true)) }
         type="button"

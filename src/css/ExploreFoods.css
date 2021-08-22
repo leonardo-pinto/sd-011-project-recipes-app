@@ -1,0 +1,13 @@
+.explore-food-page {
+  height: 90%;
+  overflow: auto;
+}
+
+.explore-food-page section {
+  align-content: center;
+  margin: 15%;
+}
+
+.explore-food-page section button {
+  margin: 2%;
+}

@@ -1,0 +1,8 @@
+.food-origin-page {
+  height: 90%;
+  overflow: auto;
+}
+
+.food-origin-page select {
+  margin-top: 7%;
+}

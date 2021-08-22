@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HeaderExploreFoods from '../../../Components/headers/HeaderExploreFoods';
 import LowerMenu from '../../../Components/footer/LowerMenu';
+import '../../../css/ExploreFoods.css';
 
 const ExplorerFoods = () => {
   const [randowMeam, setRandoMeal] = useState([]);
@@ -16,32 +18,35 @@ const ExplorerFoods = () => {
   }, [setRandoMeal]);
 
   return (
-    <div>
+    <div className="explore-food-page">
       <HeaderExploreFoods />
       <section>
         <Link to="/explorar/comidas/ingredientes">
-          <button
+          <Button
+            variant="light"
             type="button"
             data-testid="explore-by-ingredient"
           >
-            Por Ingredientes
-          </button>
+            For ingredients
+          </Button>
         </Link>
         <Link to="/explorar/comidas/area">
-          <button
+          <Button
+            variant="light"
             type="button"
             data-testid="explore-by-area"
           >
-            Por Local de Origem
-          </button>
+            For origin local
+          </Button>
         </Link>
         <Link to={ `/comidas/${randowMeam}` }>
-          <button
+          <Button
+            variant="light"
             type="button"
             data-testid="explore-surprise"
           >
-            Me Surpreenda!
-          </button>
+            Surprese-me!
+          </Button>
         </Link>
       </section>
       <footer>

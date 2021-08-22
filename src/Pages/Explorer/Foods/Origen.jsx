@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getFoodsInitial } from '../../../Services/ApiFood';
 import HeaderExpFoodsOrigin from '../../../Components/headers/HeaderExploreFoodsOrigin';
 import LowerMenu from '../../../Components/footer/LowerMenu';
+import '../../../css/Origin.css';
 
 const Origen = () => {
   const [originList, setOriginList] = useState([]);
@@ -39,13 +41,14 @@ const Origen = () => {
   const magicNumber = 12;
 
   return (
-    <div>
+    <div className="food-origin-page">
       <HeaderExpFoodsOrigin />
       <section>
-        <select
+        <Form.Select
           data-testid="explore-by-area-dropdown"
           onChange={ (e) => handleChange(e) }
         >
+          <option>Open this select origin</option>
           { originList && originList.map(({ strArea }, index) => (
             <option
               key={ index }
@@ -56,7 +59,7 @@ const Origen = () => {
             </option>
           ))}
           <option value="All" data-testid="All-option">All</option>
-        </select>
+        </Form.Select>
       </section>
       <section>
         <ul>

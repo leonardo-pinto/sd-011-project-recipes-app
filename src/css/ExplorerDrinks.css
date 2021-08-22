@@ -1,0 +1,12 @@
+.explore-drink-page {
+  height: 90%;
+  overflow: auto;
+}
+
+.explore-drink-page section {
+  margin-top: 15%;
+}
+
+.explore-drink-page section button {
+  margin: 2%;
+}
