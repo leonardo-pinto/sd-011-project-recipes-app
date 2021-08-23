@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // import Carousel from 'react-bootstrap/Carousel'; https://react-bootstrap.github.io/components/carousel/#carousel-item-props
 import '../styles/carousel.css';
+import '../styles/details.css';
+import recomendationIcon from '../images/Vectorrecomendation.svg';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 export default function Recomendation({ foodOrDrink }) {
   const [recomendation, setRecomendation] = useState([]);
@@ -37,18 +41,21 @@ export default function Recomendation({ foodOrDrink }) {
           className="recomendationImg"
         />
 
-        <h4 data-testid={ `${index}-recomendation-title` }>
+        <p data-testid={ `${index}-recomendation-title` }>
           { foodOrDrink === 'Bebidas' ? item.strMeal : item.strDrink }
-        </h4>
+        </p>
       </div>
     );
   }
 
   return (
-    <div>
-      {recomendation.length === 0 ? <span>Carregando...</span> : (
+    <div className="recomendations">
+      {recomendation.length === 0 ? <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div> : (
         <div>
-          <h3>Recomendations</h3>
+          <div>
+            <img src={ recomendationIcon } alt="icon" className="icon" />
+            <span>Recomendations</span>
+          </div>
           <section className="containerRecomendation">
             {recomendation.filter((_, index) => index < maxLength)
               .map(renderRecomendations)}

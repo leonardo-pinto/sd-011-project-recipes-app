@@ -5,6 +5,9 @@ import AppContext from '../context/AppContext';
 import IngredientDetails from '../components/IngredientDetails';
 import Recomendation from '../components/Recomendation';
 import ButtonDetails from '../components/ButtonDetails';
+import '../styles/details.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function DrinkDetails() {
   const { idDetails, setIdDetails } = useContext(AppContext);
@@ -25,11 +28,12 @@ function DrinkDetails() {
     () => { fetchDrinkDetails(); }, [],
   );
 
-  if (idDetails.length === 0) return <div>Loading...</div>;
+  if (idDetails.length === 0) return <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div>;
 
   return (
-    <div>
+    <div className="details">
       <img
+        className="mainImg"
         data-testid="recipe-photo"
         src={ details.strDrinkThumb }
         alt="image_of_recipe"

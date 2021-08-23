@@ -13,7 +13,7 @@
 
 .recomendationImg {
   overflow: visible;
-  width: 300px;
+  /* width: 300px; */
 }
 
 .visible {
@@ -24,4 +24,8 @@
 
 .liIngredients {
   text-decoration: line-through;
+}
+
+.searchedCards{
+  padding-top: 10px;
 }

@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import HeaderDetails from '../components/HeaderDetails';
 import IngredientDetails from '../components/IngredientDetails';
+import '../styles/details.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function DrinkProcess() {
   const { setIdDetails, idDetails } = useContext(AppContext);
@@ -38,9 +41,10 @@ function DrinkProcess() {
 
   return (
     <div>
-      {loading ? <span>Loading...</span> : (
-        <div>
+      {loading ? <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div> : (
+        <div className="details">
           <img
+            className="mainImg"
             data-testid="recipe-photo"
             src={ idDetails[0].strDrinkThumb }
             alt="image_of_recipe"

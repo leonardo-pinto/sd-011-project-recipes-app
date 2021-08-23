@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import AppContext from '../context/AppContext';
 import '../styles/searchBarHeader.css';
+import '../styles/mainRecipes.css';
 
 function SearchBarHeader({ foodOrDrink }) {
   const { filterRadio,
@@ -20,7 +21,7 @@ function SearchBarHeader({ foodOrDrink }) {
 
   function renderRecipes(item, index) {
     return (
-      <div data-testid={ `${index}-recipe-card` } key={ index }>
+      <div className="itemCard" data-testid={ `${index}-recipe-card` } key={ index }>
         <img
           src={ foodOrDrink === 'Comidas' ? item.strMealThumb : item.strDrinkThumb }
           alt="food_image"
@@ -102,7 +103,7 @@ function SearchBarHeader({ foodOrDrink }) {
           </label>
         </div>
       </form>
-      <div>
+      <div className="flexMainCard mainRecipes searchedCards">
         {filteredItem.length > 1 && (
           filteredItem.filter((item, index) => index < maxLength).map(renderRecipes)
         )}

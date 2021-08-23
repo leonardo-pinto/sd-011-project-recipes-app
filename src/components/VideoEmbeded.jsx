@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import '../styles/video.css';
+
+import '../styles/details.css';
+import videoIcon from '../images/VectorvideoIcon.svg';
 
 function VideoEmbeded() {
   const { idDetails } = useContext(AppContext);
@@ -10,6 +12,10 @@ function VideoEmbeded() {
   console.log('videOdetails', videoID);
   return (
     <div className="video-responsive" data-testid="video">
+      <div>
+        <img src={ videoIcon } alt="icon" />
+        <span>Video</span>
+      </div>
       <iframe
         src={ `https://www.youtube.com/embed/${videoID}` }
         frameBorder="0"

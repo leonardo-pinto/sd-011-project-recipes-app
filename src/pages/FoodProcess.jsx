@@ -4,6 +4,9 @@ import HeaderDetails from '../components/HeaderDetails';
 import IngredientDetails from '../components/IngredientDetails';
 import AppContext from '../context/AppContext';
 import '../styles/carousel.css';
+import '../styles/details.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function FoodProcess() {
   const { setIdDetails, idDetails } = useContext(AppContext);
@@ -38,9 +41,10 @@ function FoodProcess() {
 
   return (
     <div>
-      {loading ? <span>Loading...</span> : (
-        <div>
+      {loading ? <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div> : (
+        <div className="details">
           <img
+            className="mainImg"
             data-testid="recipe-photo"
             src={ idDetails[0].strMealThumb }
             alt="image_of_recipe"

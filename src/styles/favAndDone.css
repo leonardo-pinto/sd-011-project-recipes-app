@@ -1,0 +1,111 @@
+.favAndDone{
+  display: flex;
+  height: 156px;
+  width: 327px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 3px;
+}
+
+.favAndDone img{
+  height: 140px;
+  width: 116px;
+  margin-left: 8px;
+  margin-top: 8px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.favAndDone button{
+  background-color: transparent;
+  border: none;
+}
+
+.favAndDone button img{
+  height: 24px;
+  width: auto;
+  padding-right: 5px;
+}
+
+.favAndDone h3{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: flex-end;
+
+  color: #B0BED3;
+}
+
+.favAndDone h2{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  letter-spacing: 0.01em;
+
+  color: #344052;
+}
+
+.favAndDone .infos p{
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: #344052;
+  padding-bottom: 20px;
+}
+
+.favAndDone .tags{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #40CC8B;
+  padding: 4px 8px;
+  width: auto;
+  background: #D8F3E7;
+  margin-left: 8px;
+  border: 1px solid #40CC8B;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.favAndDone .date{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: flex-end;
+  letter-spacing: 0.01em;
+
+  color: #344052;
+}
+
+.favAndDone h3, h2, p{
+  margin-bottom: 0;
+  margin-left: 8px;
+}
+
+.favAndDone .shareBttn{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.favAndDone .infos{
+  flex-grow: 1;
+}

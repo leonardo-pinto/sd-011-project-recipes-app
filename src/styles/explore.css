@@ -1,0 +1,60 @@
+.explore{
+  background: #F2F2F2;
+  height: calc(100vh - 56px - 61px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.exploreFood{
+
+  width: 328px;
+  height: 232px;
+
+  background-color: transparent;
+  background-image: url('https://www.kindersleyco-op.crs/wcm/connect/sites/18b21241-f8d5-4aa4-b7ca-609115530118/desktop/marisol-benitez-QvkAQTNj4zk-unsplash?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_2IKA1G82M08S50ANCIK0482G01-18b21241-f8d5-4aa4-b7ca-609115530118-desktop-novhiL7');
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-size: cover;
+  border: none;
+
+}
+
+.exploreDrink{
+  width: 328px;
+  height: 232px;
+
+  background-color: transparent;
+  background-image: url('https://ntco.com.br/wp-content/uploads/2020/07/kaizen-nguy-n-jcLcWL8D7AQ-unsplash-1.jpg');
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
+
+.exploreDrink span, .exploreFood span{
+  display: flex;
+  width: 328px;
+  height: 232px;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(50% 50% at 50% 50%, #0A0A0A 0%, rgba(5, 5, 5, 0) 99.48%);
+}
+
+.explore span{
+  font-family: Asap;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: center;
+  color: #fff;
+}

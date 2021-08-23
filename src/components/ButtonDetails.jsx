@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import AppContext from '../context/AppContext';
+import '../styles/details.css';
 // import doneRecipes from '../helper/localSotrageHelper';
 
 export default function ButtonDetails({ foodOrDrink, id }) {

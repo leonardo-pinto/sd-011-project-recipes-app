@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/mainRecipes.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function MainRecipes({ foodOrDrink }) {
   const { mainItems,
@@ -66,7 +68,7 @@ function MainRecipes({ foodOrDrink }) {
 
   return (
     <div className="mainRecipes">
-      {loadingMainRecipes ? <span>Carregando...</span> : (
+      {loadingMainRecipes ? <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div> : (
         <div>
           <div className="buttnCarosel">
             {(

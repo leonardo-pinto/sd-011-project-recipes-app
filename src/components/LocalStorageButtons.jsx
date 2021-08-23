@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 // import { Link } from 'react-router-dom';
 // import ShareButton from './ShareButton';
 import '../styles/carousel.css';
+import '../styles/localStorageButtons.css';
 // import FavoriteButton from './FavoriteButton';
 import renderFaveRecipes from '../helper/FavFunction';
 import renderDoneRecipes from '../helper/DoneFunction';
@@ -37,7 +38,7 @@ function LocalStorageButtons({ doneRecipes }) {
 
   return (
     <>
-      <section>
+      <section className="localStorageBttns">
         <button
           type="button"
           value="all"
@@ -63,9 +64,11 @@ function LocalStorageButtons({ doneRecipes }) {
           Drinks
         </button>
       </section>
-      { bttnFav && bttnFav
-        .filter((item) => (filter !== 'all' ? filter === item.type : bttnFav))
-        .map((doneRecipes ? renderDoneRecipes : renderFaveRecipes))}
+      <div className="body">
+        { bttnFav && bttnFav
+          .filter((item) => (filter !== 'all' ? filter === item.type : bttnFav))
+          .map((doneRecipes ? renderDoneRecipes : renderFaveRecipes))}
+      </div>
     </>
   );
 }

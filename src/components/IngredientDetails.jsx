@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/carousel.css';
+import '../styles/details.css';
+import ingIcon from '../images/VectoringredientIcon.svg';
+import instrucIcon from '../images/Vectorliquidificador.svg';
 
 function IngredientDetails({ inProcess, food, drink }) {
   const { idDetails, toggle, getAndSetLocalStorage, ableButton } = useContext(AppContext);
@@ -43,35 +46,45 @@ function IngredientDetails({ inProcess, food, drink }) {
 
   return (
     <>
-      <h3>Ingredients</h3>
-      <ul>
-        {ingredientList && ingredientList
-          .map((item, index) => (
-            <li
-              style={ { listStyle: 'none' } }
-              key={ index }
-              data-testid={ inProcess
-                ? `${index}-ingredient-step`
-                : `${index}-ingredient-name-and-measure` }
-            >
-              {inProcess
-                ? (
-                  <label id={ index } htmlFor={ item } className={ item }>
-                    <input
-                      id={ item }
-                      type="checkbox"
-                      value={ index }
-                      onClick={ (e) => handleButton(e) }
-                    />
-                    {item}
-                  </label>) : item }
-            </li>))}
-      </ul>
-      <h3>Instructions</h3>
-      <p data-testid="instructions">{idDetails[0].strInstructions}</p>
+      <div className="ingredientsDetail">
+        <div>
+          <img src={ ingIcon } alt="icon" />
+          <span>Ingredients</span>
+        </div>
+        <ul>
+          {ingredientList && ingredientList
+            .map((item, index) => (
+              <li
+                key={ index }
+                data-testid={ inProcess
+                  ? `${index}-ingredient-step`
+                  : `${index}-ingredient-name-and-measure` }
+              >
+                {inProcess
+                  ? (
+                    <label id={ index } htmlFor={ item } className={ item }>
+                      <input
+                        id={ item }
+                        type="checkbox"
+                        value={ index }
+                        onClick={ (e) => handleButton(e) }
+                      />
+                      {item}
+                    </label>) : item }
+              </li>))}
+        </ul>
+      </div>
+      <div className="ingredientsDetail">
+        <div>
+          <img src={ instrucIcon } alt="icon" />
+          <span>Instructions</span>
+        </div>
+        <p data-testid="instructions">{idDetails[0].strInstructions}</p>
+      </div>
       {inProcess && (
         <Link to="/receitas-feitas">
           <button
+            className="bttnProcess"
             data-testid="finish-recipe-btn"
             type="button"
             disabled={ buttonDisable }

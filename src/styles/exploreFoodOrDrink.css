@@ -1,0 +1,40 @@
+.exploreFoodOrDrink{
+  background: #F2F2F2;
+  height: calc(100vh - 56px - 61px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.exploreFoodOrDrink .exploreBttn{
+  height: calc(100vh - 56px - 61px);
+  display: flex;
+  flex-direction: column;
+}
+
+.exploreFoodOrDrink .exploreBttn div{
+  height: 48px;
+  width: 328px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  background: #40CC8B;
+  margin-top: 16px;
+}
+
+.exploreFoodOrDrink .exploreBttn button{
+  background-color: transparent;
+  border: none;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  padding-left: 16px;
+  display: flex;
+  align-items: flex-end;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}

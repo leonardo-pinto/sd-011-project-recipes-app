@@ -26,7 +26,7 @@ export default function ShareButton({ index, foodOrDrinkBtn, id }) {
         alt="Imagem do ícone de comportilhamento"
         data-testid={ `${index}-horizontal-share-btn` }
       />
-      <p>{copySuccess}</p>
+      <span>{copySuccess}</span>
     </button>
   );
 }

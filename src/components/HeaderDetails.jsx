@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AppContext from '../context/AppContext';
 import ShareButton from './ShareButton';
 import FavoriteButton from './FavoriteButton';
+import '../styles/details.css';
 
 function HeaderDetails({ foodOrDrink, id, index }) {
   const { idDetails } = useContext(AppContext);
@@ -10,24 +11,29 @@ function HeaderDetails({ foodOrDrink, id, index }) {
 
   return (
     <div>
-      <div>
-        <h1 data-testid="recipe-title">
-          {foodOrDrink === 'Comidas' ? details.strMeal : details.strDrink }
-        </h1>
-        <ShareButton
-          foodOrDrinkBtn={ foodOrDrink === 'Comidas' ? 'comidas' : 'bebidas' }
-          id={ id }
-          index={ index }
-        />
-        <FavoriteButton
-          foodOrDrinkBtn={ foodOrDrink === 'Comidas' ? 'comidas' : 'bebidas' }
-          id={ id }
-          index={ index }
-        />
+      <div className="headerDetail">
+        <div>
+          <h1 data-testid="recipe-title">
+            {foodOrDrink === 'Comidas' ? details.strMeal : details.strDrink }
+          </h1>
+          <h3 data-testid="recipe-category">
+            { foodOrDrink === 'Comidas' ? details.strCategory : details.strAlcoholic }
+          </h3>
+        </div>
+        <div>
+          <ShareButton
+            foodOrDrinkBtn={ foodOrDrink === 'Comidas' ? 'comidas' : 'bebidas' }
+            id={ id }
+            index={ index }
+          />
+          <FavoriteButton
+            foodOrDrinkBtn={ foodOrDrink === 'Comidas' ? 'comidas' : 'bebidas' }
+            id={ id }
+            index={ index }
+          />
+        </div>
+
       </div>
-      <h3 data-testid="recipe-category">
-        { foodOrDrink === 'Comidas' ? details.strCategory : details.strAlcoholic }
-      </h3>
     </div>
   );
 }

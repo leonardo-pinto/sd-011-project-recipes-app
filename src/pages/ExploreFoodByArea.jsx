@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../styles/exploreByArea.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function ExploreFoodByArea() {
   const [countries, setCountries] = useState([]);
@@ -34,7 +37,7 @@ function ExploreFoodByArea() {
         key={ index }
         to={ `/comidas/${item.idMeal}` }
       >
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
+        <div className="areaCard" data-testid={ `${index}-recipe-card` } key={ index }>
           <img
             src={ item.strMealThumb }
             alt="food_image"
@@ -60,13 +63,13 @@ function ExploreFoodByArea() {
   return (
     <div>
       <Header title="Explorar Origem" searchButton />
-      {loading ? <span>Carregando...</span> : (
-        <div>
+      {loading ? <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div> : (
+        <div className="exploreArea">
           <select
             onChange={ (e) => setSelectedCountry(e.target.value) }
             data-testid="explore-by-area-dropdown"
           >
-            <option>-Select a Country-</option>
+            <option>Select Country</option>
             <option value="all" data-testid="All-option">All</option>
             {countries.map((country, index) => (
               <option
@@ -77,7 +80,7 @@ function ExploreFoodByArea() {
                 {country.strArea}
               </option>))}
           </select>
-          <div>
+          <div className="areaCardsAll">
             {recipesByLocal
               .filter((item, index) => index < maxLengthItems).map(renderRecipesArea) }
           </div>

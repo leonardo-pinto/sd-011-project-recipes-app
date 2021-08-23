@@ -2,6 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import '../styles/exploreByIngredient.css';
+import {Spinner} from 'reactstrap';
+import '../styles/loading.css';
 
 function ExploreIngredients({ foodOrDrink }) {
   const {
@@ -28,10 +31,10 @@ function ExploreIngredients({ foodOrDrink }) {
   }, [selectIngredient]);
 
   return (
-    <div>
-      {loadingExplore && <span>Carregando...</span>}
+    <div className="exploreIngredients">
+      {loadingExplore && <div className="loading"> <Spinner animation="border" variant="primary" className="spinner"/></div>}
       {!loadingExplore && (
-        <div>
+        <div className="exploreIngredientsCards">
           {ingredients.filter((item, index) => index < maxLength)
             .map((item, index) => (
               <button

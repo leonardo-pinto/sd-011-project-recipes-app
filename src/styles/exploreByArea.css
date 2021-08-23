@@ -1,0 +1,69 @@
+.exploreArea{
+  background: #F2F2F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.areaCard{
+  height: 232px;
+  width: 156px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(187, 109, 109, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8px;
+  margin-bottom: 13px;
+}
+
+.areaCard img{
+  height: 161px;
+  width: 140px;
+  border-radius: 4px;
+}
+
+.areaCard p{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  padding-top: 17px;
+
+  color: #344052;
+  display: flex;
+  align-items: flex-end;
+}
+
+.areaCardsAll{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 60px;
+}
+
+.exploreArea select{
+  height: 48px;
+  width: 328px;
+  border-radius: 30px;
+  margin: 18px 0;
+  background: #FFFFFF url('../images/arrow.svg') no-repeat 95.5% 50%;
+  border: 1px solid #344052;
+  box-sizing: border-box;
+  border-radius: 30px;
+
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #344052;
+  padding-left: 18px;
+  padding-right: 18px;
+  appearance: none;
+}
