@@ -69,7 +69,7 @@ export default function ButtonFinish(props) {
       style={ { width: '100%', backgroundColor: '#4B2C0D' } }
       type="button"
       data-testid="finish-recipe-btn"
-      disabled={ enableFinishBtn }
+      disabled={ !enableFinishBtn }
       onClick={ handleClick }
     >
       Finalizar Receita

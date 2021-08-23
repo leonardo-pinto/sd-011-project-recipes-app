@@ -29,12 +29,13 @@ export default function Cards(props) {
 
   return (
     <Card
-      style={ { margin: '20px auto', width: '304px', boxShadow: '0 0 5px' } }
+      style={ { margin: '20px auto', width: '340px', boxShadow: '0 0 5px' } }
       data-testid={ `${index}-recipe-card` }
       onClick={ () => history.push(`/${tipo}/${recipe[shortName]}`) }
     >
       <Card.Img
         variant="top"
+        style={ { clipPath: 'inset(30px 0 30px 0)' } }
         src={ source }
         alt={ recipeName }
         data-testid={ `${index}-card-img` }

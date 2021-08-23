@@ -23,6 +23,7 @@ export function InProgressProvider({ children }) {
     if (!isMeal) {
       const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const { cocktails } = inProgressRecipes;
+      console.log(ingredientsArray.length === cocktails[recipeId].length);
       if (cocktails[recipeId]) {
         setEnableFinishBtn(ingredientsArray.length
           === cocktails[recipeId].length);
@@ -31,7 +32,7 @@ export function InProgressProvider({ children }) {
   };
   const setDrinkType = () => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    console.log(inProgressRecipes);
+
     if (!inProgressRecipes) {
       return { cocktails: { [recipeId]: [] }, meals: { } };
     } if (inProgressRecipes && !inProgressRecipes.cocktails[recipeId]) {

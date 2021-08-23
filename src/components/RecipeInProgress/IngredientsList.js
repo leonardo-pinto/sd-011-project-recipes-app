@@ -26,7 +26,7 @@ export default function IngredientsList(props) {
     const getItems = (searchedKey) => Object.entries(recipe).filter(
       (value) => value[0].includes(searchedKey) && value[1],
     ).map((item) => item[1]);
-
+    console.log(recipe);
     if (recipe) {
       const ingredients = getItems('Ingredient');
       const measures = getItems('Measure');
