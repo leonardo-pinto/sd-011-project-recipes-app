@@ -33,14 +33,19 @@ function ButtonStart({ detail, typeDrinkorMeal }) {
 
   function btnStart() {
     return (
+      <header className="container-fluid">
+      <div className="row">
       <button
-        className="buttonSart"
+        className="btn btn-default col-12"
         type="button"
         data-testid="start-recipe-btn"
         onClick={ startRecipes }
       >
         { buttonContinue ? 'Continuar Receita' : 'Iniciar Receita' }
       </button>
+      </div>
+      </header>
+
     );
   }
 

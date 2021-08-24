@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { apiRecomendation } from '../../service/apiDetailsId';
-import './recomendadtion.css';
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function RecomendationDrink({ recomendInverse }) {
   const diapatch = useDispatch();
@@ -18,48 +19,66 @@ function RecomendationDrink({ recomendInverse }) {
 
   function recomendationDrinks() {
     return (
-      recomendation.map(({ strDrinkThumb, strDrink }, index) => (
-        <div className="card" key={ index }>
-          <img
-            data-testid={ `${index}-recomendation-card` }
-            src={ strDrinkThumb }
-            alt={ strDrink }
-          />
-          <span
-            data-testid={ `${index}-recomendation-title` }
-          >
-            { strDrink }
-          </span>
-        </div>
-      ))
+      <Carousel>
+        {recomendation.map(({ strDrinkThumb, strDrink }, index) => (
+          <Carousel.Item>
+            <div className='container rec-name'>
+            <div className="row">
+            <div className='col-12 offset-3'>
+            <img
+              className="d-block w-50 "
+              data-testid={`${index}-recomendation-card`}
+              src={strDrinkThumb}
+              alt={strDrink}
+            />
+              <h2 data-testid={`${index}-recomendation-title`}>
+                {strDrink}
+              </h2>
+            </div>
+              </div>
+              </div>
+          </Carousel.Item>
+        ))}
+        </Carousel>
+
     );
   }
 
   function recomendationMeals() {
     return (
-      recomendation.map(({ strMealThumb, strMeal }, index) => (
-        <div className="card" key={ index }>
-          <img
-            data-testid={ `${index}-recomendation-card` }
-            src={ strMealThumb }
-            alt={ strMeal }
-          />
-          <span
-            data-testid={ `${index}-recomendation-title` }
-          >
-            { strMeal }
-          </span>
-        </div>
-      ))
+      <Carousel>
+        {recomendation.map(({ strMealThumb, strMeal }, index) => (
+          <Carousel.Item>
+            <div className='container rec-name'>
+            <div className="row">
+            <div className='col-12 offset-3'>
+            <img
+              className="d-block w-50 "
+              data-testid={`${index}-recomendation-card`}
+              src={strMealThumb}
+              alt={strMeal}
+            />
+              <h2 data-testid={`${index}-recomendation-title`}>
+                {strMeal}
+              </h2>
+            </div>
+              </div>
+              </div>
+          </Carousel.Item>
+
+        ))}
+        </Carousel>
+
     );
   }
 
   return (
-    <div className="recomendations">
-      { recomendInverse === 'meals'
+      <>
+      {recomendInverse === 'meals'
         ? recomendationDrinks()
-        : recomendationMeals() }
-    </div>
+        : recomendationMeals()}
+       </>
+  
   );
 }
 

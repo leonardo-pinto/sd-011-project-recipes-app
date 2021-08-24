@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { apiDetailsId } from '../service/apiDetailsId';
-import './styles/styleRecipesId.css';
 import ShareAndFavorite from '../components/ShareAndFavorite';
 import IngredientRecipes from '../components/IngredientRecipes';
 

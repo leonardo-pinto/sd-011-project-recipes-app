@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './styleRecipes.css';
 
 const IngredientRecipes = ({ ingredient, typeDrinkorMeal, idItem, setEnable }) => {
   const typeDoM = typeDrinkorMeal === 'comidas' ? 'meals' : 'cocktails';

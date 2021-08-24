@@ -7,6 +7,7 @@ function FavoriteButton({ onClick, testFavorite, favorited }) {
   return (
     <button
       type="button"
+      className='btn btn-default'
       src={ favorited ? blackHeartIcon : whiteHeartIcon }
       onClick={ onClick }
       data-testid={ testFavorite }
