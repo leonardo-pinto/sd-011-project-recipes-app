@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
+import greenHeart from '../images/greenHeart.svg';
+import styles from './FavoriteButtonMeals.module.css';
 
 function FavoriteButton({ meals, favorite, setFavorite, id }) {
+  const [heart, setHeart] = React.useState(whiteHeart);
+
   const favoriteBttnHandle = () => {
     setFavorite(!favorite);
 
@@ -31,12 +34,21 @@ function FavoriteButton({ meals, favorite, setFavorite, id }) {
   return (
     <button
       type="button"
-      onClick={ favoriteBttnHandle }
+      onClick={ () => {
+        favoriteBttnHandle();
+        if (heart === whiteHeart) {
+          setHeart(greenHeart);
+        } else {
+          setHeart(whiteHeart);
+        }
+      } }
     >
       <img
-        src={ !favorite ? whiteHeart : blackHeart }
+        src={ !favorite ? whiteHeart : greenHeart }
         alt="share"
         data-testid="favorite-btn"
+        className={ heart === whiteHeart ? null
+          : `${styles.greenHeart} ${styles.animeHeart}` }
       />
     </button>
   );

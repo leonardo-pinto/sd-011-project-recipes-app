@@ -1,7 +1,13 @@
-.meals {
-  background: #0fa36b;
-  color: #464646;
-  font-family: sans-serif;
-  height: 100vh;
-  width: 100%;
+.animeLeft {
+  animation: animeLeft 0.5s forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+@keyframes animeLeft {
+
+  to {
+    opacity: initial;
+    transform: initial;
+  }
 }

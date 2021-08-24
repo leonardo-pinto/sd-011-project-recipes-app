@@ -1,0 +1,31 @@
+.greenHeart {
+  height: 31px;
+  width: 31px;
+}
+
+.animeHeart {
+  animation: shakeHeart 1s forwards;
+}
+
+@keyframes shakeHeart {
+
+  10% {
+    transform: translateX(-5px);
+  }
+
+  30% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: initial;
+  }
+}

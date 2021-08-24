@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import copy from 'clipboard-copy';
+import '../../App.css';
 import styles from './FoodDetails.module.css';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButton from '../../globalComponents/FavoriteButtonMeals';
+import Picture from '../../images/loginIMG.png';
 
 function FoodDetails({ match }) {
   const [meals, setMeals] = useState({});
@@ -38,7 +40,16 @@ function FoodDetails({ match }) {
   }, [id]);
 
   if (Object.keys(meals).length === 0) {
-    return (<h1>Carregando...</h1>);
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
   }
   const videoId = meals.strYoutube.split('=')[1];
   const ingredients = Object.keys(meals)
@@ -59,50 +70,62 @@ function FoodDetails({ match }) {
   };
 
   return (
-    <div>
+    <main className={ `${styles.container} animeLeft` }>
+      <div className={ styles.heroImageContainer }>
+        <img
+          src={ meals.strMealThumb }
+          alt="recipe"
+          data-testid="recipe-photo"
+          className={ styles.heroImage }
+        />
+      </div>
+      <section className={ styles.heroContainer }>
+        <div className={ styles.nameAndCategory }>
+          <h1
+            data-testid="recipe-title"
+          >
+            { meals.strMeal }
+          </h1>
 
-      <img
-        src={ meals.strMealThumb }
-        alt="recipe"
-        style={ { width: '200px' } }
-        data-testid="recipe-photo"
-      />
-      <h1
-        data-testid="recipe-title"
-      >
-        { meals.strMeal }
-      </h1>
+          <p
+            data-testid="recipe-category"
+            className={ styles.category }
+          >
+            { meals.strCategory }
+          </p>
+        </div>
 
-      <p
-        data-testid="recipe-category"
-      >
-        { meals.strCategory }
-      </p>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ shareButtonHandle }
-      >
-        <img src={ shareIcon } alt="share" />
-      </button>
-      <FavoriteButton
-        meals={ meals }
-        favorite={ favorite }
-        setFavorite={ setFavorite }
-        id={ id }
-      />
-      <p>{copied ? 'Link copiado!' : null}</p>
-      <h1>Instruções</h1>
+        <div className={ styles.sharedAndFavoriteButtons }>
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ shareButtonHandle }
+          >
+            <img src={ shareIcon } alt="share" />
+          </button>
+          <FavoriteButton
+            meals={ meals }
+            favorite={ favorite }
+            setFavorite={ setFavorite }
+            id={ id }
+          />
+          <p>{copied ? 'Link copiado!' : null}</p>
+        </div>
+      </section>
+
+      <h1>Instructions</h1>
       <p
         data-testid="instructions"
+        className={ styles.instruction }
       >
         { meals.strInstructions }
       </p>
-      <h1>Ingredientes</h1>
+      <h1>Ingredients</h1>
       {ingredients.map((item, index) => (
         <p
           data-testid={ `${index}-ingredient-name-and-measure` }
           key={ item }
+          className={ styles.ingredients }
         >
           {item}
           &nbsp; - &nbsp;
@@ -114,7 +137,9 @@ function FoodDetails({ match }) {
         title={ meals.strMeal }
         src={ `https://www.youtube.com/embed/${videoId}` }
         data-testid="video"
+        className={ styles.video }
       />
+      <h1>Recommendations</h1>
       <div
         className={ styles.carousel }
       >
@@ -124,35 +149,48 @@ function FoodDetails({ match }) {
             data-testid={ `${index}-recomendation-card` }
             className={ styles.carouselItemDiv }
           >
-            <img
-              src={ item.strDrinkThumb }
-              alt="recipe"
-              className={ styles.carouselImg }
-            />
-            <p>{ item.strAlcoholic }</p>
-            <h5
-              data-testid={ `${index}-recomendation-title` }
-            >
-              { item.strDrink }
-            </h5>
+            <Link to={ `/bebidas/${item.idDrink}` }>
+              <img
+                src={ item.strDrinkThumb }
+                alt="recipe"
+                className={ styles.carouselImg }
+              />
+              <p>{ item.strAlcoholic }</p>
+              <h5
+                data-testid={ `${index}-recomendation-title` }
+              >
+                { item.strDrink }
+              </h5>
+            </Link>
           </div>
         ))}
       </div>
       {!isDone && (
-        <Link
-          to={ `/comidas/${id}/in-progress` }
-        >
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className={ styles.startRecipeBttn }
+        <nav>
+          <Link
+            to={ `/comidas/${id}/in-progress` }
           >
-            {inProgress ? 'Continuar Receita' : 'Iniciar Receita' }
-          </button>
-        </Link>
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className={ styles.buttonBeggin }
+            >
+              {inProgress ? 'Continue recipe' : 'Start Recipe' }
+            </button>
+          </Link>
+        </nav>
       )}
-
-    </div>
+      <Link
+        to="/comidas"
+      >
+        <button
+          type="button"
+          className={ styles.buttonBack }
+        >
+          Back
+        </button>
+      </Link>
+    </main>
   );
 }
 

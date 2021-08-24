@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../../App.css';
+import styles from './Login.module.css';
+import Picture from '../../images/loginIMG.png';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -33,15 +36,21 @@ export default function Login() {
   };
 
   return (
-    <div className="loginPage">
-      <h1>Ai que fome!</h1>
+    <section className={ `${styles.loginPage} animeLeft` }>
+      <img
+        src={ Picture }
+        alt="Prato de comida"
+        className={ styles.rotation }
+      />
       <h3>Login</h3>
 
       <input
         type="text"
+        className={ styles.email }
         data-testid="email-input"
         name="email"
         value={ email }
+        placeholder="Email"
         onChange={ (event) => {
           inputHandle(event);
         } }
@@ -50,9 +59,11 @@ export default function Login() {
 
       <input
         type="password"
+        className={ styles.password }
         data-testid="password-input"
         name="password"
         value={ password }
+        placeholder="Password"
         onChange={ (event) => {
           inputHandle(event);
         } }
@@ -68,6 +79,6 @@ export default function Login() {
           Entrar
         </button>
       </Link>
-    </div>
+    </section>
   );
 }

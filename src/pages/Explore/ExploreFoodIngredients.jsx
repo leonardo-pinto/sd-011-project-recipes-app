@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
+import styles from './ExploreFoodIngredients.module.css';
+import Picture from '../../images/loginIMG.png';
 
 function ExploreFoodIngredients({ match }) {
   const [ingredients, setIngredients] = useState([]);
@@ -17,11 +20,23 @@ function ExploreFoodIngredients({ match }) {
     fetchFoodIngredients();
   }, []);
 
-  console.log(ingredients);
+  if (ingredients.length === 0) {
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Header title="Explorar Ingredientes" match={ match } />
-      <div>
+      <Header title="Explore by Ingredients" match={ match } />
+      <div className={ `${styles.container} animeLeft` }>
         {ingredients.map((item, index) => (
           <Link
             key={ index }

@@ -1,5 +1,47 @@
 .headerContainer {
-  display: flex;
-  justify-content: space-between;
+  border: 3px solid #666;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-shadow: 0 0 0 8px rgba(4, 4, 4, 0.1);
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
+}
+
+.headerContainer a img {
+  margin: 18px 0 0 10px;
+}
+
+.headerContainer h1 {
+  color: #666;
+  font-family: Arial , Helvetica , sans-serif;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.headerContainer h1:before {
+  background: #fb1;
+  border-radius: 0.2rem;
+  content: '';
+  display: block;
+  height: 1.4rem;
+  margin-left: -2px;
+  margin-top: 20px;
+  position: absolute;
+  width: 1.4rem;
+  z-index: -1;
+}
+
+.headerContainer button {
+  background: none;
+  border: none;
+  height: 0;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.glassButton:focus {
+  outline: none;
 }

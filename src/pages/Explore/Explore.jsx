@@ -3,30 +3,32 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
+import styles from './Explore.module.css';
 
 function Explore({ match }) {
   const history = useHistory();
   return (
-    <>
-      <Header title="Explorar" match={ match } />
-      <div>
+    <section>
+      <Header title="Explore" match={ match } />
+      <div className={ `${styles.container} animeLeft` }>
         <button
           type="button"
           data-testid="explore-food"
           onClick={ () => history.push('/explorar/comidas') }
         >
-          Explorar Comidas
+          Explore Foods
         </button>
         <button
           type="button"
           data-testid="explore-drinks"
           onClick={ () => history.push('/explorar/bebidas') }
         >
-          Explorar Bebidas
+          Explore Drinks
         </button>
       </div>
       <Footer />
-    </>
+    </section>
   );
 }
 

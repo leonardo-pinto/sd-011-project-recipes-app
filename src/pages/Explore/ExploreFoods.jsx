@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
+import styles from './ExploreFoods.module.css';
 
 function ExploreFoods({ match }) {
   const [randomMeal, setRandomMeal] = useState([]);
@@ -19,14 +21,14 @@ function ExploreFoods({ match }) {
   console.log(randomMeal);
   return (
     <>
-      <Header title="Explorar Comidas" match={ match } />
-      <div>
+      <Header title="Explore Foods" match={ match } />
+      <div className={ `${styles.container} animeLeft` }>
         <Link to="/explorar/comidas/ingredientes">
           <button
             type="button"
             data-testid="explore-by-ingredient"
           >
-            Por Ingredientes
+            By Ingredients
           </button>
         </Link>
         <Link to="/explorar/comidas/area">
@@ -34,7 +36,7 @@ function ExploreFoods({ match }) {
             type="button"
             data-testid="explore-by-area"
           >
-            Por Local de Origem
+            By place of origin
           </button>
         </Link>
         <Link to={ `/comidas/${randomMeal.idMeal}` }>
@@ -42,7 +44,7 @@ function ExploreFoods({ match }) {
             type="button"
             data-testid="explore-surprise"
           >
-            Me Surpreenda!
+            Surprise me!
           </button>
         </Link>
       </div>

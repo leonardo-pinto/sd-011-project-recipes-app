@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.subContainer {
+  border: 1px solid rgba(d, d, d, 0.5);
+  box-shadow: 5px 5px 0 0 rgba(4, 4, 4, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+}
+
+.categoryButtons {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px;
+}
+
+.categoryButtons button {
+  background: #ccc;
+  border-radius: 0.3rem;
+  box-sizing: border-box;
+  color: #444;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  transition: 0.4s;
+}
+
+.imgContainer img {
+  border-radius: 0.3rem;
+  height: 180px;
+  width: 180px;
+}
+
+.cartDates {
+  margin: 0 5px;
+  width: 160px;
+}
+
+.cartDates h2 {
+  font-size: 1.5rem;
+  height: 1rem;
+  margin-bottom: 30px;
+}
+
+.cartDates p {
+  color: #666;
+  height: 1rem;
+  word-break: break-all;
+}
+
+.areaAndSharedIcon {
+  display: flex;
+}
+
+.areaAndSharedIcon p {
+  margin-top: 20px;
+}
+
+.areaAndSharedIcon button {
+  background: none;
+  border: none;
+  margin-left: 10px;
+}
+
+.areaAndSharedIcon button:focus {
+  outline: none;
+}
+
+.copiedText {
+  margin-left: 60px;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.nameLink {
+  color: #666;
+  height: 1rem;
+}
+
+.nameLink:before {
+  background: #fb1;
+  border-radius: 0.2rem;
+  content: '';
+  display: block;
+  height: 0.8rem;
+  margin-left: -2px;
+  margin-top: 15px;
+  position: absolute;
+  width: 0.8rem;
+  z-index: -1;
+}
+
+.tagContent {
+  font-size: 0.9rem;
+  height: 3rem;
+  margin-bottom: 10px;
+}
+
+.emptyRecipes {
+  color: #666;
+  margin-top: 40px;
+}
+
+.emptyRecipes h1 {
+  font-size: 2rem;
+}

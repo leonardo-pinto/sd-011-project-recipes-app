@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDrinksByCategories, fetchDrinksCategories, getDrinkCategory,
   setDrinkToogle } from '../../../redux/actions';
+import styles from '../Drinks.module.css';
 
 function DrinksCategoriesComponent() {
   const { drinksCategories } = useSelector((state) => state.DrinksCategories);
@@ -24,7 +25,7 @@ function DrinksCategoriesComponent() {
   }
 
   return (
-    <>
+    <div className={ styles.categoryButtons }>
       <button
         type="button"
         data-testid="All-category-filter"
@@ -57,7 +58,7 @@ function DrinksCategoriesComponent() {
             {item.strCategory}
           </button>
         ))}
-    </>
+    </div>
   );
 }
 

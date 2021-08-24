@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 20px 80px;
+}
+
+.container img {
+  height: 150px;
+  width: 150px;
+}
+
+.container h1 {
+  color: #666;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 1.4rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.loadingContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loadingContainer img {
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 80px;
+  width: 200px;
+}
+
+.rotation {
+  animation: rotation 2s infinite;
+}
+
+@keyframes rotation {
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -4,6 +4,7 @@ import copy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
 import Header from '../../globalComponents/Header';
 import shareIcon from '../../images/shareIcon.svg';
+import styles from './RecipesMade.module.css';
 
 function DoneRecipes({ match }) {
   const [typeToRender, setTypeToRender] = useState('All');
@@ -20,7 +21,7 @@ function DoneRecipes({ match }) {
     const buttons = ['All', 'Food', 'Drinks'];
     const dataTest = ['filter-by-all-btn', 'filter-by-food-btn', 'filter-by-drink-btn'];
     return (
-      <div>
+      <div className={ styles.categoryButtons }>
         {buttons.map((button, index) => (
           <button
             type="button"
@@ -54,10 +55,10 @@ function DoneRecipes({ match }) {
       bebida: 'bebidas',
     };
     return (
-      <section>
+      <section className={ styles.container }>
         {recipesToRender && recipesToRender.map((recipe, index) => (
-          <div key={ recipe.id }>
-            <div>
+          <div key={ recipe.id } className={ styles.subContainer }>
+            <div className={ styles.imgContainer }>
               <Link
                 to={ `/${alterURL[recipe.type]}/${recipe.id}` }
               >
@@ -68,37 +69,46 @@ function DoneRecipes({ match }) {
                   data-testid={ `${index}-horizontal-image` }
                 />
               </Link>
-              {recipe.type === 'comida'
-                ? (
-                  <p
-                    data-testid={ `${index}-horizontal-top-text` }
-                  >
-                    {recipe.area ? `${recipe.area} - ${recipe.category}`
-                      : `${recipe.category}`}
-                  </p>)
-                : (
-                  <p
-                    data-testid={ `${index}-horizontal-top-text` }
-                  >
-                    {`${recipe.alcoholicOrNot}`}
-                  </p>)}
-              <button
-                type="button"
-                onClick={ () => shareButtonHandle(recipe.id, recipe.type) }
-              >
-                <img
-                  src={ shareIcon }
-                  alt="shareIcon"
-                  data-testid={ `${index}-horizontal-share-btn` }
-                />
-              </button>
-              <p>{copied ? 'Link copiado!' : null}</p>
+            </div>
+
+            <div className={ styles.cartDates }>
+              <div className={ styles.areaAndSharedIcon }>
+                {recipe.type === 'comida'
+                  ? (
+                    <p
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      {recipe.area ? `${recipe.area} - ${recipe.category}`
+                        : `${recipe.category}`}
+                    </p>)
+                  : (
+                    <p
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      {`${recipe.alcoholicOrNot}`}
+                    </p>)}
+
+                <button
+                  type="button"
+                  onClick={ () => shareButtonHandle(recipe.id, recipe.type) }
+                >
+                  <img
+                    src={ shareIcon }
+                    alt="shareIcon"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                  />
+                </button>
+                <div className={ styles.copiedText }>
+                  <p>{copied ? 'Link copiado!' : null}</p>
+                </div>
+              </div>
 
               <Link
                 to={ `/${alterURL[recipe.type]}/${recipe.id}` }
                 data-testid={ `${index}-horizontal-name` }
+                className={ styles.nameLink }
               >
-                {recipe.name}
+                <h2>{recipe.name}</h2>
               </Link>
               <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
               <p>
@@ -106,8 +116,11 @@ function DoneRecipes({ match }) {
                   <div
                     key={ indexIn }
                     data-testid={ `${index}-${tag}-horizontal-tag` }
+                    className={ styles.tagContent }
                   >
-                    {tag}
+                    {tag.split(',').map((word) => (
+                      <p key={ word }>{word}</p>
+                    ))}
                   </div>
                 ))}
               </p>
@@ -122,13 +135,13 @@ function DoneRecipes({ match }) {
     if (localStorage.getItem('doneRecipes')) {
       const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
       let recipesToRender = doneRecipes;
-      console.log(recipesToRender);
       if (typeToRender !== 'All') {
         recipesToRender = doneRecipes.filter((recipe) => recipe.type === typeToRender);
       }
       return (
-        <div>
-          { recipesToRender ? doneRecipesExists(recipesToRender) : <h1>Carregando</h1> }
+        <div className={ styles.emptyRecipes }>
+          { recipesToRender ? doneRecipesExists(recipesToRender)
+            : <h1>No Done Recipes</h1> }
         </div>);
     }
     return (
@@ -140,7 +153,7 @@ function DoneRecipes({ match }) {
 
   return (
     <section>
-      <Header title="Receitas Feitas" match={ match } />
+      <Header title="Done Recipes" match={ match } />
       { renderFilterButtons() }
       { renderDoneRecipes() }
     </section>

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
 import styles from './Foods.module.css';
 import { fetchMeal } from '../../redux/actions';
 import FoodsCategories from './FoodsComponents/FoodsCategories';
+import Picture from '../../images/loginIMG.png';
 
 function Foods({ match, location }) {
   const { meals, isLoading } = useSelector((state) => state.Meals);
@@ -29,40 +31,48 @@ function Foods({ match, location }) {
   function renderFoods() {
     if (render && data.meals) {
       return (
-        <div className={ styles.foodsCardContainer }>
+        <div className={ `${styles.foodsCardContainer} animeLeft` }>
           {data.meals && data.meals.filter((_, index) => index < mn)
             .map((item, index) => (
-              <Link
-                to={ `/comidas/${item.idMeal}` }
+              <section
                 key={ index }
               >
-                <div
-                  data-testid={ `${index}-recipe-card` }
-                  className={ styles.cardDiv }
-                >
-                  <img
-                    src={ item.strMealThumb }
-                    alt="thumbnail"
-                    data-testid={ `${index}-card-img` }
-                    className={ styles.cardImg }
-                  />
-                  <p
-                    data-testid={ `${index}-card-name` }
+                <Link to={ `/comidas/${item.idMeal}` }>
+                  <div
+                    data-testid={ `${index}-recipe-card` }
+                    className={ `${styles.cardDiv} animeLeft` }
                   >
-                    {item.strMeal}
-                  </p>
-                </div>
-              </Link>
+                    <img
+                      src={ item.strMealThumb }
+                      alt="thumbnail"
+                      data-testid={ `${index}-card-img` }
+                      className={ styles.cardImg }
+                    />
+                    <p
+                      data-testid={ `${index}-card-name` }
+                      className={ styles.itemName }
+                    >
+                      {item.strMeal}
+                    </p>
+                  </div>
+                </Link>
+              </section>
             ))}
         </div>
       );
-    } if (render && !isLoading && !data.meals) {
-      // eslint-disable-next-line no-alert
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      return null;
+    // } if (render && !isLoading && !data.meals) {
+    //   // eslint-disable-next-line no-alert
+    //   // alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    //   return (
+    //     <h2
+    //       className={ styles.noMealsFound }
+    //     >
+    //       No meals with this parameter were found.
+    //     </h2>
+    //   );
     }
     return (
-      <div className={ styles.foodsCardContainer }>
+      <div className={ `${styles.foodsCardContainer} animeLeft` }>
         {meals.meals && meals.meals.filter((_, index) => index < mn)
           .map((item, index) => (
             <Link
@@ -71,7 +81,7 @@ function Foods({ match, location }) {
             >
               <section
                 data-testid={ `${index}-recipe-card` }
-                className={ styles.cardDiv }
+                className={ `${styles.cardDiv} animeLeft` }
               >
                 <img
                   src={ item.strMealThumb }
@@ -81,6 +91,7 @@ function Foods({ match, location }) {
                 />
                 <p
                   data-testid={ `${index}-card-name` }
+                  className={ styles.itemName }
                 >
                   {item.strMeal}
                 </p>
@@ -93,7 +104,7 @@ function Foods({ match, location }) {
 
   function renderByCategories() {
     return (
-      <div className={ styles.foodsCardContainer }>
+      <div className={ `${styles.foodsCardContainer} animeLeft` }>
         {mealsByCategories.meals && mealsByCategories.meals
           .filter((_, index) => index < mn)
           .map((item, index) => (
@@ -101,7 +112,7 @@ function Foods({ match, location }) {
               to={ `/comidas/${item.idMeal}` }
               key={ index }
               data-testid={ `${index}-recipe-card` }
-              className={ styles.cardDiv }
+              className={ `${styles.cardDiv} animeLeft` }
             >
               <div>
                 <img
@@ -112,6 +123,7 @@ function Foods({ match, location }) {
                 />
                 <p
                   data-testid={ `${index}-card-name` }
+                  className={ styles.itemName }
                 >
                   {item.strMeal}
                 </p>
@@ -123,12 +135,21 @@ function Foods({ match, location }) {
   }
 
   if (isLoading) {
-    return (<h1>Carregando...</h1>);
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 
   return (
-    <div className={ styles.foodsContainer }>
-      <Header title="Comidas" glass="true" match={ match } />
+    <div>
+      <Header title="Foods" glass="true" match={ match } />
       <FoodsCategories />
       {toogle ? renderByCategories() : renderFoods()}
       <Footer />

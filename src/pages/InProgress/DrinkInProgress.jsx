@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import FavoriteButtonDrinks from '../../globalComponents/FavoriteButtonDrinks';
 import shareIcon from '../../images/shareIcon.svg';
+import '../../App.css';
+import styles from './DrinkInProgress.module.css';
 
 function DrinkInProgress({ match }) {
   const { id } = match.params;
   const [ingredients, setIngredients] = useState([]);
-  console.log(ingredients);
   const [favorite, setFavorite] = useState(false);
   const [checked, setChecked] = useState({});
   const [copied, setCopied] = useState(false);
@@ -16,7 +17,7 @@ function DrinkInProgress({ match }) {
 
   useEffect(() => {
     const cached = localStorage.getItem('checkings');
-    const parsed = JSON.parse(cached);
+    const parsed = cached && JSON.parse(cached);
     if (parsed) setChecked(parsed);
   }, []);
 
@@ -68,15 +69,17 @@ function DrinkInProgress({ match }) {
   };
 
   function handleFinish() {
+    const date = new Date();
+    const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
     const objectStorage = {
       id,
       type: 'bebida',
       area: '',
       category: ingredients[0].strCategory ? ingredients[0].strCategory : '',
       alcoholicOrNot: ingredients[0].strAlcoholic ? ingredients[0].strAlcoholic : '',
-      name: ingredients[0].strDrink,
+      name: ingredients[0] && ingredients[0].strDrink.split(' ')[0],
       image: ingredients[0].strDrinkThumb,
-      doneDate: window.Date(),
+      doneDate: `Made in ${day}/${month}/${year}`,
       tags: ingredients[0].strTags ? [ingredients[0].strTags] : '',
     };
     const prevStorage = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -88,61 +91,96 @@ function DrinkInProgress({ match }) {
         JSON.stringify([...prevStorage, objectStorage]));
     }
     setChecked({});
-    localStorage.setItem('checking', '');
+    localStorage.setItem('checkings', JSON.stringify({}));
   }
 
   return (
-    <div>
+    <main className={ `${styles.container} animeLeft` }>
       {ingredients && ingredients.map(toList)
         .map(({ ingredientList, ...drink }, index) => (
           <div key={ index }>
-            <img data-testid="recipe-photo" src={ drink.strDrinkThumb } alt="" />
-            <p data-testid="recipe-title">{drink.strMeal}</p>
-            <p data-testid="recipe-category">{drink.strCategory}</p>
-            <button
-              data-testid="share-btn"
-              type="button"
-              onClick={ shareButtonHandle }
-            >
-              <img src={ shareIcon } alt="share" />
-            </button>
-            <FavoriteButtonDrinks
-              drinks={ ingredients[0] }
-              favorite={ favorite }
-              setFavorite={ setFavorite }
-              id={ id }
+            <img
+              data-testid="recipe-photo"
+              src={ drink.strDrinkThumb }
+              alt={ `${drink.strDrink}` }
+              className={ styles.heroImage }
             />
-            <p>{copied ? 'Link copiado!' : null}</p>
+            <section className={ styles.heroContainer }>
+              <div className={ styles.nameAndCategory }>
+                <h1 data-testid="recipe-title">{drink.strDrink}</h1>
+                <p data-testid="recipe-category">{drink.strCategory}</p>
+              </div>
 
+              <div className={ styles.sharedAndFavoriteButtons }>
+                <button
+                  data-testid="share-btn"
+                  type="button"
+                  onClick={ shareButtonHandle }
+                >
+                  <img src={ shareIcon } alt="share" />
+                </button>
+                <FavoriteButtonDrinks
+                  drinks={ ingredients[0] }
+                  favorite={ favorite }
+                  setFavorite={ setFavorite }
+                  id={ id }
+                />
+                <p>{copied ? 'Link copiado!' : null}</p>
+              </div>
+            </section>
+
+            <h1>Ingredients</h1>
             {ingredientList.map(([ingredient, measure], i) => (
-              <div key={ i } data-testid={ `${i}-ingredient-step` }>
-                <span>{ingredient}</span>
-                :
-                <span>{ measure }</span>
+              <div
+                key={ i }
+                data-testid={ `${i}-ingredient-step` }
+                className={ styles.ingredientsContainer }
+              >
                 <input
                   type="checkbox"
                   checked={ checked[i.toString()] }
                   onClick={ (event) => setChecked({ ...checked,
                     [i]: event.target.checked }) }
                 />
+                <span>{ingredient}</span>
+                :
+                <span>{ measure }</span>
               </div>
             ))}
-            <p>instructions:</p>
-            <p data-testid="instructions">{drink.strInstructions}</p>
+
+            <h1>Instructions</h1>
+            <p
+              data-testid="instructions"
+              className={ styles.instruction }
+            >
+              {drink.strInstructions}
+            </p>
+
             <Link to="/receitas-feitas">
               <button
                 type="button"
+                className={ styles.button }
                 data-testid="finish-recipe-btn"
                 disabled={ disable }
                 onClick={ handleFinish }
               >
-                Finalizar Receita
+                Finish Recipe
               </button>
             </Link>
-            <br />
+
+            <Link
+              to="/bebidas"
+            >
+              <button
+                type="button"
+                className={ styles.buttonBack }
+              >
+                Back
+              </button>
+            </Link>
           </div>
         ))}
-    </div>
+    </main>
   );
 }
 

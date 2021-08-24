@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterHandle, fetchApi, renderFilter } from '../redux/actions';
+import '../App.css';
+import styles from './SearchBar.module.css';
 
 export default function SearchBar({ modal, url }) {
   const dispatch = useDispatch();
@@ -27,66 +29,68 @@ export default function SearchBar({ modal, url }) {
     dispatch(renderFilter(true));
   }
 
-  // if (!isLoading && !data.meals) {
-  //   // eslint-disable-next-line no-alert
-  //   alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-  // }
-
   return (
     <div>
       {modal && (
-        <>
-          <label htmlFor="inputText">
-            <input
-              id="inputText"
-              name="searchInput"
-              type="text"
-              onChange={ ({ target }) => dispatch(filterHandle(target)) }
-              data-testid="search-input"
-              placeholder="Buscar Receita"
-            />
-          </label>
-          <label htmlFor="ingredient">
-            <input
-              value="ingrediente"
-              name="radio"
-              type="radio"
-              data-testid="ingredient-search-radio"
-              id="ingredient"
-              onChange={ ({ target }) => dispatch(filterHandle(target)) }
-            />
-            Ingrediente
-          </label>
-          <label htmlFor="name">
-            <input
-              value="nome"
-              name="radio"
-              type="radio"
-              data-testid="name-search-radio"
-              id="name"
-              onChange={ ({ target }) => dispatch(filterHandle(target)) }
-            />
-            Nome
-          </label>
-          <label htmlFor="firstLetter">
-            <input
-              value="primeiraLetra"
-              name="radio"
-              type="radio"
-              data-testid="first-letter-search-radio"
-              id="firstLetter"
-              onChange={ ({ target }) => dispatch(filterHandle(target)) }
-            />
-            Primeira letra
-          </label>
+        <section className={ `${styles.container} animeLeft` }>
+          <div className={ styles.inputBarContent }>
+            <label htmlFor="inputText">
+              <input
+                id="inputText"
+                name="searchInput"
+                type="text"
+                onChange={ ({ target }) => dispatch(filterHandle(target)) }
+                data-testid="search-input"
+                placeholder="Enter a term"
+              />
+            </label>
+          </div>
+          <div className={ styles.radios }>
+            <label htmlFor="ingredient" className={ styles.radioLabel }>
+              <input
+                className={ styles.radio }
+                value="ingrediente"
+                name="radio"
+                type="radio"
+                data-testid="ingredient-search-radio"
+                id="ingredient"
+                onChange={ ({ target }) => dispatch(filterHandle(target)) }
+              />
+              Ingredient
+            </label>
+            <label htmlFor="name" className={ styles.radioLabel }>
+              <input
+                className={ styles.radio }
+                value="nome"
+                name="radio"
+                type="radio"
+                data-testid="name-search-radio"
+                id="name"
+                onChange={ ({ target }) => dispatch(filterHandle(target)) }
+              />
+              Name
+            </label>
+            <label htmlFor="firstLetter" className={ styles.radioLabel }>
+              <input
+                className={ styles.radio }
+                value="primeiraLetra"
+                name="radio"
+                type="radio"
+                data-testid="first-letter-search-radio"
+                id="firstLetter"
+                onChange={ ({ target }) => dispatch(filterHandle(target)) }
+              />
+              First Letter
+            </label>
+          </div>
           <button
             type="button"
             data-testid="exec-search-btn"
             onClick={ handleClick }
           >
-            Buscar
+            Search
           </button>
-        </>
+        </section>
       )}
     </div>
   );

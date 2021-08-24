@@ -7,6 +7,7 @@ import Header from '../../globalComponents/Header';
 import styles from './Drinks.module.css';
 import { fetchDrink } from '../../redux/actions';
 import DrinksCategoriesComponent from './DrinksComponents/DrinksCategoriesComponent';
+import Picture from '../../images/loginIMG.png';
 
 function Drinks({ match, location }) {
   const { isLoading, drinks } = useSelector((state) => state.Drinks);
@@ -30,42 +31,50 @@ function Drinks({ match, location }) {
   function renderDrinks() {
     if (render && data.drinks) {
       return (
-        <div className={ styles.drinksCardContainer }>
+        <div className={ `${styles.drinksCardContainer} animeLeft` }>
           {data.drinks && data.drinks.filter((_, index) => index < mn)
             .map((item, index) => (
-              <Link
+              <section
                 key={ index }
-                to={ `/bebidas/${item.idDrink}` }
               >
-                <div
-                  key={ index }
-                  data-testid={ `${index}-recipe-card` }
-                  className={ styles.cardDiv }
-                >
-                  <img
-                    src={ item.strDrinkThumb }
-                    alt="thumbnail"
-                    data-testid={ `${index}-card-img` }
-                    className={ styles.cardImg }
-                  />
-                  <p
-                    data-testid={ `${index}-card-name` }
+                <Link to={ `/bebidas/${item.idDrink}` }>
+                  <div
+                    key={ index }
+                    data-testid={ `${index}-recipe-card` }
+                    className={ `${styles.cardDiv} animeLeft` }
                   >
-                    {item.strDrink}
-                  </p>
-                </div>
+                    <img
+                      src={ item.strDrinkThumb }
+                      alt="thumbnail"
+                      data-testid={ `${index}-card-img` }
+                      className={ styles.cardImg }
+                    />
+                    <p
+                      data-testid={ `${index}-card-name` }
+                      className={ styles.itemName }
+                    >
+                      {item.strDrink}
+                    </p>
+                  </div>
 
-              </Link>
+                </Link>
+              </section>
             ))}
         </div>
       );
-    } if (render && !isLoading && !data.drinks) {
-      // eslint-disable-next-line no-alert
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      return null;
+    // } if (render && !isLoading && !data.drinks) {
+    //   // eslint-disable-next-line no-alert
+    //   // alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    //   return (
+    //     <h2
+    //       className={ styles.noDrinksFound }
+    //     >
+    //       No drinks with this parameter were found.
+    //     </h2>
+    //   );
     }
     return (
-      <div className={ styles.drinksCardContainer }>
+      <div className={ `${styles.drinksCardContainer} animeLeft` }>
         {drinks.drinks && drinks.drinks.filter((_, index) => index < mn)
           .map((item, index) => (
             <Link
@@ -85,6 +94,7 @@ function Drinks({ match, location }) {
                 />
                 <p
                   data-testid={ `${index}-card-name` }
+                  className={ styles.itemName }
                 >
                   {item.strDrink}
                 </p>
@@ -97,7 +107,7 @@ function Drinks({ match, location }) {
 
   function renderByCategories() {
     return (
-      <div className={ styles.drinksCardContainer }>
+      <div className={ `${styles.drinksCardContainer} animeLeft` }>
         {drinksByCategories.drinks && drinksByCategories.drinks
           .filter((_, index) => index < mn)
           .map((item, index) => (
@@ -105,7 +115,7 @@ function Drinks({ match, location }) {
               to={ `/bebidas/${item.idDrink}` }
               key={ index }
               data-testid={ `${index}-recipe-card` }
-              className={ styles.cardDiv }
+              className={ `${styles.cardDiv} animeLeft` }
             >
               <div>
                 <img
@@ -116,6 +126,7 @@ function Drinks({ match, location }) {
                 />
                 <p
                   data-testid={ `${index}-card-name` }
+                  className={ styles.itemName }
                 >
                   {item.strDrink}
                 </p>
@@ -127,12 +138,21 @@ function Drinks({ match, location }) {
   }
 
   if (isLoading) {
-    return (<h1>Carregando...</h1>);
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 
   return (
-    <div className={ styles.drinksContainer }>
-      <Header title="Bebidas" glass="true" match={ match } />
+    <div>
+      <Header title="Drinks" glass="true" match={ match } />
       <DrinksCategoriesComponent />
       {toogle ? renderByCategories() : renderDrinks()}
       <Footer />

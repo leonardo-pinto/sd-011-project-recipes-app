@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMealsByCategories, fetchMealsCategories,
   getMealCategory, setMealToogle } from '../../../redux/actions';
+import styles from '../Foods.module.css';
 
-function FoodsCategories() {
+function FoodsCategories({ className }) {
   const { mealsCategories } = useSelector((state) => state.MealsCategories);
   const { selectedCategory } = useSelector((state) => state.MealsByCategories);
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ function FoodsCategories() {
   }
 
   return (
-    <>
+    <div className={ styles.categoryButtons }>
       <button
         type="button"
         data-testid="All-category-filter"
@@ -39,6 +41,7 @@ function FoodsCategories() {
         .map((item, index) => (
           <button
             data-testid={ `${item.strCategory}-category-filter` }
+            className={ className }
             type="button"
             key={ index }
             value={ item.strCategory }
@@ -55,8 +58,12 @@ function FoodsCategories() {
             {item.strCategory}
           </button>
         ))}
-    </>
+    </div>
   );
 }
+
+FoodsCategories.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
 export default FoodsCategories;

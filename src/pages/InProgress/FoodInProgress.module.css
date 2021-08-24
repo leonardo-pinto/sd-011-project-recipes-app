@@ -1,0 +1,106 @@
+.container {
+  color: #666;
+  font-family: Arial , Helvetica , sans-serif;
+}
+
+.heroImage {
+  height: 300px;
+  width: 100%;
+}
+
+.heroContainer {
+  display: flex;
+}
+
+.nameAndCategory {
+  width: 220px;
+}
+
+.container h1 {
+  margin: 10px;
+}
+
+.container h1:before {
+  background: #fb1;
+  border-radius: 0.2rem;
+  content: '';
+  display: block;
+  height: 1rem;
+  left: 2%;
+  margin-top: 23px;
+  position: absolute;
+  width: 1.3rem;
+  z-index: -1;
+}
+
+.nameAndCategory p {
+  margin-left: 15px;
+}
+
+.sharedAndFavoriteButtons button {
+  background: none;
+  border: none;
+  margin-top: 20px;
+}
+
+.sharedAndFavoriteButtons button:focus {
+  outline: none;
+}
+
+.ingredientsContainer {
+  margin: 10px;
+}
+
+.ingredientsContainer input {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.ingredientsContainer input:checked:after {
+  background-color: white;
+  border: 6px solid #fb1;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  left: -1px;
+  position: relative;
+  top: -1px;
+  width: 15px;
+}
+
+.instruction {
+  margin: 10px;
+}
+
+.button {
+  background: #ccc;
+  border: 3px solid #fb1;
+  border-radius: 0.3rem;
+  box-sizing: border-box;
+  color: #666;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 20px 10px 20px 15px;
+  min-width: 10rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.button:disabled {
+  border: none;
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.buttonBack {
+  background: #ccc;
+  border-radius: 0.3rem;
+  bottom: 10px;
+  box-sizing: border-box;
+  color: #444;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  min-width: 10rem;
+  padding: 0.6rem 1.2rem;
+}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './DrinkDetails.module.css';
 import shareIcon from '../../images/shareIcon.svg';
 import FavoriteButtonDrinks from '../../globalComponents/FavoriteButtonDrinks';
+import Picture from '../../images/loginIMG.png';
 
 function DrinkDetails({ match }) {
   const [drinks, setDrinks] = useState({});
@@ -38,7 +39,16 @@ function DrinkDetails({ match }) {
   }, [id]);
 
   if (Object.keys(drinks).length === 0) {
-    return (<h1>Carregando...</h1>);
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
   }
   const ingredients = Object.keys(drinks)
     .filter((item) => item.includes('Ingredient'))
@@ -58,61 +68,72 @@ function DrinkDetails({ match }) {
   };
 
   return (
-    <div>
+    <main className={ `${styles.container} animeLeft` }>
+      <div className={ styles.heroImageContainer }>
+        <img
+          src={ drinks.strDrinkThumb }
+          alt="recipe"
+          data-testid="recipe-photo"
+          className={ styles.heroImage }
+        />
+      </div>
+      <section className={ styles.heroContainer }>
+        <div className={ styles.nameAndCategory }>
+          <h1
+            data-testid="recipe-title"
+          >
+            { drinks.strDrink }
+          </h1>
 
-      <img
-        src={ drinks.strDrinkThumb }
-        alt="recipe"
-        style={ { width: '200px' } }
-        data-testid="recipe-photo"
-      />
-      <h1
-        data-testid="recipe-title"
-      >
-        { drinks.strDrink }
-      </h1>
-
-      <p
-        data-testid="recipe-category"
-      >
-        { drinks.strCategory }
+          <p
+            data-testid="recipe-category"
+          >
+            { drinks.strCategory }
         &nbsp; - &nbsp;
-        { drinks.strAlcoholic }
-      </p>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ shareButtonHandle }
-      >
-        <img src={ shareIcon } alt="share" />
-      </button>
+            { drinks.strAlcoholic }
+          </p>
+        </div>
 
-      <FavoriteButtonDrinks
-        drinks={ drinks }
-        favorite={ favorite }
-        setFavorite={ setFavorite }
-        id={ id }
-      />
+        <div className={ styles.sharedAndFavoriteButtons }>
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ shareButtonHandle }
+          >
+            <img src={ shareIcon } alt="share" />
+          </button>
 
-      <p>{copied ? 'Link copiado!' : null}</p>
-      <h1>Instruções</h1>
+          <FavoriteButtonDrinks
+            drinks={ drinks }
+            favorite={ favorite }
+            setFavorite={ setFavorite }
+            id={ id }
+          />
+
+          <p>{copied ? 'Link copiado!' : null}</p>
+        </div>
+      </section>
+
+      <h1>Instructions</h1>
       <p
         data-testid="instructions"
+        className={ styles.instruction }
       >
         { drinks.strInstructions }
       </p>
-      <h1>Ingredientes</h1>
+      <h1>Ingredients</h1>
       {ingredients.map((item, index) => (
         <p
           data-testid={ `${index}-ingredient-name-and-measure` }
           key={ item }
+          className={ styles.ingredients }
         >
           {item}
           &nbsp; - &nbsp;
           { measures[index] }
         </p>
       ))}
-      <h1>Recomendação</h1>
+      <h1>Recommendations</h1>
       <div
         className={ styles.carousel }
       >
@@ -122,34 +143,48 @@ function DrinkDetails({ match }) {
             data-testid={ `${index}-recomendation-card` }
             className={ styles.carouselItemDiv }
           >
-            <img
-              src={ item.strMealThumb }
-              alt="recipe"
-              className={ styles.carouselImg }
-            />
-            <p>{ item.strCategory }</p>
-            <h5
-              data-testid={ `${index}-recomendation-title` }
-            >
-              { item.strMeal }
-            </h5>
+            <Link to={ `/comidas/${item.idMeal}` }>
+              <img
+                src={ item.strMealThumb }
+                alt="recipe"
+                className={ styles.carouselImg }
+              />
+              <p>{ item.strCategory }</p>
+              <h5
+                data-testid={ `${index}-recomendation-title` }
+              >
+                { item.strMeal }
+              </h5>
+            </Link>
           </div>
         ))}
       </div>
       {!isDone && (
-        <Link
-          to={ `/bebidas/${id}/in-progress` }
-        >
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            className={ styles.startRecipeBttn }
+        <nav>
+          <Link
+            to={ `/bebidas/${id}/in-progress` }
           >
-            {inProgress ? 'Continuar Receita' : 'Iniciar Receita' }
-          </button>
-        </Link>
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              className={ styles.buttonBeggin }
+            >
+              {inProgress ? 'Continue Recipe' : 'Start Recipe' }
+            </button>
+          </Link>
+        </nav>
       )}
-    </div>
+      <Link
+        to="/bebidas"
+      >
+        <button
+          type="button"
+          className={ styles.buttonBack }
+        >
+          Back
+        </button>
+      </Link>
+    </main>
   );
 }
 

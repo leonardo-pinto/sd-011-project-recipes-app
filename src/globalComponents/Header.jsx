@@ -7,7 +7,7 @@ import Picture2 from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import styles from './Header.module.css';
 
-function Header({ title, glass, match: { url } }) {
+function Header({ className, title, glass, match: { url } }) {
   const [modal, setModal] = React.useState(false);
   const { data } = useSelector((state) => state.Filter);
 
@@ -24,12 +24,13 @@ function Header({ title, glass, match: { url } }) {
         <Link to="/perfil">
           <img src={ Picture1 } alt="perfil" data-testid="profile-top-btn" />
         </Link>
-        <h1 data-testid="page-title">{ title }</h1>
+        <h1 data-testid="page-title" className={ className }>{ title }</h1>
 
         {glass
       && (
         <button
           data-testid="search-top-btn"
+          className={ styles.glassButton }
           type="button"
           src="searchIcon"
           onClick={ () => setModal(!modal) }
@@ -45,6 +46,7 @@ function Header({ title, glass, match: { url } }) {
 }
 
 Header.propTypes = {
+  className: PropTypes.string.isRequired,
   glass: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   match: PropTypes.shape({

@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { fetchExploreMealsArea } from '../../redux/actions';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
+import styles from './ExploreFoodsArea.module.css';
+import Picture from '../../images/loginIMG.png';
 
 function ExploreFoodsArea({ match }) {
   const [areas, setAreas] = useState([]);
@@ -34,13 +37,30 @@ function ExploreFoodsArea({ match }) {
   const selectHandle = ({ target }) => {
     setSelectedArea(target.value);
   };
-
-  console.log(selectedArea);
   const magicNumber = 12;
+
+  if (meals && meals.length === 0) {
+    return (
+      <div className={ styles.loadingContainer }>
+        <img
+          src={ Picture }
+          alt="Prato de comida"
+          className={ styles.rotation }
+        />
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Header title="Explorar Origem" glass="true" match={ match } />
-      <div>
+      <Header
+        className={ styles.exploreIngredientsFood }
+        title="Explore Origin"
+        glass="true"
+        match={ match }
+      />
+      <div className={ styles.selectContainer }>
         <select
           data-testid="explore-by-area-dropdown"
           onChange={ selectHandle }
@@ -62,7 +82,7 @@ function ExploreFoodsArea({ match }) {
           ))}
         </select>
       </div>
-      <div>
+      <div className={ `${styles.container} animeLeft` }>
         {meals && meals.filter((_, index) => index < magicNumber).map((item, index) => (
           <Link
             key={ index }

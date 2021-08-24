@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../globalComponents/Footer';
 import Header from '../../globalComponents/Header';
+import '../../App.css';
+import styles from './ExploreDrinks.module.css';
 
 function ExploreDrinks({ match }) {
   const [randomDrink, setRandomDrink] = useState([]);
@@ -17,14 +19,14 @@ function ExploreDrinks({ match }) {
   }, []);
   return (
     <>
-      <Header title="Explorar Bebidas" match={ match } />
-      <div>
+      <Header title="Explore Drinks" match={ match } />
+      <div className={ `${styles.container} animeLeft` }>
         <Link to="/explorar/bebidas/ingredientes">
           <button
             type="button"
             data-testid="explore-by-ingredient"
           >
-            Por Ingredientes
+            By Ingredients
           </button>
         </Link>
         <Link to={ `/bebidas/${randomDrink.idDrink}` }>
@@ -32,7 +34,7 @@ function ExploreDrinks({ match }) {
             type="button"
             data-testid="explore-surprise"
           >
-            Me Surpreenda!
+            Surprise me!
           </button>
         </Link>
       </div>

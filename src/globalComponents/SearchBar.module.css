@@ -1,0 +1,56 @@
+.container {
+  border: 3px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.radios label input {
+  margin-right: 3px;
+}
+
+.inputBarContent {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px;
+}
+
+.inputBarContent label input {
+  border: 3px solid #ddd;
+  border-radius: 0.3rem;
+  width: 250px;
+}
+
+.inputBarContent label input:focus {
+  background: #ddd;
+  color: #444;
+}
+
+.radios {
+  display: flex;
+  font-family: Arial , Helvetica , sans-serif;
+  justify-content: space-around;
+}
+
+.radios label {
+  color: #666;
+}
+
+.radio:checked:after {
+  background-color: white;
+  border: 6px solid #fb1;
+  border-radius: 15px;
+  content: '';
+  display: inline-block;
+  height: 16px;
+  left: -1px;
+  position: relative;
+  top: -1px;
+  width: 16px;
+}
+
+.container button {
+  border: 3px solid #ddd;
+  border-radius: 0.3rem;
+  margin: 0 auto 10px;
+  width: 150px;
+}
