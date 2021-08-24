@@ -1,0 +1,37 @@
+.food-progress-page {
+  align-content: center;
+  height: 90%;
+  overflow: auto;
+}
+
+.food-progress-page h2, h3 {
+  color: black;
+  text-align: center;
+}
+
+.buttons-progress-food {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons-progress-food button {
+  margin: 0;
+}
+
+.buttons-progress-food button:active {
+  color: #f29f05;
+}
+
+.buttons-card {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-card button:active {
+  background-color: #f29f05;
+}
+
+.food-progress-page p {
+  margin: auto;
+}

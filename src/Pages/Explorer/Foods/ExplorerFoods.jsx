@@ -45,7 +45,7 @@ const ExplorerFoods = () => {
             type="button"
             data-testid="explore-surprise"
           >
-            Surprese-me!
+            Surprise-me!
           </Button>
         </Link>
       </section>

@@ -1,11 +1,13 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 export default function FavoriteButtons(callBack, isFavorite) {
   return (
     <div>
-      <button
+      <Button
+        variant="light"
         type="button"
         onClick={ () => callBack() }
       >
@@ -14,13 +16,14 @@ export default function FavoriteButtons(callBack, isFavorite) {
           alt="favorite icon"
           data-testid="favorite-btn"
         />
-      </button>
-      <button
+      </Button>
+      <Button
+        variant="light"
         type="button"
         onClick={ () => callBack() }
       >
-        Favoritar
-      </button>
+        Favorite
+      </Button>
     </div>
   );
 }

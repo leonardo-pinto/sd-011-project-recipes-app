@@ -1,0 +1,37 @@
+.drink-progress-page {
+  align-content: center;
+  height: 90%;
+  overflow: auto;
+}
+
+.drink-progress-page h2, h3 {
+  color: black;
+  text-align: center;
+}
+
+.buttons-progress-drink {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons-progress-drink button {
+  margin: 0;
+}
+
+.buttons-progress-drink button:active {
+  color: #f29f05;
+}
+
+.buttons-card-drink {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-card-drink button:active {
+  background-color: #f29f05;
+}
+
+.drink-progress-page p {
+  margin: auto;
+}

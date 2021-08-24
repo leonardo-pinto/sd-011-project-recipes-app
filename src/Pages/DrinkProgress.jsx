@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Button, Card, Figure } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -7,6 +8,7 @@ import getDate from '../Services/getDate';
 import MainContext from '../Context/MainContext';
 import { copyLink } from '../Services/ApiFood';
 import FavoriteButtons from '../Components/FavoriteButtons';
+import '../css/DrinkProgress.css';
 
 function DrinkProgress(props) {
   const [drinkById, setDrinkById] = useState([]);
@@ -167,71 +169,104 @@ function DrinkProgress(props) {
   };
 
   return (
-    <div>
+    <div className="drink-progress-page">
+      <Link to="/bebidas">
+        <Button
+          variant="light"
+          type="button"
+        >
+          Back
+        </Button>
+      </Link>
+      <br />
+      <br />
       { drinkById.map((item, index) => (
         <div key={ index }>
-          <img
-            data-testid="recipe-photo"
-            src={ item.strDrinkThumb }
-            alt={ `Drink ${item.strDrink}` }
-            width="80"
-          />
-          <h2 data-testid="recipe-title">
-            { item.strDrink }
-          </h2>
-          <h3 data-testid="recipe-category">
-            { item.strCategory }
-          </h3>
-          <ul>
-            {
-              drinkIngredient.map((ingredient, i) => (
-                <li
-                  data-testid={ `${i}-ingredient-step` }
-                  key={ i }
-                >
-                  <label
-                    htmlFor={ i }
-                  >
-                    <input
-                      name={ Object.values(ingredient) }
-                      id={ i }
-                      type="checkbox"
-                      checked={ inProgressRecipe[id]
+          <Figure>
+            <Figure.Image
+              width={ 288 }
+              height={ 280 }
+              alt={ `Drink ${item.strDrink}` }
+              src={ item.strDrinkThumb }
+            />
+            <Figure.Caption>
+              <h2 data-testid="recipe-title">
+                { item.strDrink }
+              </h2>
+              <h3 data-testid="recipe-category">
+                { item.strCategory }
+              </h3>
+            </Figure.Caption>
+          </Figure>
+          <Card style={ { width: '18rem' } }>
+            <Card.Body>
+              <Card.Title>
+                { item.strMeal }
+              </Card.Title>
+              <Card.Subtitle
+                className="mb-2 text-muted"
+              >
+                Ingredients and Instructions
+              </Card.Subtitle>
+              <Card.Text>
+                <ul>
+                  {
+                    drinkIngredient.map((ingredient, i) => (
+                      <li
+                        data-testid={ `${i}-ingredient-step` }
+                        key={ i }
+                      >
+                        <label
+                          htmlFor={ i }
+                        >
+                          <input
+                            name={ Object.values(ingredient) }
+                            id={ i }
+                            type="checkbox"
+                            checked={ inProgressRecipe[id]
                         && inProgressRecipe[id].includes(i + 1) }
-                      onChange={ ({ target }) => ingredientsDone(target, i + 1) }
-                      onClick={ () => ingredientsChecked() }
-                    />
-                    { Object.values(ingredient) }
-                  </label>
-                </li>
-              ))
-            }
-          </ul>
-          <p data-testid="instructions">
-            { item.strInstructions }
-          </p>
+                            onChange={ ({ target }) => ingredientsDone(target, i + 1) }
+                            onClick={ () => ingredientsChecked() }
+                          />
+                          { Object.values(ingredient) }
+                        </label>
+                      </li>
+                    ))
+                  }
+                </ul>
+                <p data-testid="instructions">
+                  { item.strInstructions }
+                </p>
+              </Card.Text>
+            </Card.Body>
+            <div className="buttons-card-drink">
+              { FavoriteButtons(handleColoredHeart, isFavorite) }
+              <Button
+                variant="light"
+                type="button"
+                data-testid="share-btn"
+                onClick={ () => copyLink(copy, setShow, 'bebidas', id) }
+              >
+                Share
+              </Button>
+            </div>
+            <p>{ show && 'Copy link!'}</p>
+          </Card>
         </div>
       )) }
-      <div>
+      <div className="buttons-progress-drink">
+        <br />
         <Link to="/receitas-feitas">
-          <button
+          <Button
             type="button"
+            variant="light"
             data-testid="finish-recipe-btn"
             disabled={ !button }
             onClick={ () => handleCLick() }
           >
             Finish
-          </button>
+          </Button>
         </Link>
-        { FavoriteButtons(handleColoredHeart, isFavorite) }
-        <button
-          type="button"
-          data-testid="share-btn"
-          onClick={ () => copyLink(copy, setShow, 'bebidas', id) }
-        >
-          Compartilhar
-        </button>
-        <p>{ show && 'Link copiado!'}</p>
       </div>
     </div>
   );
