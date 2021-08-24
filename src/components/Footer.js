@@ -10,7 +10,7 @@ function Footer() {
       style={ {
         display: 'flex',
         justifyContent: 'space-around',
-        background: '#F76C05',
+        backgroundColor: '#F2490C',
         bottom: 0,
         position: 'fixed',
         width: '100%',

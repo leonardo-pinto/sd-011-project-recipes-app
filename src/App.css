@@ -4,12 +4,12 @@
 } */
 
 body {
-  background-color: #ff900d;
+  background-color: #fff;
   min-height: 640px;
 }
 
 .button {
-  background-color: #4b2c0d;
+  background-color: #590202;
 }
 
 .buttons-filter-favor {
@@ -19,15 +19,15 @@ body {
 }
 
 .button-style {
-  background-color: #4b2c0d;
+  background-color: #590202;
   display: block;
   margin: 10px auto;
   width: 200px;
 }
 
 .button-favAndDone {
-  background-color: #4b2c0d;
-  border: 1px solid #4b2c0d;
+  background-color: #590202;
+  border: 1px solid #590202;
   color: white;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .container-header-filters {
-  background: #ff900d;
+  background: #F27507;
   padding: 0 0 10px;
   position: fixed;
   top: 0;
@@ -58,7 +58,7 @@ body {
 
 .container-header {
   align-items: center;
-  background: #f76c05;
+  background: #F2490C;
   display: flex;
   padding: 10px;
   width: 100%;
@@ -101,7 +101,7 @@ body {
 
 /* stackoverflow https://bityli.com/3bN5N */
 .button-filter {
-  background-color: #4b2c0d;
+  background-color: #590202;
   font-size: 15px;
   height: 40px;
   line-height: 1em;

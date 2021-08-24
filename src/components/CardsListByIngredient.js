@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import fetchByFilter from '../services/data';
 import { SearchBarContext } from '../context/SearchBar';
+
 export default function CardsListByIngredient() {
   const [ingredName, setIngredName] = useState([]);
   const [imge, setImge] = useState([]);

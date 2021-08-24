@@ -103,7 +103,7 @@ export default function SearchBar(props) {
           />
         </Form.Label>
         <Button
-          style={ { background: '#4b2c0d' } }
+          style={ { background: '#590202' } }
           variant="dark"
           data-testid="exec-search-btn"
           type="button"

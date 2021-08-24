@@ -9,6 +9,29 @@ export default function Cards(props) {
   const { recipe, index, type } = props;
   const history = useHistory();
 
+  const styleCard = {
+    margin: '20px auto',
+    width: '340px',
+    height: '240px',
+    boxShadow: '0 0 5px',
+  };
+
+  const styleImg = {
+    clipPath: 'inset(50px 0 50px 0)',
+    position: 'relative',
+    top: '-50px',
+  };
+
+  const styleText = {
+    textShadow: '0px 0px 20px white',
+    color: '#590202',
+    textAlign: 'center',
+    fontSize: '30px',
+    fontWeight: 'bold',
+    position: 'relative',
+    top: '-160px',
+  };
+
   let tipo = 'comidas';
   let shortName = 'idMeal';
   if (type === 'thecocktaildb') {
@@ -29,20 +52,20 @@ export default function Cards(props) {
 
   return (
     <Card
-      style={ { margin: '20px auto', width: '340px', boxShadow: '0 0 5px' } }
+      style={ styleCard }
       data-testid={ `${index}-recipe-card` }
       onClick={ () => history.push(`/${tipo}/${recipe[shortName]}`) }
     >
       <Card.Img
         variant="top"
-        style={ { clipPath: 'inset(30px 0 30px 0)' } }
+        style={ styleImg }
         src={ source }
         alt={ recipeName }
         data-testid={ `${index}-card-img` }
         objectFit="cover"
       />
       <Card.Body
-        style={ { textAlign: 'center', fontSize: '20px', fontWeight: 'bold' } }
+        style={ styleText }
         data-testid={ `${index}-card-name` }
       >
         { recipeName }
