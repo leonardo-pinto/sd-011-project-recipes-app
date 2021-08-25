@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { InProgressContext } from '../../context/RecipeInProgress';
 
@@ -64,14 +65,15 @@ export default function ButtonFinish(props) {
   };
 
   return (
-    <button
+    <Button
+      style={ { width: '100%', backgroundColor: '#4B2C0D' } }
       type="button"
       data-testid="finish-recipe-btn"
       disabled={ !enableFinishBtn }
       onClick={ handleClick }
     >
       Finalizar Receita
-    </button>
+    </Button>
   );
 }
 

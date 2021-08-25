@@ -81,6 +81,7 @@ function ButtonFavorite({ objData }) {
 ButtonFavorite.propTypes = {
   objData: PropTypes.shape(
     PropTypes.string,
+    PropTypes.object,
   ).isRequired,
 };
 

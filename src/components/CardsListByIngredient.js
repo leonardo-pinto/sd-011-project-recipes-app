@@ -1,61 +1,40 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 import fetchByFilter from '../services/data';
 import { SearchBarContext } from '../context/SearchBar';
-
-/* Criei CardsList para renderizar apenas uma vez. Deixei apenas o SearchBarProvider encapsulando o Header e CardsList, já que buscam as mesmas informações */
 
 export default function CardsListByIngredient() {
   const [ingredName, setIngredName] = useState([]);
   const [imge, setImge] = useState([]);
   const [redirectTo, setRedirectTo] = useState(false);
   const path = window.location.pathname.split('/')[2];
-
   const { setIngred } = useContext(SearchBarContext);
+  const url = path === 'bebidas' ? 'thecocktaildb' : 'themealdb';
 
   useEffect(() => {
-    const urlDrink = 'thecocktaildb';
-    const urlMeal = 'themealdb';
-    let url = urlMeal;
-    if (path === 'bebidas') {
-      url = urlDrink;
-    }
     const getRecipes = async () => {
       const urlToFetch = `https://www.${url}.com/api/json/v1/1/list.php?i=list`;
       const recipesFromApi = await fetchByFilter(urlToFetch);
       const recipesList = Object.values(recipesFromApi)[0];
-      if (path === 'bebidas') {
-        const array = recipesList.map((e) => (e.strIngredient1));
-        return setIngredName(array);
-      }
-      const array = recipesList.map((e) => (e.strIngredient));
+      const array = path === 'bebidas'
+        ? recipesList.map((e) => (e.strIngredient1))
+        : recipesList.map((e) => (e.strIngredient));
       return setIngredName(array);
-      // setDataValues(recipesList);
-      // setDataList(recipesList);
-      // setShouldCallCards(true);
     };
 
     getRecipes();
   }, [path]);
 
   useEffect(() => {
-    const urlDrink = 'thecocktaildb';
-    const urlMeal = 'themealdb';
-    let url = urlMeal;
-    if (path === 'bebidas') {
-      url = urlDrink;
-    }
     const getCategories = async () => {
       const img = ingredName.map((e) => ({
         fig: `https://www.${url}.com/images/ingredients/${e}-Small.png`,
         name: `${e}`,
       }));
       const magicN = 12;
-      const imgTwelve = img.slice(0, magicN);
-      setImge(imgTwelve);
-      // const categoriesFromApi = await fetchByFilter(urlToFetch);
-      // const categoriesList = Object.values(categoriesFromApi)[0];
+      setImge(img.slice(0, magicN));
     };
 
     getCategories();
@@ -63,46 +42,46 @@ export default function CardsListByIngredient() {
 
   const handleClick = (value) => {
     setIngred(value);
-    console.log('cardingred', value);
     setRedirectTo(true);
   };
 
   return (
-    <div style={ { position: 'relative' } }>
+    <div style={ { position: 'relative', margin: '75px 0 70px 0' } }>
       { imge.map((e, i) => (
-        <button
-          style={ {
-            borderRadius: '5px',
-            margin: '10px 10px 0 10px',
-            width: '100%',
-            background: 'orange',
-            opacity: 'none',
-            border: '1px solid black',
-          } }
+        <Card
+          style={ { margin: '10px auto', width: '304px', boxShadow: '0 0 5px' } }
+          role="button"
+          data-testid={ `${i}-ingredient-card` }
           type="button"
           key={ i }
+          onClick={ () => handleClick(e.name) }
+          onKeyPress={ () => handleClick(e.name) }
+          tabIndex="0"
         >
-          <div
-            role="button"
-            data-testid={ `${i}-ingredient-card` }
-            onClick={ () => handleClick(e.name) }
-            onKeyPress={ () => handleClick(e.name) }
-            tabIndex="0"
+          <Card.Body
+            style={
+              { display: 'flex', alignItems: 'center', justifyContent: 'space-around' }
+            }
           >
             <img
+              style={ { width: '100px' } }
               src={ e.fig }
               alt={ `figure ${e.name}` }
               data-testid={ `${i}-card-img` }
             />
-            <p data-testid={ `${i}-card-name` }>{e.name}</p>
-          </div>
-        </button>
+            <p
+              style={ { fontSize: '20px', fontWeight: 'bold', textAlign: 'right' } }
+              data-testid={ `${i}-card-name` }
+            >
+              { e.name }
+            </p>
+          </Card.Body>
+        </Card>
       )) }
       { redirectTo && <Redirect to={ `/${path}` } /> }
     </div>
   );
 }
-
 CardsListByIngredient.propTypes = {
   fetchType: PropTypes.string,
 }.isRequired;

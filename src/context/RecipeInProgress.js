@@ -23,15 +23,16 @@ export function InProgressProvider({ children }) {
     if (!isMeal) {
       const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const { cocktails } = inProgressRecipes;
+      console.log(ingredientsArray.length === cocktails[recipeId].length);
       if (cocktails[recipeId]) {
         setEnableFinishBtn(ingredientsArray.length
           === cocktails[recipeId].length);
       }
     }
   };
-
   const setDrinkType = () => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
     if (!inProgressRecipes) {
       return { cocktails: { [recipeId]: [] }, meals: { } };
     } if (inProgressRecipes && !inProgressRecipes.cocktails[recipeId]) {
@@ -73,7 +74,7 @@ export function InProgressProvider({ children }) {
           cocktails,
         };
       } else {
-        const ingArray = cocktails[recipeId].filter((item) => item !== target.value);
+        const ingArray = meals[recipeId].filter((item) => item !== target.value);
         itemToSave = {
           meals: {
             ...meals,

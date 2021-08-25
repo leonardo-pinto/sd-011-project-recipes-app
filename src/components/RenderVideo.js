@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 function RenderVideo({ src, title, id }) {
   const url = (src).replace('watch?v=', 'embed/');
   return (
-    <div style={ { textAlign: '-webkit-center' } }>
+    <div>
       <iframe
-        width="auto"
+        width="100%"
         height="150"
         src={ url }
         title={ title }
@@ -15,6 +15,7 @@ function RenderVideo({ src, title, id }) {
           autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         data-testid={ `${id}` }
+        style={ { borderRadius: '10px' } }
       />
     </div>
   );

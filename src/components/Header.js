@@ -10,11 +10,6 @@ export default function Header(props) {
   const [isVisibleSearchBar, setVisibleSearchBar] = useState(false);
   const history = useHistory();
   const { title, search, fetchType, filterBar } = props;
-  // console.log('header', filterBar);
-  // console.log('header', search);
-
-  const renderSearchBar = () => <section><SearchBar fetchType={ fetchType } /></section>;
-  const renderFiltersBar = () => (<FiltersBar fetchType={ fetchType } />);
 
   const buttonSearch = () => (
     <div
@@ -32,9 +27,10 @@ export default function Header(props) {
   );
 
   return (
-    <header>
-      <section style={ { display: 'flex' } }>
+    <section className="container-header-filters" style={ { zIndex: '2' } }>
+      <header className="container-header">
         <div
+          style={ { width: '30px' } }
           role="button"
           onKeyPress={ () => history.push('/perfil') }
           onClick={ () => history.push('/perfil') }
@@ -46,14 +42,21 @@ export default function Header(props) {
             alt="profile icon"
           />
         </div>
-        <h3 data-testid="page-title">{ title }</h3>
-        { search && buttonSearch() }
-      </section>
+        <h3
+          data-testid="page-title"
+          style={ { margin: 'auto' } }
+        >
+          { title }
+        </h3>
+        <div style={ { width: '30px' } }>
+          { search && buttonSearch() }
+        </div>
+      </header>
       <section>
-        { isVisibleSearchBar && renderSearchBar() }
-        { filterBar && !isVisibleSearchBar && renderFiltersBar() }
+        { isVisibleSearchBar && <SearchBar fetchType={ fetchType } /> }
+        { filterBar && !isVisibleSearchBar && <FiltersBar fetchType={ fetchType } /> }
       </section>
-    </header>
+    </section>
   );
 }
 

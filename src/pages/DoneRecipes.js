@@ -11,14 +11,10 @@ export default function DoneRecipes() {
 
   useEffect(() => {
     if (doneRecipes) {
-      console.log(parsedDoneRecipe);
       const newFilteredRecipes = type
         ? [...parsedDoneRecipe.filter((recipe) => recipe.type === type)]
         : [...parsedDoneRecipe];
       setFilteredRecipes(newFilteredRecipes);
-      console.log(filteredRecipes);
-      console.log(type);
-      console.log(newFilteredRecipes);
     }
   }, [type]);
 
@@ -26,20 +22,39 @@ export default function DoneRecipes() {
   return (
     <div>
       <Header title="Receitas Feitas" search={ false } />
-      <section style={ { textAlign: 'center' } }>
+      <section className="container-buttons" style={ { marginTop: '80px' } }>
         <ToggleButtonGroup
           type="radio"
           name="type"
           value={ type }
           onChange={ handleChange }
+          className="buttons-filter-favor"
         >
-          <ToggleButton name="type" data-testid="filter-by-all-btn" value="">
+          <ToggleButton
+            className="button-favAndDone"
+            data-testid="filter-by-all-btn"
+            name="type"
+            value=""
+            variant="warning"
+          >
             All
           </ToggleButton>
-          <ToggleButton name="type" data-testid="filter-by-food-btn" value="comida">
+          <ToggleButton
+            className="button-favAndDone"
+            data-testid="filter-by-food-btn"
+            name="type"
+            value="comida"
+            variant="warning"
+          >
             Food
           </ToggleButton>
-          <ToggleButton name="type" data-testid="filter-by-drink-btn" value="bebida">
+          <ToggleButton
+            className="button-favAndDone"
+            name="type"
+            data-testid="filter-by-drink-btn"
+            value="bebida"
+            variant="warning"
+          >
             Drink
           </ToggleButton>
         </ToggleButtonGroup>

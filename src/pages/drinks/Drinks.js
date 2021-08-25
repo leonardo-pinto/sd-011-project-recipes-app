@@ -8,15 +8,9 @@ export default function Drinks() {
   const { ingred } = useContext(SearchBarContext);
   return (
     <main>
-      <section>
-        {/* <SearchBarProvider>
-        </SearchBarProvider> */}
-        <Header title="Explorar Bebidas" search filterBar fetchType="thecocktaildb" />
-        <CardsList fetchType="thecocktaildb" ingredient={ ingred } />
-      </section>
-      <section>
-        <Footer />
-      </section>
+      <Header title="Explorar Bebidas" search filterBar fetchType="thecocktaildb" />
+      <CardsList fetchType="thecocktaildb" ingredient={ ingred } />
+      <Footer />
     </main>
   );
 }

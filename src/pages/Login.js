@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Navbar } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import weCookLogo from '../images/weCookLogo.png';
 
 function Login() {
   const [login, setLogin] = useState({ email: '', password: '' });
@@ -34,20 +35,12 @@ function Login() {
     setShouldRedirect(true);
   }
 
-  const sectionStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '70px auto',
-    width: '180px',
-  };
-
   return (
     <main style={ { textAlign: 'center' } }>
       { shouldRedirect && <Redirect to="/comidas" /> }
-      <Navbar bg="light" variant="light">
-        <h1 style={ { margin: 'auto', color: '#da0000', fontWeight: 'bold' } }>Login</h1>
-      </Navbar>
-      <Form style={ sectionStyle }>
+      <img src={ weCookLogo } alt="logo" style={ { width: '300px' } } />
+      <h2 style={ { fontWeight: 'bold' } }>Login</h2>
+      <Form className="container-login">
         <Form.Label htmlFor="id">
           <Form.Control
             id="id"
@@ -69,6 +62,8 @@ function Login() {
           />
         </Form.Label>
         <Button
+          variant="secondary"
+          className="button transition"
           type="button"
           data-testid="login-submit-btn"
           disabled={ disabled }

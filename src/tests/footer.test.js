@@ -2,6 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouterAndContext from './renderWithRouterAndContext';
+import Drinks from '../pages/drinks/Drinks';
 
 const EMAIL_INPUT = 'alguem@alguem.com';
 const PASSWORD_INPUT = '1234567';
@@ -23,13 +24,12 @@ describe('Tests relacted by Footer component', () => {
   });
 
   test('Elementos do menu inferior na pagina /bebidas', () => {
-    const { getByTestId, getByText, history } = renderWithRouterAndContext(<App />);
+    const { getByTestId, getByText } = renderWithRouterAndContext(<Drinks />);
     // userEvent.type(getByTestId('email-input'), EMAIL_INPUT);
     // userEvent.type(getByTestId('password-input'), PASSWORD_INPUT);
     // userEvent.click(getByTestId('login-submit-btn'));
     // userEvent.click(getByTestId('drinks-bottom-btn'));
-    history.push('/bebidas');
-    console.log(window.location.href);
+    // history.push('/bebidas');
     expect(getByText('Explorar Bebidas')).toBeInTheDocument();
     // expect(window.location.pathname).toBe('/bebidas');
     expect(getByTestId('footer')).toBeInTheDocument();

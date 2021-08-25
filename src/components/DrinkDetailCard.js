@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import ButtonFavorite from './ButtonFavorite';
 import ButtonShare from './ButtonShare';
 import ButtonToProgress from './ButtonToProgress';
 import Recommended from './Recommended';
 import RenderVideo from './RenderVideo';
+import '../App.css';
 
 function DrinkDetailCard() {
   const [drinkDetail, setDrinkDetail] = useState([]);
@@ -36,7 +38,6 @@ function DrinkDetailCard() {
   }, [path]);
 
   const {
-    // idDrink,
     strAlcoholic,
     strCategory,
     strInstructions,
@@ -60,50 +61,50 @@ function DrinkDetailCard() {
   }).filter((i) => i !== undefined);
 
   return (
-    <div>
-      <h3 data-testid="recipe-title">{strDrink}</h3>
-      <img data-testid="recipe-photo" width="150px" src={ strDrinkThumb } alt="tumb" />
-      <h4>{strCategory}</h4>
-      <p data-testid="recipe-category">{strAlcoholic}</p>
-      <div style={ { display: 'flex', justifyContent: 'space-around' } }>
-        <ButtonFavorite objData={ drinkDetail } />
-        <ButtonShare path={ window.location.href } testid="share-btn" />
-      </div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              { objIngred.map((e, i) => {
-                console.log(e);
-                if (e !== null) {
-                  return (
-                    <div
-                      data-testid={ `${i}-ingredient-name-and-measure` }
-                      key={ i }
-                    >
-                      { objMeasure[i] !== (undefined || '')
-                        ? `${e} - ${objMeasure[i]}` : `${e}` }
-                    </div>
-                  );
-                }
-                return undefined;
-              }) }
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h6 data-testid="instructions">{strInstructions}</h6>
-      { strYoutube
-        && <RenderVideo
-          src={ strYoutube }
-          title={ `Recipe ${strDrink}` }
-          id="video"
-        /> }
-      <div style={ { margin: '40px' } }>
+    <>
+      <Card style={ { width: '90%', margin: '15px auto' } }>
+        <Card.Body>
+          <Card.Img
+            data-testid="recipe-photo"
+            width="150px"
+            src={ strDrinkThumb }
+            alt="tumb"
+          />
+          <div className="card-details-text" data-testid="recipe-title">{strDrink}</div>
+          <div className="card-details-text">{strCategory}</div>
+          <div className="card-details-text" data-testid="recipe-category">{strAlcoholic}</div>
+          <div className="card-details-share" style={ { display: 'flex', justifyContent: 'space-around' } }>
+            <ButtonFavorite objData={ drinkDetail } />
+            <ButtonShare path={ window.location.href } testid="share-btn" />
+          </div>
+          <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
+          <div style={ { textAlign: 'center', fontStyle: 'italic' } }>
+            { objIngred.map((e, i) => (
+              <div
+                style={ { marginBottom: '0' } }
+                data-testid={ `${i}-ingredient-name-and-measure` }
+                key={ i }
+              >
+                { objMeasure[i] ? `${e} - ${objMeasure[i]}` : `${e}`}
+              </div>
+            ))}
+          </div>
+          <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
+          <div data-testid="instructions">{strInstructions}</div>
+          { strYoutube
+          && <RenderVideo
+            src={ strYoutube }
+            title={ `Recipe ${strDrink}` }
+            id="video"
+            style={ { width: '50%' } }
+          /> }
+        </Card.Body>
+        {/* <Card.Text className="card-recommend" style={ { margin: '40px', paddingBottom: '60px' } }>
+        </Card.Text> */}
         <Recommended value={ rec } type="drink" min={ min } />
-      </div>
+      </Card>
       <ButtonToProgress data={ drinkDetail } />
-    </div>
+    </>
   );
 }
 

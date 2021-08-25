@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ButtonToProgress(props) {
   const { mealDetail, drinkDetail } = props;
@@ -13,6 +14,18 @@ function ButtonToProgress(props) {
   const path = window.location.pathname.split('/')[2];
   const inProgress = localStorage.getItem('inProgressRecipes');
   const doneRecipes = localStorage.getItem('doneRecipes');
+
+  const styleBtn = {
+    // position: 'fixed',
+    bottom: 0,
+    height: '60px',
+    background: '#f76c05',
+    zIndex: '1',
+    alignItems: 'center',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
+  };
 
   useEffect(() => {
     if (inProgress === null) {
@@ -44,14 +57,15 @@ function ButtonToProgress(props) {
   const startButton = () => {
     const btn = (
       <div>
-        <button
-          style={ { position: 'fixed', bottom: 0 } }
+        <Button
+          className="btn btn-primary"
+          style={ styleBtn }
           data-testid="start-recipe-btn"
           type="button"
           onClick={ handleClick }
         >
           { progress ? 'Continuar Receita' : 'Iniciar Receita' }
-        </button>
+        </Button>
         {
           toRedirect
             && <Redirect

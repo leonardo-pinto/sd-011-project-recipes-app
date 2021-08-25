@@ -32,7 +32,7 @@ function ButtonToProgress({ data }) {
     }
     // doneRecipes.find((e) => (e.id === parseInt(path, 10)))
     if (doneRecipes.includes(path)) {
-      console.log(doneRecipes.includes(path), doneRecipes);
+      // console.log(doneRecipes.includes(path), doneRecipes);
       setStart(true);
     }
   }, [path, doneRecipes, inProgress]);

@@ -60,30 +60,30 @@ export default function FiltersBar(props) {
   }, [filter, fetchType, dataList]);
 
   return (
-    <section
-      style={
-        { display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }
-      }
-    >
-      <Button
-        style={ { margin: '5px' } }
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => onClickFilter('') }
-      >
-        All
-      </Button>
-      { categories.length > 0 && categories.map((cat) => (
-        <Button
-          style={ { margin: '5px' } }
-          type="button"
-          key={ cat.strCategory }
-          data-testid={ `${cat.strCategory}-category-filter` }
-          onClick={ () => onClickFilter(cat.strCategory) }
-        >
-          {cat.strCategory}
-        </Button>
-      ))}
+    <section className="container-buttons-filter">
+      { categories.length > 0 && (
+        <>
+          <Button
+            variant="dark"
+            className="button-filter button"
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ () => onClickFilter('') }
+          >
+            All
+          </Button>
+          {categories.map((cat) => (
+            <Button
+              variant="dark"
+              className="button-filter button"
+              type="button"
+              key={ cat.strCategory }
+              data-testid={ `${cat.strCategory}-category-filter` }
+              onClick={ () => onClickFilter(cat.strCategory) }
+            >
+              {cat.strCategory}
+            </Button>))}
+        </>)}
     </section>
   );
 }

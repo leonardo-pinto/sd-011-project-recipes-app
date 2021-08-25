@@ -1,33 +1,125 @@
-.meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
+/* * {
+  max-height: 640px;
+  max-width: 360px;
+} */
+
+body {
+  background-color: #fff;
+  min-height: 640px;
+}
+
+.button {
+  background-color: #590202;
+}
+
+.buttons-filter-favor {
+  display: flex;
+  justify-content: center;
+  margin: 50px 30px;
+}
+
+.button-style {
+  background-color: #590202;
+  display: block;
+  margin: 10px auto;
+  width: 200px;
+}
+
+.button-favAndDone {
+  background-color: #590202;
+  border: 1px solid #590202;
+  color: white;
+}
+
+.transition {
+  transition: 0.5s;
+}
+
+.card-favor-and-done {
+  background-color: white;
+  box-shadow: 0 0 5px;
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
+  float: none;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 2px;
+  width: 304px;
+}
+
+.container-header-filters {
+  background: #F27507;
+  padding: 0 0 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.container-header {
+  align-items: center;
+  background: #F2490C;
+  display: flex;
+  padding: 10px;
   width: 100%;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
+.container-login {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  width: 180px;
+}
+
+.meals {
+  align-items: center;
+  background: #0fa36b;
   max-height: 80vh;
 }
 
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
+.container-buttons-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
+.container-buttons {
+  display: block;
+  margin-top: 220px;
 }
-*/
+
+.container-profile {
+  display: block;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.container-profile div {
+  margin: 50px auto;
+}
+
+/* stackoverflow https://bityli.com/3bN5N */
+.button-filter {
+  background-color: #590202;
+  font-size: 15px;
+  height: 40px;
+  line-height: 1em;
+  margin: 1px;
+  max-height: 3em;
+  width: 100px;
+  word-wrap: break-word;
+}
+
+.container-explore-by-area {
+  background: #ff900d;
+  padding: 10px;
+  position: fixed;
+  text-align: center;
+  top: 60px;
+  width: 100%;
+  z-index: 1;
+}
 
 .meals > .logo {
   animation: shake 1.5s infinite ease;
@@ -35,6 +127,72 @@
   font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
+}
+
+.card-details-text {
+  color: black;
+  margin: 0;
+  text-shadow: 0 0 5px;
+  text-align: center;
+}
+
+.card-details-share {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.card-recommend {
+  height: 10px;
+  margin: 20px;
+  padding-bottom: 120px;
+}
+
+.card-recom-text {
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+}
+
+.card-by-ingredient {
+  box-shadow: 0px 0px 5px;
+  border-radius: 5px;
+  margin: 10px 10px 0 10px;
+  width: 40%;
+  height: 160px;
+  align-items: center;
+}
+
+.card-by-ingredient-body {
+  margin: 20px 0 80px 0;
+  text-align: -webkit-center;
+  z-index: 0;
+}
+
+.card-by-ingredient-loading {
+  margin-top: 130px;
+  text-align: -webkit-center;
+}
+
+.share {
+  display: block;
+  font-size: 10px;
+  margin-left: 15px;
+  margin-top: 1px;
+  padding: 5px;
+  position: absolute;
+  width: auto;
+}
+
+.slick-prev:before {
+  color: #111 !important;
+  background-color: #eee;
+}
+.slick-next:before {
+  color: #111 !important;
+  background-color: #eee;
 }
 
 @keyframes shake {

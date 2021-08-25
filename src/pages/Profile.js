@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -7,38 +8,45 @@ export default function Profile() {
   const user = localStorage.getItem('user');
   const email = user ? JSON.parse(user).email : 'E-mail não encontrado';
   const history = useHistory();
-  const sectionStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    width: '180px',
-  };
+
   return (
     <div>
       <Header title="Perfil" />
-      <section style={ sectionStyle }>
-        <h5 data-testid="profile-email">{ email }</h5>
-        <button
+      <section className="container-profile">
+        <div style={ { display: 'flex', justifyContent: 'center' } }>
+          <h5 data-testid="profile-email">{ email }</h5>
+        </div>
+        <Button
+          className="button-style"
+          variant="dark"
+          size="lg"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => history.push('/receitas-feitas') }
         >
           Receitas Feitas
-        </button>
-        <button
+        </Button>
+        <Button
+          className="button-style"
+          variant="dark"
+          size="lg"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => history.push('/receitas-favoritas') }
         >
           Receitas Favoritas
-        </button>
-        <button
+        </Button>
+        <Button
+          style={ { background: '#333333' } }
+          className="button-style"
+          variant="secondary"
+          size="lg"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => { localStorage.clear(); history.push('/'); } }
         >
           Sair
-        </button>
+        </Button>
       </section>
       <Footer />
     </div>

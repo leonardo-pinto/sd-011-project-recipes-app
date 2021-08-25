@@ -24,12 +24,10 @@ function App() {
   const pathDrinks = '/explorar/bebidas/ingredientes';
 
   return (
-    // <BrowserRouter>
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/explorar" component={ Explorer } />
-      {/* <SearchBarProvider> */}
       <Route exact path="/explorar/comidas" component={ FoodExplorer } />
       <Route exact path="/explorar/bebidas" component={ DrinkExplorer } />
       <Route exact path={ pathFoods } component={ FoodExplorerByIngredients } />
@@ -44,10 +42,8 @@ function App() {
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
       <Route exact path="/comidas/:id/in-progress" component={ RecipeInProgress } />
       <Route exact path="/bebidas/:id/in-progress" component={ RecipeInProgress } />
-      {/* </SearchBarProvider> */}
       <Route path="*" component={ NotFound } />
     </Switch>
-    // </BrowserRouter>
   );
 }
 
