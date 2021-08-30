@@ -9,6 +9,7 @@ import MainContext from '../Context/MainContext';
 import { copyLink } from '../Services/ApiFood';
 import FavoriteButtons from '../Components/FavoriteButtons';
 import '../css/DrinkProgress.css';
+import LoadingDrink from '../Components/LoadingDrink';
 
 function DrinkProgress(props) {
   const [drinkById, setDrinkById] = useState([]);
@@ -19,10 +20,12 @@ function DrinkProgress(props) {
   const { id } = match.params;
   const [isFavorite, setIsFavorite] = useState(false);
   const { idDrinksAPI, setIdDrinksAPI, show, setShow } = useContext(MainContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchDrinkByID() {
     const drinkByIdAPI = await getDrinkByID(id);
     setDrinkById(drinkByIdAPI.drinks);
+    setIsLoading(false);
   }
 
   // console.log(drinkById);
@@ -180,7 +183,7 @@ function DrinkProgress(props) {
       </Link>
       <br />
       <br />
-      { drinkById.map((item, index) => (
+      { !isLoading ? drinkById.map((item, index) => (
         <div key={ index }>
           <Figure>
             <Figure.Image
@@ -219,15 +222,6 @@ function DrinkProgress(props) {
                         <label
                           htmlFor={ i }
                         >
-                          <input
-                            name={ Object.values(ingredient) }
-                            id={ i }
-                            type="checkbox"
-                            checked={ inProgressRecipe[id]
-                        && inProgressRecipe[id].includes(i + 1) }
-                            onChange={ ({ target }) => ingredientsDone(target, i + 1) }
-                            onClick={ () => ingredientsChecked() }
-                          />
                           { Object.values(ingredient) }
                         </label>
                       </li>
@@ -253,7 +247,7 @@ function DrinkProgress(props) {
             <p>{ show && 'Copy link!'}</p>
           </Card>
         </div>
-      )) }
+      )) : <LoadingDrink />}
       <div className="buttons-progress-drink">
         <br />
         <Link to="/receitas-feitas">

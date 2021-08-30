@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import MainContext from '../../Context/MainContext';
 import { getFoodsInitial } from '../../Services/ApiFood';
+import Loading from '../Loading';
 
 function FoodCards() {
   const [initialFoods, setInitialFoods] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { dataFoods, limit, inputSearch, foodsByCategory } = useContext(MainContext);
 
   async function fetchFoodsInitial() {
     const foodsInitialAPI = await getFoodsInitial();
     setInitialFoods(foodsInitialAPI.meals);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -20,7 +23,7 @@ function FoodCards() {
   if (inputSearch) {
     return (
       <div className="card-foods">
-        {dataFoods.map((item, index) => index < limit && (
+        { !isLoading ? dataFoods.map((item, index) => index < limit && (
           <Link to={ `/comidas/${item.idMeal}` }>
             <Card style={ { width: '10rem' } } key={ index }>
               <Card.Img variant="top" src={ item.strMealThumb } />
@@ -28,7 +31,7 @@ function FoodCards() {
             </Card>
             <br />
           </Link>
-        )) }
+        )) : <Loading /> }
       </div>
     );
   }
@@ -36,7 +39,7 @@ function FoodCards() {
   if (foodsByCategory.length > 0) {
     return (
       <div className="card-foods">
-        {foodsByCategory.map((item, index) => index < limit && (
+        { !isLoading ? foodsByCategory.map((item, index) => index < limit && (
           <Link to={ `/comidas/${item.idMeal}` }>
             <Card style={ { width: '10rem' } }>
               <Card.Img variant="top" src={ item.strMealThumb } />
@@ -44,14 +47,14 @@ function FoodCards() {
             </Card>
             <br />
           </Link>
-        )) }
+        )) : <Loading /> }
       </div>
     );
   }
 
   return (
     <div className="card-foods">
-      {initialFoods.map((item, index) => index < limit && (
+      { !isLoading ? initialFoods.map((item, index) => index < limit && (
         <Link to={ `/comidas/${item.idMeal}` }>
           <Card style={ { width: '10rem' } }>
             <Card.Img variant="top" src={ item.strMealThumb } />
@@ -59,7 +62,7 @@ function FoodCards() {
           </Card>
           <br />
         </Link>
-      )) }
+      )) : <Loading />}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function RecipeDone() {
 
   const storage = JSON.parse(localStorage.getItem('doneRecipes'));
 
-  console.log('localStorage', storage);
+  // console.log('localStorage', storage);
   if (storage) {
     if (filterDone === 'All') {
       return (

@@ -8,6 +8,7 @@ import getDate from '../Services/getDate';
 import MainContext from '../Context/MainContext';
 import FavoriteButtons from '../Components/FavoriteButtons';
 import '../css/FoodProgress.css';
+import Loading from '../Components/Loading';
 
 function FoodProgress(props) {
   const [foodById, setFoodById] = useState([]);
@@ -18,10 +19,12 @@ function FoodProgress(props) {
   const { id } = match.params;
   const [isFavorite, setIsFavorite] = useState(false);
   const { idFoodsAPI, setIdFoodsAPI, show, setShow } = useContext(MainContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchFoodsByID() {
     const foodByIdAPI = await getFoodsByID(id);
     setFoodById(foodByIdAPI.meals);
+    setIsLoading(false);
   }
 
   // console.log(foodById);
@@ -178,7 +181,7 @@ function FoodProgress(props) {
       </Link>
       <br />
       <br />
-      { foodById.map((item, index) => (
+      { !isLoading ? foodById.map((item, index) => (
         <div key={ index }>
           <Figure>
             <Figure.Image
@@ -251,7 +254,7 @@ function FoodProgress(props) {
             <p>{ show && 'Copy link!'}</p>
           </Card>
         </div>
-      )) }
+      )) : <Loading />}
       <br />
       <div className="buttons-progress-food">
         <Link to="/receitas-feitas">
