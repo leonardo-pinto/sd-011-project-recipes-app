@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getFoodsInitial } from '../../../Services/ApiFood';
 import HeaderExpFoodsOrigin from '../../../Components/headers/HeaderExploreFoodsOrigin';
@@ -62,25 +62,18 @@ const Origen = () => {
         </Form.Select>
       </section>
       <section>
-        <ul>
-          { mealsByOrigin && mealsByOrigin.slice(0, magicNumber).map((food, i) => (
-            <Link key={ food.idMeal } to={ `/comidas/${food.idMeal}` }>
-              <li
-                data-testid={ `${i}-recipe-card` }
-                key={ food.idMeal }
-                style={ { display: 'flex' } }
-              >
-                <img
-                  src={ food.strMealThumb }
-                  alt={ food.strMeal }
-                  data-testid={ `${i}-card-img` }
-                  style={ { width: '30px' } }
-                />
-                <p data-testid={ `${i}-card-name` }>{ food.strMeal }</p>
-              </li>
-            </Link>
-          )) }
-        </ul>
+        { mealsByOrigin && mealsByOrigin.slice(0, magicNumber).map((food, i) => (
+          <Link key={ food.idMeal } to={ `/comidas/${food.idMeal}` }>
+            <Card style={ { width: '18rem' } }>
+              <Card.Img variant="top" src={ food.strMealThumb } />
+              <Card.Body>
+                <Card.Title>{ food.strMeal }</Card.Title>
+              </Card.Body>
+            </Card>
+          </Link>
+        )) }
+        <br />
+        <br />
       </section>
       <footer>
         <LowerMenu />

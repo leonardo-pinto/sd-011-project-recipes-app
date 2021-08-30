@@ -1,7 +1,9 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import HeaderExplore from '../../Components/headers/HeaderExplore';
 import LowerMenu from '../../Components/footer/LowerMenu';
+import '../../css/MainExplore.css';
 
 export default function MainExplorer({ history }) {
   const handleClick = ({ target }) => {
@@ -13,25 +15,27 @@ export default function MainExplorer({ history }) {
   };
 
   return (
-    <div>
+    <div className="explore-page">
       <HeaderExplore history={ history } title="Explorar" />
-      <div>
-        <button
+      <div className="explore-page-buttons">
+        <Button
+          variant="light"
           data-testid="explore-food"
           name="food"
           onClick={ handleClick }
           type="button"
         >
           Explorar Comidas
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="light"
           data-testid="explore-drinks"
           name="drinks"
           onClick={ handleClick }
           type="button"
         >
           Explorar Bebidas
-        </button>
+        </Button>
       </div>
       <footer>
         <LowerMenu />

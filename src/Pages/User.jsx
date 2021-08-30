@@ -1,35 +1,45 @@
 import React from 'react';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HeaderPerfil from '../Components/headers/HeaderPerfil';
 import LowerMenu from '../Components/footer/LowerMenu';
+import '../css/User.css';
 
 const User = () => {
   if (localStorage.getItem('user')) {
     const { email } = JSON.parse(localStorage.getItem('user'));
     return (
-      <div>
+      <div className="user-page">
         <HeaderPerfil />
-        <p data-testid="profile-email">{ email }</p>
+        <h2 data-testid="profile-email">{ email }</h2>
         <div>
-          <Link to="/receitas-feitas">
-            <button type="button" data-testid="profile-done-btn">
-              Receitas Feitas
-            </button>
-          </Link>
-          <Link to="/receitas-favoritas">
-            <button type="button" data-testid="profile-favorite-btn">
-              Receitas Favoritas
-            </button>
-          </Link>
-          <Link to="/">
-            <button
-              type="button"
-              data-testid="profile-logout-btn"
-              onClick={ () => localStorage.clear() }
-            >
-              Sair
-            </button>
-          </Link>
+          <ButtonGroup aria-label="user-buttons">
+            <Link to="/receitas-feitas">
+              <Button
+                variant="secondary"
+                data-testid="profile-done-btn"
+              >
+                Receitas Feitas
+              </Button>
+            </Link>
+            <Link to="/receitas-favoritas">
+              <Button
+                variant="secondary"
+                data-testid="profile-favorite-btn"
+              >
+                Receitas Favoritas
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button
+                variant="secondary"
+                data-testid="profile-logout-btn"
+                onClick={ () => localStorage.clear() }
+              >
+                Sair
+              </Button>
+            </Link>
+          </ButtonGroup>
         </div>
         <LowerMenu />
       </div>
@@ -38,25 +48,33 @@ const User = () => {
     <div>
       <HeaderPerfil />
       <div>
-        <Link to="/receitas-feitas">
-          <button type="button" data-testid="profile-done-btn">
-            Receitas Feitas
-          </button>
-        </Link>
-        <Link to="/receitas-favoritas">
-          <button type="button" data-testid="profile-favorite-btn">
-            Receitas Favoritas
-          </button>
-        </Link>
-        <Link to="/">
-          <button
-            type="button"
-            data-testid="profile-logout-btn"
-            onClick={ () => localStorage.clear() }
-          >
-            Sair
-          </button>
-        </Link>
+        <ButtonGroup aria-label="user-buttons">
+          <Link to="/receitas-feitas">
+            <Button
+              variant="secondary"
+              data-testid="profile-done-btn"
+            >
+              Receitas Feitas
+            </Button>
+          </Link>
+          <Link to="/receitas-favoritas">
+            <Button
+              variant="secondary"
+              data-testid="profile-favorite-btn"
+            >
+              Receitas Favoritas
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button
+              variant="secondary"
+              data-testid="profile-logout-btn"
+              onClick={ () => localStorage.clear() }
+            >
+              Sair
+            </Button>
+          </Link>
+        </ButtonGroup>
       </div>
       <LowerMenu />
     </div>
