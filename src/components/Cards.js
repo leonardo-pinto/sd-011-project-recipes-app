@@ -26,10 +26,17 @@ export default function Cards(props) {
     textShadow: '0px 0px 20px white',
     color: '#590202',
     textAlign: 'center',
-    fontSize: '30px',
+    fontSize: '20px',
     fontWeight: 'bold',
     position: 'relative',
-    top: '-160px',
+    top: '-200px',
+  };
+
+  const boxStyle = {
+    background: 'white',
+    opacity: '70%',
+    clipPath: 'polygon(5% 0, 100% 0%, 95% 100%, 0 100%)',
+    border: '1px solid black',
   };
 
   let tipo = 'comidas';
@@ -68,7 +75,9 @@ export default function Cards(props) {
         style={ styleText }
         data-testid={ `${index}-card-name` }
       >
-        { recipeName }
+        <div style={ boxStyle }>
+          { recipeName }
+        </div>
       </Card.Body>
     </Card>
   );

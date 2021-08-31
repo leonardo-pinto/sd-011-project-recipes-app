@@ -5,7 +5,6 @@ import ButtonShare from './ButtonShare';
 import Recommended from './Recommended';
 import RenderVideo from './RenderVideo';
 import ButtonFavorite from './ButtonFavorite';
-import PropTypes from 'prop-types';
 import '../App.css';
 
 function MealDetailCard() {
@@ -36,6 +35,11 @@ function MealDetailCard() {
     getRecomend();
     getUrlMeal();
   }, [path]);
+
+  const styleDiv = {
+    borderRadius: '0 0 15px 15px',
+    backgroundColor: 'rgba(3, 127, 140, .3)',
+  };
 
   const {
     // idMeal,
@@ -68,32 +72,60 @@ function MealDetailCard() {
       <Card style={ { width: '95%', margin: '15px auto' } }>
         <Card.Body>
           <Card.Img
+            style={ { boxShadow: '0 0 5px' } }
             data-testid="recipe-photo"
             width="150px"
             src={ strMealThumb }
             alt="tumb"
           />
-          <Card.Text className="card-details-text" data-testid="recipe-title">{strMeal}</Card.Text>
-          <Card.Text className="card-details-text">{strArea}</Card.Text>
-          <Card.Text className="card-details-text" data-testid="recipe-category">{strCategory}</Card.Text>
-          <div className="card-details-share" style={ { display: 'flex', justifyContent: 'space-around' } }>
+          <div
+            style={ styleDiv }
+          >
+            <Card.Text
+              className="card-details-text"
+              data-testid="recipe-title"
+            >
+              {strMeal}
+            </Card.Text>
+            <Card.Text
+              className="card-details-text"
+            >
+              {strArea}
+            </Card.Text>
+            <Card.Text
+              className="card-details-text"
+              data-testid="recipe-category"
+            >
+              {strCategory}
+            </Card.Text>
+          </div>
+          <div className="card-details-share">
             <ButtonFavorite objData={ mealDetail } />
             <ButtonShare path={ window.location.href } testid="share-btn" />
           </div>
-          <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
-          <div style={ { textAlign: 'center', fontStyle: 'italic' } }>
-            { objIngred.map((e, i) => (
-              <div
-                style={ { marginBottom: '0' } }
-                data-testid={ `${i}-ingredient-name-and-measure` }
-                key={ i }
-              >
-                { objMeasure[i] ? `${e} - ${objMeasure[i]}` : `${e}`}
-              </div>
-            ))}
+          <div
+            style={ { borderRadius: '15px', backgroundColor: 'rgba(3, 127, 140, .3)' } }
+          >
+            <h4 style={ { padding: '0 10px 0 10px' } }>Ingredients</h4>
+            <div style={ { textAlign: 'center', fontStyle: 'italic' } }>
+              { objIngred.map((e, i) => (
+                <div
+                  style={ { marginBottom: '0' } }
+                  data-testid={ `${i}-ingredient-name-and-measure` }
+                  key={ i }
+                >
+                  { objMeasure[i] ? `${e} - ${objMeasure[i]}` : `${e}`}
+                </div>
+              ))}
+            </div>
           </div>
           <h4 style={ { padding: '0 10px 0 10px' } }>Instructions</h4>
-          <h6 style={ { textAlign: 'justify' } } data-testid="instructions">{strInstructions}</h6>
+          <h6
+            style={ { textAlign: 'justify' } }
+            data-testid="instructions"
+          >
+            {strInstructions}
+          </h6>
           { strYoutube
             && <RenderVideo
               src={ strYoutube }

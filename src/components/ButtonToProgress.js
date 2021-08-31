@@ -16,7 +16,7 @@ function ButtonToProgress(props) {
   const doneRecipes = localStorage.getItem('doneRecipes');
 
   const styleBtn = {
-    // position: 'fixed',
+    position: 'fixed',
     bottom: 0,
     height: '60px',
     background: '#f76c05',

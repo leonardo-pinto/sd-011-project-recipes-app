@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+// import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function ButtonFavorite({ objData }) {
   const [black, setBlack] = useState(false);
@@ -44,6 +44,9 @@ function ButtonFavorite({ objData }) {
     return setBlack(false);
   };
 
+  const whiteHeartIcon2 = 'https://icongr.am/entypo/heart-outlined.svg?size=31&color=000000';
+  const blackHeartIcon2 = 'https://icongr.am/entypo/heart.svg?size=31&color=e33535';
+
   const whiteHeart = () => {
     const ret = (
       <button
@@ -51,7 +54,7 @@ function ButtonFavorite({ objData }) {
         style={ { background: 'none', opacity: 'none', border: 'none' } }
         onClick={ () => handleClickToBlack() }
       >
-        <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="not-favorite btn" />
+        <img data-testid="favorite-btn" src={ whiteHeartIcon2 } alt="not-favorite btn" />
       </button>
     );
     return ret;
@@ -64,7 +67,7 @@ function ButtonFavorite({ objData }) {
         type="button"
         onClick={ () => handleClickToWhite() }
       >
-        <img data-testid="favorite-btn" src={ blackHeartIcon } alt="favorite btn" />
+        <img data-testid="favorite-btn" src={ blackHeartIcon2 } alt="favorite btn" />
       </button>
     );
     return ret;

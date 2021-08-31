@@ -68,7 +68,7 @@ function Recommended({ value, type }) {
   };
 
   return (
-    <div style={ { margin: '30px', textAlign: '-webkit-center' } }>
+    <div style={ { margin: '0 30px 40px 30px', textAlign: '-webkit-center' } }>
       <Slider { ...settings }>
         {
           kind()
