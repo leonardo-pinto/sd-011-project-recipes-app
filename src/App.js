@@ -19,6 +19,8 @@ import ReceitasFeitas from './Pages/ReceitasFeitas';
 import ReceitasFavoritas from './Pages/ReceitasFavoritas';
 import NotFound from './Pages/NotFound';
 
+//  teste app
+
 function App() {
   return (
     <Switch>
