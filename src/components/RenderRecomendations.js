@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { useSelector } from 'react-redux';
+import createRecipeObject from '../helpers/createRecipeObject';
 
 const responsive = {
   desktop: {
@@ -24,59 +25,31 @@ const responsive = {
 };
 
 function RenderRecomendations({ typeReco }) {
-  const [recipeType, setRecipeType] = useState({
-    type: '',
-    name: '',
-    image: '',
-  });
   const { drinks, foods } = useSelector((state) => state.fetchReceitas);
+  const { recipes, id, name, image } = createRecipeObject(foods, drinks);
 
-  useEffect(() => {
-    if (typeReco === 'comidas') {
-      setRecipeType({
-        recipes: foods.meals,
-        type: 'meals',
-        id: 'idMeal',
-        name: 'strMeal',
-        image: 'strMealThumb',
-      });
-    } else {
-      setRecipeType({
-        recipes: drinks.drinks,
-        type: 'drinks',
-        id: 'idDrink',
-        name: 'strDrink',
-        image: 'strDrinkThumb',
-      });
-    }
-  }, [drinks.drinks, foods.meals]);
-
-  const { recipes, type, name, image, id } = recipeType;
   const limitRecipes = 6;
-
-  if (recipes === undefined) return <p>Loading</p>;
 
   return (
     <section className="images">
       <Carousel responsive={ responsive }>
-        {(type !== '' && recipes !== null)
-          && recipes.slice(0, limitRecipes).map((recipe, index) => (
-            <Link to={ `/${typeReco}/${recipe[id]}` } key={ index }>
-              <div
-                data-testid={ `${index}-recomendation-card` }
-                key={ index }
-              >
-                <p data-testid={ `${index}-recomendation-title` }>{recipe[name]}</p>
-                <img
-                  className="imageCard"
-                  data-testid={ `${index}-card-img` }
-                  src={ recipe[image] }
-                  alt={ name }
-                  width="150px"
-                />
-              </div>
-            </Link>
-          ))}
+        {recipes.slice(0, limitRecipes).map((recipe, index) => (
+          <Link to={ `/${typeReco}/${recipe[id]}` } key={ index }>
+            <div
+              data-testid={ `${index}-recomendation-card` }
+              key={ index }
+            >
+              <p data-testid={ `${index}-recomendation-title` }>{recipe[name]}</p>
+              <img
+                className="imageCard"
+                data-testid={ `${index}-card-img` }
+                src={ recipe[image] }
+                alt={ name }
+                width="150px"
+              />
+            </div>
+          </Link>
+        ))}
       </Carousel>
 
     </section>

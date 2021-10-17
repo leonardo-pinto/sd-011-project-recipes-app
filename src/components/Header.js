@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import RenderSearchBar from './RenderSearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import { getRecipes } from '../redux/slices/fetchReceitas';
+// import { setInitialCategories } from '../redux/slices/fetchReceitas';
+// import { allFoodsCategories, allDrinksCategories } from '../helpers/endpoints';
+// import useFetchInitial from '../hooks/useFetchInitial';
 
 function Header({ title }) {
-  const [hiddenSearchBar, setHiddentSearchBar] = useState(true);
-  const dispatch = useDispatch();
-  const renderWithoutSearch = [
-    'Explorar',
-    'Explorar Comidas',
-    'Explorar Bebidas',
-    'Explorar Ingredientes',
-    'Perfil',
-    'Receitas Feitas',
-    'Receitas Favoritas',
+  // const dispatch = useDispatch();
+  // const { data, isLoading, error } = useFetchInitial(allFoodsCategories, allDrinksCategories);
+  // const { foodsCategories, drinksCategories } = useSelector((state) => state.fetchReceitas);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  // if (error) return <p>{error}</p>;
+
+  // if (isLoading) return <p>Loading...</p>;
+
+  // if (data) {
+  //   dispatch(setInitialCategories(data));
+  // }
+
+  const pagesThatContainsSearchButton = [
+    'Comidas',
+    'Bebidas',
+    'Explorar Origem',
   ];
 
-  const renderSearchComponents = {
-    Comidas: (<SearchBar />),
-    Bebidas: (<SearchBar />),
-  };
-
-  useEffect(() => {
-    dispatch(getRecipes('foodCategories'));
-    dispatch(getRecipes('drinksCategories'));
-  }, [dispatch]);
+  // const renderSearchComponents = {
+  //   Comidas: (<RenderSearchBar />),
+  //   Bebidas: (<RenderSearchBar />),
+  // };
 
   return (
     <div>
@@ -40,16 +44,16 @@ function Header({ title }) {
         />
       </Link>
       <h1 data-testid="page-title">{title}</h1>
-      {(!renderWithoutSearch.includes(title))
+      {(pagesThatContainsSearchButton.includes(title))
         && (
           <div>
             <button
               type="button"
-              onClick={ () => setHiddentSearchBar(!hiddenSearchBar) }
+              onClick={ () => setShowSearchBar(!showSearchBar) }
             >
               <img src={ searchIcon } data-testid="search-top-btn" alt="search-icon" />
             </button>
-            {(!hiddenSearchBar && renderSearchComponents[title])}
+            {/* {(!hiddenSearchBar && renderSearchComponents[title])} */}
           </div>)}
     </div>
   );

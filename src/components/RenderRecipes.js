@@ -1,55 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInput, getRecipes } from '../redux/slices/fetchReceitas';
+import { setInitialRecipes } from '../redux/slices/fetchReceitas';
+import { allFoods, allDrinks } from '../helpers/endpoints';
+import createRecipeObject from '../helpers/createRecipeObject';
+import useFetchInitial from '../hooks/useFetchInitial';
 
 function RenderRecipes({ redirectedFromIngredients }) {
   const dispatch = useDispatch();
-  const [recipeType, setRecipeType] = useState({
-    type: '',
-    name: '',
-    image: '',
-  });
-  const { drinks, foods } = useSelector((state) => state.fetchReceitas);
-  const [linkToGo, setLinkToGo] = useState('');
+  const { data, isLoading, error } = useFetchInitial(allFoods, allDrinks);
+  const { foods, drinks } = useSelector((state) => state.fetchReceitas);
 
-  useEffect(() => {
-    if (redirectedFromIngredients !== undefined) {
-      dispatch(setInput(redirectedFromIngredients));
-      const { pathname } = window.location;
-      const recipeURL = pathname.split('/')[1];
-      const action = recipeURL === 'comidas'
-        ? 'foodByIngredients'
-        : 'drinkByIngredients';
-      dispatch(getRecipes(action));
-    }
-  }, [redirectedFromIngredients, dispatch]);
+  if (error) return <p>{error}</p>;
 
-  useEffect(() => {
-    const { pathname } = window.location;
-    setLinkToGo(pathname);
-    const currentURL = pathname.split('/')[1];
-    if (currentURL === 'comidas') {
-      setRecipeType({
-        recipes: foods.meals,
-        type: 'meals',
-        id: 'idMeal',
-        name: 'strMeal',
-        image: 'strMealThumb',
-      });
-    } else {
-      setRecipeType({
-        recipes: drinks.drinks,
-        type: 'drinks',
-        id: 'idDrink',
-        name: 'strDrink',
-        image: 'strDrinkThumb',
-      });
-    }
-  }, [drinks.drinks, foods.meals]);
+  if (isLoading) return <p>Loading...</p>;
 
-  const { recipes, type, name, image, id } = recipeType;
+  if (data) {
+    dispatch(setInitialRecipes(data));
+  }
+
+  const recipeType = (createRecipeObject(foods, drinks));
+
+  // useEffect(() => {
+  //   if (redirectedFromIngredients !== undefined) {
+  //     dispatch(setInput(redirectedFromIngredients));
+  //     const { pathname } = window.location;
+  //     const recipeURL = pathname.split('/')[1];
+  //     const action = recipeURL === 'comidas'
+  //       ? 'foodByIngredients'
+  //       : 'drinkByIngredients';
+  //     dispatch(getRecipes(action));
+  //   }
+  // }, [redirectedFromIngredients, dispatch]);
+
+  const { recipes, type, name, image, id, linkToGo } = recipeType;
   const limitRecipes = 12;
 
   return (
@@ -70,7 +55,6 @@ function RenderRecipes({ redirectedFromIngredients }) {
         ))}
 
     </section>
-
   );
 }
 

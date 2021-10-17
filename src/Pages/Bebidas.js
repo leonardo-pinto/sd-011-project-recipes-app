@@ -8,24 +8,25 @@ import Footer from '../components/Footer';
 import CategoryButtons from '../components/CategoryButtons';
 
 function Bebidas({ title, location: { recipeName } }) {
-  const { drinks } = useSelector((state) => state.fetchReceitas);
-  const dispatch = useDispatch();
+  // const { drinks } = useSelector((state) => state.fetchReceitas);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!drinks || drinks.length === 0) {
-      const URL = title === 'Comidas'
-        ? 'foods'
-        : 'drinks';
-      dispatch(getRecipes(URL));
-    }
-  }, [drinks, dispatch, title]);
+  // useEffect(() => {
+  //   if (!drinks || drinks.length === 0) {
+  //     const URL = title === 'Comidas'
+  //       ? 'foods'
+  //       : 'drinks';
+  //     dispatch(getRecipes(URL));
+  //   }
+  // }, [drinks, dispatch, title]);
 
   return (
     <div>
-      <Header title={ title } />
-      <CategoryButtons />
-      {Object.keys(drinks).length > 0
-        && <RenderRecipes redirectedFromIngredients={ recipeName } />}
+      {/* <Header title={ title } /> */}
+      {/* <CategoryButtons /> */}
+      {/* {Object.keys(drinks).length > 0
+        && <RenderRecipes redirectedFromIngredients={ recipeName } />} */}
+      <RenderRecipes redirectedFromIngredients={ recipeName } />
       <Footer />
     </div>
   );

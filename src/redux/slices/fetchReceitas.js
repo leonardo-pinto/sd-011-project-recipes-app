@@ -4,22 +4,22 @@ const initialState = {
   data: [],
   foods: [],
   drinks: [],
-  foodCategories: [],
+  foodsCategories: [],
   drinksCategories: [],
-  comidas: [],
-  foodIngredients: [],
-  foodByIngredients: [],
-  foodAreaList: [],
-  foodAreaFilter: [],
-  drinkIngredients: [],
-  drinkByIngredients: [],
-  randomFoodRecipe: '',
-  randomDrinkRecipe: '',
-  loading: false,
-  error: null,
-  input: '',
-  checkBoxCounter: 0,
-  disabledButton: true,
+  // comidas: [],
+  // foodIngredients: [],
+  // foodByIngredients: [],
+  // foodAreaList: [],
+  // foodAreaFilter: [],
+  // drinkIngredients: [],
+  // drinkByIngredients: [],
+  // randomFoodRecipe: '',
+  // randomDrinkRecipe: '',
+  // loading: false,
+  // error: null,
+  // input: '',
+  // checkBoxCounter: 0,
+  // disabledButton: true,
 };
 
 // createAsyncThunk receives two parameters: 1) name of the slice, 2) function name that creates the createAsyncThunk
@@ -28,8 +28,6 @@ export const getRecipes = createAsyncThunk(
   async (actionName, { getState }) => {
     const { fetchReceitas: { input } } = getState();
     const URLDictionary = {
-      foods: 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
-      drinks: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
       filterByFoodCategorie:
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${input}`,
       filterByDrinkCategorie:
@@ -81,6 +79,16 @@ const fetchReceitasSlice = createSlice({
     setDisableButton: (state, action) => {
       state.disabledButton = action.payload;
     },
+    setInitialRecipes: (state, action) => {
+      const { meals, drinks } = action.payload;
+      state.foods = meals;
+      state.drinks = drinks;
+    },
+    setInitialCategories: (state, action) => {
+      const { meals, drinks } = action.payload;
+      state.foodsCategories = meals;
+      state.drinksCategories = drinks;
+    },
   },
   extraReducers: {
     [getRecipes.pending]: (state) => {
@@ -114,6 +122,11 @@ const fetchReceitasSlice = createSlice({
 });
 
 export const {
-  setInput, setCheckBoxCounter, setDisableButton } = fetchReceitasSlice.actions;
+  setInput,
+  setCheckBoxCounter,
+  setDisableButton,
+  setInitialRecipes,
+  setInitialCategories,
+} = fetchReceitasSlice.actions;
 
 export default fetchReceitasSlice.reducer;

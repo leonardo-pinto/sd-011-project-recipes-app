@@ -1,49 +1,32 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { getRecipes } from '../redux/slices/fetchReceitas';
 import './IngredientsDetails.css';
+import identifyRecipeType from '../helpers/identifyRecipeType';
+import createIngredientObject from '../helpers/createIngredientObject';
+import useFetch from '../hooks/useFetch';
+import { foodsIngredients, drinksIngredients } from '../helpers/endpoints';
 
 function IngredientsDetails() {
-  const dispatch = useDispatch();
-  const {
-    foodIngredients,
-    drinkIngredients,
-  } = useSelector((state) => state.fetchReceitas);
+  // Ao clicar no card, devem ser renderizadas receitas apenas que contém o ingrediente
 
-  const { pathname } = window.location;
-  const currentURL = pathname.split('/')[2];
+  const recipeType = identifyRecipeType();
+  let ingredientType = foodsIngredients;
+  if (recipeType === 'bebidas') ingredientType = drinksIngredients;
+  const { data, isLoading, error } = useFetch(ingredientType);
 
-  function getIngredientsByRecipeType() {
-    if (currentURL === 'comidas') {
-      dispatch(getRecipes('foodIngredients'));
-    }
-    if (currentURL === 'bebidas') {
-      dispatch(getRecipes('drinkIngredients'));
-    }
-  }
+  if (error) return <p>{error}</p>;
 
-  useEffect(() => {
-    getIngredientsByRecipeType();
-  }, []);
+  if (isLoading) return <p>Loading...</p>;
 
-  if (foodIngredients.length !== 0 || drinkIngredients.length !== 0) {
-    const limitCards = 12;
-    let ingredientKey = 'strIngredient';
-    let recipeType = foodIngredients.meals;
-    let imageURL = 'themealdb';
-    if (currentURL === 'bebidas') {
-      recipeType = drinkIngredients.drinks;
-      ingredientKey = 'strIngredient1';
-      imageURL = 'thecocktaildb';
-    }
-
+  if (data) {
+    const { ingredientKey, imageURL, dataKey } = createIngredientObject(recipeType);
+    const limitIngredients = 12;
     return (
       <section className="ingredients-container">
-        {recipeType && recipeType.slice(0, limitCards).map((ingredient, index) => (
+        {data[dataKey].slice(0, limitIngredients).map((ingredient, index) => (
           <Link
             key={ index }
-            to={ { pathname: `/${currentURL}`, recipeName: ingredient[ingredientKey] } }
+            to={ { pathname: `/${recipeType}`, recipeName: ingredient[ingredientKey] } }
           >
             <div
               data-testid={ `${index}-ingredient-card` }

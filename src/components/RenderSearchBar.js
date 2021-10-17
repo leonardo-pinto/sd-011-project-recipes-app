@@ -6,12 +6,39 @@ import {
   foodsAction,
   drinksAction,
   setInput } from '../redux/slices/fetchReceitas';
+import identifyRecipeType from '../helpers/identifyRecipeType';
 
-function SearchBar() {
-  const { error, foods, drinks } = useSelector((state) => state.fetchReceitas);
+function RenderSearchBar() {
   const dispatch = useDispatch();
-  const [selectedRadio, setSelectedRadio] = useState();
+
+
+  const { foods, drinks, error } = useSelector((state) => state.fetchReceitas);
+
+
+  const [selectedRadioInput, setSelectedRadioInput] = useState();
+
+
   const [searchInput, setSearchInput] = useState();
+
+  
+  useEffect(() => {
+    if (error !== null) {
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
+  }, [error]);
+  
+  function handleSearchInput({ target: { value } }) {
+    setSearchInput(value);
+  }
+  
+  if (foods.meals && foods.meals.length === 1) {
+    const { idMeal } = foods.meals[0];
+    return <Redirect to={ `/comidas/${idMeal}` } />;
+  }
+  if (drinks.drinks && drinks.drinks.length === 1) {
+    const { idDrink } = drinks.drinks[0];
+    return <Redirect to={ `/bebidas/${idDrink}` } />;
+  }
 
   const drinksActions = {
     ingredients: drinksAction[0],
@@ -25,35 +52,21 @@ function SearchBar() {
     name: foodsAction[2],
   };
 
-  useEffect(() => {
-    if (error !== null) {
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    }
-  }, [error]);
-
-  function handleSearchInput({ target: { value } }) {
-    setSearchInput(value);
-  }
-  if (foods.meals && foods.meals.length === 1) {
-    const { idMeal } = foods.meals[0];
-    return <Redirect to={ `/comidas/${idMeal}` } />;
-  }
-  if (drinks.drinks && drinks.drinks.length === 1) {
-    const { idDrink } = drinks.drinks[0];
-    return <Redirect to={ `/bebidas/${idDrink}` } />;
-  }
-
-  function handleRequest() {
-    if (selectedRadio === 'firstLetter' && searchInput.length > 1) {
+  function handleSearchRequest() {
+    if (selectedRadioInput === 'firstLetter' && searchInput.length > 1) {
       return alert('Sua busca deve conter somente 1 (um) caracter');
     }
     dispatch(setInput(searchInput));
-    const { pathname } = window.location;
-    const recipeURL = pathname.split('/')[1];
-    const action = recipeURL === 'comidas'
-      ? foodsActions[selectedRadio]
-      : drinksActions[selectedRadio];
-    dispatch(getRecipes(action));
+    // const recipeType = identifyRecipeType === 'comidas'
+    //   ? foodsActions[selectedRadioInput]
+    //   : drinksActions[selectedRadioInput];
+    // dispatch(getRecipes(action));
+    // const { pathname } = window.location;
+    // const recipeURL = pathname.split('/')[1];
+    // const action = recipeURL === 'comidas'
+    //   ? foodsActions[selectedRadioInput]
+    //   : drinksActions[selectedRadioInput];
+
   }
 
   return (
@@ -67,21 +80,21 @@ function SearchBar() {
       </label>
       <label htmlFor="radio-search">
         <input
-          onChange={ () => setSelectedRadio('ingredients') }
+          onChange={ () => setSelectedRadioInput('ingredients') }
           type="radio"
           name="radio"
           data-testid="ingredient-search-radio"
         />
         Ingredientes
         <input
-          onChange={ () => setSelectedRadio('name') }
+          onChange={ () => setSelectedRadioInput('name') }
           type="radio"
           name="radio"
           data-testid="name-search-radio"
         />
         Nome
         <input
-          onChange={ () => setSelectedRadio('firstLetter') }
+          onChange={ () => setSelectedRadioInput('firstLetter') }
           type="radio"
           name="radio"
           data-testid="first-letter-search-radio"
@@ -90,7 +103,7 @@ function SearchBar() {
       </label>
       <button
         type="button"
-        onClick={ handleRequest }
+        onClick={ handleSearchRequest }
         data-testid="exec-search-btn"
       >
         Buscar
@@ -99,4 +112,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default RenderSearchBar;
